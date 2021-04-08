@@ -1,5 +1,6 @@
 package ATMSS;
 
+import ATMSS.AdvicePrinterHandler.AdvicePrinterHandler;
 import ATMSS.KeypadHandler.Emulator.KeypadEmulator;
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.Msg;
@@ -21,13 +22,11 @@ public class ATMSSStarter extends AppKickstarter {
     protected CardReaderHandler cardReaderHandler;
     protected KeypadHandler keypadHandler;
     protected TouchDisplayHandler touchDisplayHandler;
+    protected AdvicePrinterHandler advicePrinterHandler;
 
-
-    //------------------------------------------------------------
+	//------------------------------------------------------------
     // main
-    public static void main(String [] args) {
-        new ATMSSStarter().startApp();
-    } // main
+    public static void main(String [] args) { new ATMSSStarter().startApp(); } // main
 
 
     //------------------------------------------------------------
@@ -55,11 +54,13 @@ public class ATMSSStarter extends AppKickstarter {
     protected void startHandlers() {
 	// create handlers
 	try {
-	    timer = new Timer("timer", this);
+//		System.out.println("I am ATMSSStarter");
+		timer = new Timer("timer", this);
 	    atmss = new ATMSS("ATMSS", this);
 	    cardReaderHandler = new CardReaderHandler("CardReaderHandler", this);
 	    keypadHandler = new KeypadHandler("KeypadHandler", this);
 	    touchDisplayHandler = new TouchDisplayHandler("TouchDisplayHandler", this);
+		advicePrinterHandler = new AdvicePrinterHandler("AdvicePrinterHandler", this);
 	} catch (Exception e) {
 	    System.out.println("AppKickstarter: startApp failed");
 	    e.printStackTrace();
@@ -72,6 +73,7 @@ public class ATMSSStarter extends AppKickstarter {
 	new Thread(cardReaderHandler).start();
 	new Thread(keypadHandler).start();
 	new Thread(touchDisplayHandler).start();
+	new Thread(advicePrinterHandler).start();
     } // startHandlers
 
 
@@ -87,5 +89,6 @@ public class ATMSSStarter extends AppKickstarter {
 	keypadHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
 	touchDisplayHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
 	timer.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
+	advicePrinterHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
     } // stopApp
 } // ATM.ATMSSStarter

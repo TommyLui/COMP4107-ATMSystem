@@ -1,5 +1,7 @@
 package ATMSS;
 
+import ATMSS.AdvicePrinterHandler.AdvicePrinterHandler;
+import ATMSS.AdvicePrinterHandler.Emulator.AdvicePrinterEmulator;
 import AppKickstarter.timer.Timer;
 
 import ATMSS.ATMSS.ATMSS;
@@ -18,15 +20,14 @@ import javafx.stage.Stage;
 public class ATMSSEmulatorStarter extends ATMSSStarter {
     //------------------------------------------------------------
     // main
-    public static void main(String [] args) {
-	new ATMSSEmulatorStarter().startApp();
-    } // main
+    public static void main(String [] args) { new ATMSSEmulatorStarter().startApp(); } // main
 
 
     //------------------------------------------------------------
     // startHandlers
     @Override
     protected void startHandlers() {
+//		System.out.println("I am ATMSSEmulatorStarter");
         Emulators.atmssEmulatorStarter = this;
         new Emulators().start();
     } // startHandlers
@@ -51,19 +52,22 @@ public class ATMSSEmulatorStarter extends ATMSSStarter {
 	    CardReaderEmulator cardReaderEmulator = null;
 	    KeypadEmulator keypadEmulator = null;
 	    TouchDisplayEmulator touchDisplayEmulator = null;
+	    AdvicePrinterEmulator advicePrinterEmulator = null;
 
-	    // create emulators
+			// create emulators
 	    try {
 	        timer = new Timer("timer", atmssEmulatorStarter);
 	        atmss = new ATMSS("ATMSS", atmssEmulatorStarter);
 	        cardReaderEmulator = new CardReaderEmulator("CardReaderHandler", atmssEmulatorStarter);
 	        keypadEmulator = new KeypadEmulator("KeypadHandler", atmssEmulatorStarter);
 	        touchDisplayEmulator = new TouchDisplayEmulator("TouchDisplayHandler", atmssEmulatorStarter);
+	        advicePrinterEmulator = new AdvicePrinterEmulator("AdvicePrinterHandler", atmssEmulatorStarter);
 
 		// start emulator GUIs
 		keypadEmulator.start();
 		cardReaderEmulator.start();
 		touchDisplayEmulator.start();
+		advicePrinterEmulator.start();
 	    } catch (Exception e) {
 		System.out.println("Emulators: start failed");
 		e.printStackTrace();
@@ -74,13 +78,14 @@ public class ATMSSEmulatorStarter extends ATMSSStarter {
 	    atmssEmulatorStarter.setCardReaderHandler(cardReaderEmulator);
 	    atmssEmulatorStarter.setKeypadHandler(keypadEmulator);
 	    atmssEmulatorStarter.setTouchDisplayHandler(touchDisplayEmulator);
-
+		atmssEmulatorStarter.setAdvicePrinterHandler(advicePrinterEmulator);
 	    // start threads
 	    new Thread(timer).start();
 	    new Thread(atmss).start();
 	    new Thread(cardReaderEmulator).start();
 	    new Thread(keypadEmulator).start();
 	    new Thread(touchDisplayEmulator).start();
+	    new Thread(advicePrinterEmulator).start();
 	} // start
     } // Emulators
 
@@ -101,5 +106,8 @@ public class ATMSSEmulatorStarter extends ATMSSStarter {
     }
     private void setTouchDisplayHandler(TouchDisplayHandler touchDisplayHandler) {
         this.touchDisplayHandler = touchDisplayHandler;
+    }
+    private void setAdvicePrinterHandler(AdvicePrinterHandler advicePrinterHandler) {
+    	this.advicePrinterHandler = advicePrinterHandler;
     }
 } // ATMSSEmulatorStarter

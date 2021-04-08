@@ -94,5 +94,9 @@ public class Msg {
 	/** Card removed */			CR_CardRemoved,
 	/** Eject card */			CR_EjectCard,
 	/** Key pressed */			KP_KeyPressed,
+    /** Print receipt request */      AP_PrintReceipt,
+    /** Succesful print receipt */    AP_PrintSuccessful,
+    /** Error occured in Advice Printer */ AP_Error,
+    /** (TEST) Error occured in Advice Printer */ TEST_AP_PrintReceipt
     } // Type
 } // Msg
