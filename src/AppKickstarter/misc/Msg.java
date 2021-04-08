@@ -80,7 +80,7 @@ public class Msg {
      * @see Msg
      */
     public enum Type {
-        /** Terminate the running thread */	Terminate,
+    /** Terminate the running thread */	Terminate,
 	/** Generic error msg */		Error,
 	/** Set a timer */			SetTimer,
 	/** Set a timer */			CancelTimer,
@@ -97,6 +97,8 @@ public class Msg {
     /** Print receipt request */      AP_PrintReceipt,
     /** Succesful print receipt */    AP_PrintSuccessful,
     /** Error occured in Advice Printer */ AP_Error,
-    /** (TEST) Error occured in Advice Printer */ TEST_AP_PrintReceipt
+    /** Request to BAMS */    BAMS_Request,
+    /** Response from BAMS*/    BAMS_Response,
+    /** (TEST) Testing case in AdvicePrinter */ TEST_AP_PrintReceipt,
     } // Type
 } // Msg

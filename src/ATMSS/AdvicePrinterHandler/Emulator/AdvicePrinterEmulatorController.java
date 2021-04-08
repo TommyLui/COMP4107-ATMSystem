@@ -91,6 +91,7 @@ public class AdvicePrinterEmulatorController {
         switch(errMsg) {
             case "Jam paper":
                 apStatus = "paper jam";
+//                advicePrinterMBox.send(new Msg(id, advicePrinterMBox, Msg.Type.BAMS_Request, "AccStmtReq"));
                 break;
 
             case "running out of paper":

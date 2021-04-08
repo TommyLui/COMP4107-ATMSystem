@@ -1,102 +1,21 @@
-210409-01:01:55 [INFO] -- 
-210409-01:01:55 [INFO] -- 
-210409-01:01:55 [INFO] -- ============================================================
-210409-01:01:55 [INFO] -- ATMSSStarter: Application Starting...
-210409-01:01:58 [INFO] -- timer: starting...
-210409-01:01:58 [INFO] -- CardReaderHandler: starting...
-210409-01:01:58 [INFO] -- KeypadHandler: starting...
-210409-01:01:58 [INFO] -- TouchDisplayHandler: starting...
-210409-01:01:58 [INFO] -- ATMSS: starting...
-210409-01:01:58 [INFO] -- AdvicePrinterHandler: starting...
-210409-01:01:59 [INFO] -- Print advice: --------------------
-Ref No.: #1617901319959
-Date: Fri Apr 09 01:01:59 HKT 2021
-Usage: Deposit
-Card Holder: Mary
-Card No. (From): 1234-5678
-Card No. (To): 4567-8901
-Amount of money: $1000.5
---------------------
-
-210409-01:01:59 [INFO] -- AdvicePrinterHandler: receipt printed
-210409-01:01:59 [INFO] -- Print advice successful: print advice okay
-210409-01:02:09 [INFO] -- Advice printer: 1 Paper refilled
-
-210409-01:02:12 [INFO] -- Advice printer error: paper jam
-210409-01:02:12 [INFO] -- Advice printer: 1 Paper refilled
-
-210409-01:02:13 [INFO] -- Print advice: --------------------
-Ref No.: #1617901333323
-Date: Fri Apr 09 01:02:13 HKT 2021
-Usage: Deposit
-Card Holder: Mary
-Card No. (From): 1234-5678
-Card No. (To): 4567-8901
-Amount of money: $1000.5
---------------------
-
-210409-01:02:13 [INFO] -- AdvicePrinterHandler: receipt printed
-210409-01:02:13 [INFO] -- Print advice successful: print advice okay
-210409-01:02:13 [INFO] -- Print advice: --------------------
-Ref No.: #1617901333669
-Date: Fri Apr 09 01:02:13 HKT 2021
-Usage: Deposit
-Card Holder: Mary
-Card No. (From): 1234-5678
-Card No. (To): 4567-8901
-Amount of money: $1000.5
---------------------
-
-210409-01:02:13 [INFO] -- AdvicePrinterHandler: receipt printed
-210409-01:02:13 [INFO] -- Print advice successful: print advice okay
-210409-01:02:13 [INFO] -- Print advice: --------------------
-Ref No.: #1617901333912
-Date: Fri Apr 09 01:02:13 HKT 2021
-Usage: Deposit
-Card Holder: Mary
-Card No. (From): 1234-5678
-Card No. (To): 4567-8901
-Amount of money: $1000.5
---------------------
-
-210409-01:02:13 [INFO] -- AdvicePrinterHandler: receipt printed
-210409-01:02:13 [INFO] -- Print advice successful: print advice okay
-210409-01:02:14 [INFO] -- Print advice: --------------------
-Ref No.: #1617901334094
-Date: Fri Apr 09 01:02:14 HKT 2021
-Usage: Deposit
-Card Holder: Mary
-Card No. (From): 1234-5678
-Card No. (To): 4567-8901
-Amount of money: $1000.5
---------------------
-
-210409-01:02:14 [INFO] -- AdvicePrinterHandler: receipt printed
-210409-01:02:14 [INFO] -- Print advice successful: print advice okay
-210409-01:02:14 [INFO] -- Print advice: --------------------
-Ref No.: #1617901334258
-Date: Fri Apr 09 01:02:14 HKT 2021
-Usage: Deposit
-Card Holder: Mary
-Card No. (From): 1234-5678
-Card No. (To): 4567-8901
-Amount of money: $1000.5
---------------------
-
-210409-01:02:14 [INFO] -- AdvicePrinterHandler: receipt printed
-210409-01:02:14 [INFO] -- Print advice successful: print advice okay
-210409-01:02:58 [INFO] -- Poll: TimesUp 30430 0
-210409-01:02:58 [INFO] -- PollAck: KeypadHandler is up!
-210409-01:02:58 [INFO] -- PollAck: TouchDisplayHandler is up!
-210409-01:02:58 [INFO] -- PollAck: CardReaderHandler is up!
-210409-01:02:58 [INFO] -- PollAck: AdvicePrinterHandler is up!
-210409-01:03:58 [INFO] -- Poll: TimesUp 31563 0
-210409-01:03:58 [INFO] -- PollAck: AdvicePrinterHandler is up!
-210409-01:03:58 [INFO] -- PollAck: TouchDisplayHandler is up!
-210409-01:03:58 [INFO] -- PollAck: KeypadHandler is up!
-210409-01:03:58 [INFO] -- PollAck: CardReaderHandler is up!
-210409-01:04:58 [INFO] -- Poll: TimesUp 48946 0
-210409-01:04:58 [INFO] -- PollAck: AdvicePrinterHandler is up!
-210409-01:04:58 [INFO] -- PollAck: KeypadHandler is up!
-210409-01:04:58 [INFO] -- PollAck: TouchDisplayHandler is up!
-210409-01:04:58 [INFO] -- PollAck: CardReaderHandler is up!
+210409-02:37:15 [INFO] -- 
+210409-02:37:15 [INFO] -- 
+210409-02:37:15 [INFO] -- ============================================================
+210409-02:37:15 [INFO] -- ATMSSStarter: Application Starting...
+210409-02:37:18 [INFO] -- TouchDisplayHandler: starting...
+210409-02:37:18 [INFO] -- BAMSHandler: starting...
+210409-02:37:18 [INFO] -- KeypadHandler: starting...
+210409-02:37:18 [INFO] -- AdvicePrinterHandler: starting...
+210409-02:37:18 [INFO] -- timer: starting...
+210409-02:37:18 [INFO] -- CardReaderHandler: starting...
+210409-02:37:18 [INFO] -- ATMSS: starting...
+210409-02:37:19 [INFO] -- Advice printer error: paper jam
+210409-02:37:20 [INFO] -- Advice printer error: paper jam
+210409-02:37:20 [INFO] -- Advice printer error: paper jam
+210409-02:37:20 [INFO] -- Advice printer error: paper jam
+210409-02:38:18 [INFO] -- Poll: TimesUp 89336 0
+210409-02:38:18 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210409-02:38:18 [INFO] -- PollAck: TouchDisplayHandler is up!
+210409-02:38:18 [INFO] -- PollAck: KeypadHandler is up!
+210409-02:38:18 [INFO] -- PollAck: CardReaderHandler is up!
+210409-02:38:18 [INFO] -- PollAck: BAMSHandler is up!

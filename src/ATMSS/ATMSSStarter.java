@@ -1,6 +1,7 @@
 package ATMSS;
 
 import ATMSS.AdvicePrinterHandler.AdvicePrinterHandler;
+import ATMSS.BAMSHandler.BAMSHandlerInATMSS;
 import ATMSS.KeypadHandler.Emulator.KeypadEmulator;
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.Msg;
@@ -19,6 +20,7 @@ import javafx.application.Platform;
 public class ATMSSStarter extends AppKickstarter {
     protected Timer timer;
     protected ATMSS atmss;
+	protected BAMSHandlerInATMSS bamsHandler = null;
     protected CardReaderHandler cardReaderHandler;
     protected KeypadHandler keypadHandler;
     protected TouchDisplayHandler touchDisplayHandler;
@@ -57,6 +59,7 @@ public class ATMSSStarter extends AppKickstarter {
 //		System.out.println("I am ATMSSStarter");
 		timer = new Timer("timer", this);
 	    atmss = new ATMSS("ATMSS", this);
+	    bamsHandler = new BAMSHandlerInATMSS("BAMSHandler", this);
 	    cardReaderHandler = new CardReaderHandler("CardReaderHandler", this);
 	    keypadHandler = new KeypadHandler("KeypadHandler", this);
 	    touchDisplayHandler = new TouchDisplayHandler("TouchDisplayHandler", this);
@@ -70,6 +73,7 @@ public class ATMSSStarter extends AppKickstarter {
 	// start threads
 	new Thread(timer).start();
 	new Thread(atmss).start();
+	new Thread(bamsHandler).start();
 	new Thread(cardReaderHandler).start();
 	new Thread(keypadHandler).start();
 	new Thread(touchDisplayHandler).start();
@@ -85,6 +89,7 @@ public class ATMSSStarter extends AppKickstarter {
 	log.info("============================================================");
 	log.info(id + ": Application Stopping...");
 	atmss.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
+	bamsHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
 	cardReaderHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
 	keypadHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
 	touchDisplayHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
