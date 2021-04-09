@@ -14,6 +14,8 @@ import javafx.stage.WindowEvent;
 import java.util.Date;
 
 public class DepositCollectorEmulator extends DepositCollectorHandler {
+    private final int WIDTH = 500;
+    private final int HEIGHT = 500;
     private ATMSSStarter atmssStarter;
     private String id;
     private Stage myStage;
@@ -40,7 +42,7 @@ public class DepositCollectorEmulator extends DepositCollectorHandler {
         depositCollectorEmulatorController = (DepositCollectorEmulatorController) loader.getController();
         depositCollectorEmulatorController.initialize(id, atmssStarter, log, this);
         myStage.initStyle(StageStyle.DECORATED);
-        myStage.setScene(new Scene(root, 350, 470));
+        myStage.setScene(new Scene(root, WIDTH, HEIGHT));
         myStage.setTitle("Deposit Collector");
         myStage.setResizable(false);
         myStage.setOnCloseRequest((WindowEvent event) -> {
@@ -53,11 +55,14 @@ public class DepositCollectorEmulator extends DepositCollectorHandler {
     //------------------------------------------------------------
     // handle Deposit Collector
     /*
-    protected void handleDepositCollector(String content) {
+    protected void handleDepositCollect() {
         // fixme
-        super.depositCollectorEmulatorController(content);
-        depositCollectorEmulatorController(content);
+        super.handleDepositCollector();
+        DepositCollectorEmulatorController.depositCollectStatus("Successful");
+
     }
-    */// handle Deposit Collector
+    */
+
+    // handle Deposit Collector
 
 }

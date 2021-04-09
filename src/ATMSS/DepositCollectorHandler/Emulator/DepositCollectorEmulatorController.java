@@ -25,6 +25,7 @@ public class DepositCollectorEmulatorController {
     private DepositCollectorEmulator depositCollectorEmulator;
     private MBox depositCollectorMBox;
 
+
     private String depositCollectStatus;
     private String slotStatus;
     public TextField slotStatusText;
@@ -36,26 +37,51 @@ public class DepositCollectorEmulatorController {
     public TextField num100NoteLabel;
     public TextField num500NoteLabel;
     public TextField num1000NoteLabel;
+    public TextField depositCollectStatusField;
 
-
+    //------------------------------------------------------------
     // initialize
     public void initialize(String id, AppKickstarter appKickstarter, Logger log, DepositCollectorEmulator depositCollectorEmulator) {
         this.id = id;
         this.appKickstarter = appKickstarter;
         this.log = log;
         this.depositCollectorEmulator = depositCollectorEmulator;
-        this.depositCollectorMBox = appKickstarter.getThread("depositCollectorHandler").getMBox();
+        this.depositCollectorMBox = appKickstarter.getThread("DepositCollectorHandler").getMBox();
     } // initialize
+
+    //------------------------------------------------------------
     // buttonPressed
     public void buttonPressed(ActionEvent actionEvent) {
         Button btn = (Button) actionEvent.getSource();
+        String btnTxt = btn.getText();
+        System.out.println("The btn pressed:" + btnTxt);
+
+
 
         switch (btn.getText()) {
             case "Collect":
                 Date currentDate = new Date();
-                num100Note = Integer.parseInt(num100NoteLabel.getText());
-                num500Note = Integer.parseInt(num500NoteLabel.getText());
-                num1000Note = Integer.parseInt(num1000NoteLabel.getText());
+                if(num100NoteLabel.getText() != "" && num100NoteLabel.getLength() != 0){
+                    num100Note = Integer.parseInt(num100NoteLabel.getText());
+                }else{
+                    System.out.println("Enter Number on 100");
+                }
+                if(num500NoteLabel.getText() != "" && num500NoteLabel.getLength()!=0){
+                    num500Note = Integer.parseInt(num500NoteLabel.getText());
+                }else{
+                    System.out.println("Enter Number on 500");
+                }
+                if(num1000NoteLabel.getText() != "" && num1000NoteLabel.getLength()!=0){
+                    num1000Note = Integer.parseInt(num1000NoteLabel.getText());
+                }else{
+                    System.out.println("Enter Number on 1000");
+                }
+
+                totalNote = num100Note + num500Note + num1000Note;
+                if(totalNote > 100){
+                    System.out.println("Over Enter Cash");
+                }
+
                 break;
             /*
             case "Slot Opening":
@@ -65,22 +91,24 @@ public class DepositCollectorEmulatorController {
                 slotStatus(slotStatus);
             */
             case "Count":
-                totalNote = num100Note + num500Note + num1000Note;
                 totalCash = (num100Note * 100) + (num500Note * 500) + (num1000Note * 1000);
-                //Solution 1:
-                System.out.print("Number of 100 = " + num100Note + ", Total 100 = " + num100Note * 100);
-                System.out.print("Number of 500 = " + num500Note + ", Total 500 = " + num500Note * 500);
-                System.out.print("Number of 1000 = " + num1000Note + ", Total 1000 = " + num1000Note * 1000);
-                System.out.print("Number of total Note = " + totalNote + ", Total Cash = " + totalCash);
 
-                //Solution 2:
-                depositCollectorMBox.send(new Msg(id, depositCollectorMBox, Msg.Type.DC_Count_Cash,
-                        "--------------------\n" +
-                        "Number of 100 = " + num100Note + ", Total 100 = " + num100Note * 100 +"\n" +
-                        "Number of 500 = " + num500Note + ", Total 500 = " + num500Note * 500 +"\n" +
-                        "Number of 1000 = " + num1000Note + ", Total 1000 = " + num1000Note * 1000+"\n" +
-                        "Number of total Note = " + totalNote + ", Total Cash = " + totalCash +"\n" +
-                                "--------------------\n"));
+                //Solution 1
+                    System.out.println("Number of $100 = " + num100Note + ", Total $100 = $" + num100Note * 100);
+                    System.out.println("Number of $500 = " + num500Note + ", Total $500 = $" + num500Note * 500);
+                    System.out.println("Number of $1000 = " + num1000Note + ", Total $1000 = $" + num1000Note * 1000);
+                    System.out.println("Number of total Note = " + totalNote + ", Total Cash = $" + totalCash);
+
+                    //Solution 2:
+
+                    depositCollectorMBox.send(new Msg(id, depositCollectorMBox, Msg.Type.DC_Count_Cash,
+                            "--------------------\n" +
+                                    "Number of $100 = " + num100Note + ", Total $100 = $" + num100Note * 100 + "\n" +
+                                    "Number of $500 = " + num500Note + ", Total $500 = $" + num500Note * 500 + "\n" +
+                                    "Number of $1000 = " + num1000Note + ", Total $1000 = $" + num1000Note * 1000 + "\n" +
+                                    "Number of $total Note = " + totalNote + ", Total Cash = $" + totalCash + "\n" +
+                                    "--------------------\n"));
+
                 break;
 
             case "Error":
@@ -97,7 +125,8 @@ public class DepositCollectorEmulatorController {
         } // buttonPressed
     }
 
-
+    //------------------------------------------------------------
+    // sendErrorMsg
     public void sendErrorMsg(String errMsg) {
         switch (errMsg) {
             case "Error":
@@ -111,6 +140,10 @@ public class DepositCollectorEmulatorController {
                 break;
         }
     }
+
+    public void depositCollectStatus(String status) {
+        depositCollectStatusField.setText(status);
+    } // updateCardStatus
 /*
     public void slotStatus(String slot) {
         switch (slot) {
