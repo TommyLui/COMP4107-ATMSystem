@@ -3,6 +3,8 @@ package ATMSS;
 import ATMSS.AdvicePrinterHandler.AdvicePrinterHandler;
 import ATMSS.AdvicePrinterHandler.Emulator.AdvicePrinterEmulator;
 import ATMSS.BAMSHandler.BAMSHandlerInATMSS;
+import ATMSS.BuzzerHandler.BuzzerHandler;
+import ATMSS.BuzzerHandler.Emulator.BuzzerEmulator;
 import AppKickstarter.timer.Timer;
 
 import ATMSS.ATMSS.ATMSS;
@@ -55,6 +57,7 @@ public class ATMSSEmulatorStarter extends ATMSSStarter {
 	    KeypadEmulator keypadEmulator = null;
 	    TouchDisplayEmulator touchDisplayEmulator = null;
 	    AdvicePrinterEmulator advicePrinterEmulator = null;
+	    BuzzerEmulator buzzerEmulator = null;
 
 			// create emulators
 	    try {
@@ -65,12 +68,14 @@ public class ATMSSEmulatorStarter extends ATMSSStarter {
 	        keypadEmulator = new KeypadEmulator("KeypadHandler", atmssEmulatorStarter);
 	        touchDisplayEmulator = new TouchDisplayEmulator("TouchDisplayHandler", atmssEmulatorStarter);
 	        advicePrinterEmulator = new AdvicePrinterEmulator("AdvicePrinterHandler", atmssEmulatorStarter);
+			buzzerEmulator = new BuzzerEmulator("BuzzerHandler", atmssEmulatorStarter);
 
 		// start emulator GUIs
 		keypadEmulator.start();
 		cardReaderEmulator.start();
 		touchDisplayEmulator.start();
 		advicePrinterEmulator.start();
+		buzzerEmulator.start();
 	    } catch (Exception e) {
 		System.out.println("Emulators: start failed");
 		e.printStackTrace();
@@ -83,7 +88,8 @@ public class ATMSSEmulatorStarter extends ATMSSStarter {
 	    atmssEmulatorStarter.setKeypadHandler(keypadEmulator);
 	    atmssEmulatorStarter.setTouchDisplayHandler(touchDisplayEmulator);
 		atmssEmulatorStarter.setAdvicePrinterHandler(advicePrinterEmulator);
-	    // start threads
+		atmssEmulatorStarter.setBuzzerHandler(buzzerEmulator);
+		// start threads
 	    new Thread(timer).start();
 	    new Thread(atmss).start();
 	    new Thread(bamsHandler).start();
@@ -91,6 +97,7 @@ public class ATMSSEmulatorStarter extends ATMSSStarter {
 	    new Thread(keypadEmulator).start();
 	    new Thread(touchDisplayEmulator).start();
 	    new Thread(advicePrinterEmulator).start();
+	    new Thread(buzzerEmulator).start();
 	} // start
     } // Emulators
 
@@ -118,4 +125,7 @@ public class ATMSSEmulatorStarter extends ATMSSStarter {
     private void setAdvicePrinterHandler(AdvicePrinterHandler advicePrinterHandler) {
     	this.advicePrinterHandler = advicePrinterHandler;
     }
+	private void setBuzzerHandler(BuzzerHandler buzzerHandler) {
+		this.buzzerHandler = buzzerHandler;
+	}
 } // ATMSSEmulatorStarter

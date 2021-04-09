@@ -2,6 +2,7 @@ package ATMSS;
 
 import ATMSS.AdvicePrinterHandler.AdvicePrinterHandler;
 import ATMSS.BAMSHandler.BAMSHandlerInATMSS;
+import ATMSS.BuzzerHandler.BuzzerHandler;
 import ATMSS.KeypadHandler.Emulator.KeypadEmulator;
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.Msg;
@@ -25,6 +26,7 @@ public class ATMSSStarter extends AppKickstarter {
     protected KeypadHandler keypadHandler;
     protected TouchDisplayHandler touchDisplayHandler;
     protected AdvicePrinterHandler advicePrinterHandler;
+	protected BuzzerHandler buzzerHandler;
 
 	//------------------------------------------------------------
     // main
@@ -64,6 +66,7 @@ public class ATMSSStarter extends AppKickstarter {
 	    keypadHandler = new KeypadHandler("KeypadHandler", this);
 	    touchDisplayHandler = new TouchDisplayHandler("TouchDisplayHandler", this);
 		advicePrinterHandler = new AdvicePrinterHandler("AdvicePrinterHandler", this);
+		buzzerHandler = new BuzzerHandler("BuzzerHandler", this);
 	} catch (Exception e) {
 	    System.out.println("AppKickstarter: startApp failed");
 	    e.printStackTrace();
@@ -78,6 +81,7 @@ public class ATMSSStarter extends AppKickstarter {
 	new Thread(keypadHandler).start();
 	new Thread(touchDisplayHandler).start();
 	new Thread(advicePrinterHandler).start();
+	new Thread(buzzerHandler).start();
     } // startHandlers
 
 
@@ -95,5 +99,6 @@ public class ATMSSStarter extends AppKickstarter {
 	touchDisplayHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
 	timer.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
 	advicePrinterHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
+	buzzerHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
     } // stopApp
 } // ATM.ATMSSStarter

@@ -100,5 +100,6 @@ public class Msg {
     /** Request to BAMS */    BAMS_Request,
     /** Response from BAMS*/    BAMS_Response,
     /** (TEST) Testing case in AdvicePrinter */ TEST_AP_PrintReceipt,
+        /** BZ_Buzz */			BZ_Buzz,
     } // Type
 } // Msg

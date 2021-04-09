@@ -14,6 +14,7 @@ public class ATMSS extends AppThread {
     private MBox touchDisplayMBox;
     private MBox advicePrinterMBox;
     private MBox bamsMBox;
+    private MBox buzzerMBox;
 
     //------------------------------------------------------------
     // ATMSS
@@ -34,6 +35,7 @@ public class ATMSS extends AppThread {
         touchDisplayMBox = appKickstarter.getThread("TouchDisplayHandler").getMBox();
         advicePrinterMBox = appKickstarter.getThread("AdvicePrinterHandler").getMBox();
         bamsMBox = appKickstarter.getThread("BAMSHandler").getMBox();
+        buzzerMBox = appKickstarter.getThread("BuzzerHandler").getMBox();
 
         for (boolean quit = false; !quit; ) {
             Msg msg = mbox.receive();
@@ -149,6 +151,9 @@ public class ATMSS extends AppThread {
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
         } else if (msg.getDetails().compareToIgnoreCase("3") == 0) {
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "Confirmation"));
+        }else if (msg.getDetails().compareToIgnoreCase("4") == 0) {
+            System.out.println("4 pressed");
+            buzzerMBox.send(new Msg(id, mbox, Msg.Type.BZ_Buzz, "Buzz"));
         }
     } // processKeyPressed
 
