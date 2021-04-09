@@ -1,0 +1,25 @@
+210408-18:21:44 [INFO] -- 
+210408-18:21:44 [INFO] -- 
+210408-18:21:44 [INFO] -- ============================================================
+210408-18:21:44 [INFO] -- ATMSSStarter: Application Starting...
+210408-18:21:44 [INFO] -- timer: starting...
+210408-18:21:44 [INFO] -- CardReaderHandler: starting...
+210408-18:21:44 [INFO] -- KeypadHandler: starting...
+210408-18:21:44 [INFO] -- ATMSS: starting...
+210408-18:21:44 [INFO] -- TouchDisplayHandler: starting...
+210408-18:22:44 [INFO] -- Poll: TimesUp 14447 0
+210408-18:22:44 [INFO] -- PollAck: TouchDisplayHandler is up!
+210408-18:22:44 [INFO] -- PollAck: CardReaderHandler is up!
+210408-18:22:44 [INFO] -- PollAck: KeypadHandler is up!
+210408-18:23:44 [INFO] -- Poll: TimesUp 70498 0
+210408-18:23:44 [INFO] -- PollAck: KeypadHandler is up!
+210408-18:23:44 [INFO] -- PollAck: CardReaderHandler is up!
+210408-18:23:44 [INFO] -- PollAck: TouchDisplayHandler is up!
+210408-18:24:44 [INFO] -- Poll: TimesUp 54730 0
+210408-18:24:44 [INFO] -- PollAck: CardReaderHandler is up!
+210408-18:24:44 [INFO] -- PollAck: KeypadHandler is up!
+210408-18:24:44 [INFO] -- PollAck: TouchDisplayHandler is up!
+210408-18:25:44 [INFO] -- Poll: TimesUp 43550 0
+210408-18:25:44 [INFO] -- PollAck: KeypadHandler is up!
+210408-18:25:44 [INFO] -- PollAck: CardReaderHandler is up!
+210408-18:25:44 [INFO] -- PollAck: TouchDisplayHandler is up!

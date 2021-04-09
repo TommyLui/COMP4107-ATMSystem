@@ -80,7 +80,7 @@ public class Msg {
      * @see Msg
      */
     public enum Type {
-        /** Terminate the running thread */	Terminate,
+    /** Terminate the running thread */	Terminate,
 	/** Generic error msg */		Error,
 	/** Set a timer */			SetTimer,
 	/** Set a timer */			CancelTimer,
@@ -94,5 +94,12 @@ public class Msg {
 	/** Card removed */			CR_CardRemoved,
 	/** Eject card */			CR_EjectCard,
 	/** Key pressed */			KP_KeyPressed,
+    /** Print receipt request */      AP_PrintReceipt,
+    /** Succesful print receipt */    AP_PrintSuccessful,
+    /** Error occured in Advice Printer */ AP_Error,
+    /** Request to BAMS */    BAMS_Request,
+    /** Response from BAMS*/    BAMS_Response,
+    /** (TEST) Testing case in AdvicePrinter */ TEST_AP_PrintReceipt,
+        /** BZ_Buzz */			BZ_Buzz,
     } // Type
 } // Msg

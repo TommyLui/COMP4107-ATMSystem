@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ATMSS.BuzzerHandler.Emulator.BuzzerEmulatorController">
+    <children>
+
+		<AnchorPane prefHeight="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+			<children>
+				<Rectangle fx:id="buzzStatus" arcHeight="5.0" arcWidth="5.0" fill="#068900" height="200.0" stroke="BLACK" strokeType="OUTSIDE" width="280" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" />
+			</children>
+		</AnchorPane>
+
+		<AnchorPane prefHeight="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="230.0">
+			<children>
+				<TextField fx:id="buzzStatusText" prefWidth="280.0" prefHeight="30" editable="false" text="Buzzer is ready"/>
+			</children>
+		</AnchorPane>
+
+		<AnchorPane prefHeight="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="270.0">
+			<children>
+				<Label text="Debug button:" />
+			</children>
+		</AnchorPane>
+
+		<AnchorPane prefHeight="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="290.0">
+			<children>
+				<Button mnemonicParsing="false" onAction="#buttonPressed" prefHeight="50.0" prefWidth="120.0" text="Buzz Start" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0"><font><Font size="16.0" /></font></Button>
+				<Button mnemonicParsing="false" onAction="#buttonPressed" prefHeight="50.0" prefWidth="120.0" text="Buzz Stop" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"><font><Font size="16.0" /></font></Button>
+			</children>
+		</AnchorPane>
+
+    </children>
+</AnchorPane>
