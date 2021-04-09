@@ -31,8 +31,8 @@ public class AdvicePrinterHandler extends HWHandler {
             case AP_Error:
                 atmss.send(new Msg(id, mbox, Msg.Type.AP_Error, msg.getDetails()));
                 break;
-//            case BAMS_Request:
-//                atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Request, msg.getDetails()));
+            case BAMS_Request:
+                atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Request, msg.getDetails()));
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
         }

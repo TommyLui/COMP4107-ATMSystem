@@ -65,31 +65,31 @@ public class BAMSHandlerInATMSS extends AppThread {
     protected void handleBAMSRequest(String request) {
         try {
             switch (request) {
-                case "Login":
+                case "LoginReq":
                     testLogin(bams);
                     break;
 
-                case "Logout":
+                case "LogoutReq":
                     testLogout(bams);
                     break;
 
-                case "GetAcc":
+                case "GetAccReq":
                     testGetAcc(bams);
                     break;
 
-                case "Withdraw":
+                case "WithdrawReq":
                     testWithdraw(bams);
                     break;
 
-                case "Deposit":
+                case "DepositReq":
                     testDeposit(bams);
                     break;
 
-                case "Enquiry":
+                case "EnquiryReq":
                     testEnquiry(bams);
                     break;
 
-                case "Transfer":
+                case "TransferReq":
                     testTransfer(bams);
                     break;
 
@@ -118,7 +118,7 @@ public class BAMSHandlerInATMSS extends AppThread {
     // testLogin
     protected void testLogin(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
         System.out.println("Login:");
-        String cred = bams.login("12345678-0", "456123789");
+        String cred = bams.login("4107-7014", "123456");
         System.out.println("cred: " + cred);
         System.out.println();
         atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "cred: " + cred));
