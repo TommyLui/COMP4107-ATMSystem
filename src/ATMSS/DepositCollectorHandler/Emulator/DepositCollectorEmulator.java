@@ -41,13 +41,23 @@ public class DepositCollectorEmulator extends DepositCollectorHandler {
         depositCollectorEmulatorController.initialize(id, atmssStarter, log, this);
         myStage.initStyle(StageStyle.DECORATED);
         myStage.setScene(new Scene(root, 350, 470));
-        myStage.setTitle("Advice Printer");
+        myStage.setTitle("Deposit Collector");
         myStage.setResizable(false);
         myStage.setOnCloseRequest((WindowEvent event) -> {
             atmssStarter.stopApp();
             Platform.exit();
         });
         myStage.show();
-    } // AdvicePrinterEmulator
+    }
+    // DepositCollectorEmulator
+    //------------------------------------------------------------
+    // handle Deposit Collector
+    /*
+    protected void handleDepositCollector(String content) {
+        // fixme
+        super.depositCollectorEmulatorController(content);
+        depositCollectorEmulatorController(content);
+    }
+    */// handle Deposit Collector
 
 }

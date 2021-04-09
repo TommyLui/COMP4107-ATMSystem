@@ -26,12 +26,8 @@ public class DepositCollectorHandler extends HWHandler {
 
     protected void processMsg(Msg msg) {
         switch (msg.getType()) {
-            case collectCashDeposit:
-                collectCashDeposit();
-                break;
-
-            case overTimeOut:
-                timeOut();
+            case DC_Collect_Cash:
+                collectCashDeposit(msg.getDetails());
                 break;
 
             default:

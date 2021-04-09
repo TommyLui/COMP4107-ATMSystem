@@ -34,7 +34,7 @@ if ($result->num_rows > 0) {
   $reply->cred = "Credible_Credential!!!";
 } else {
 // $reply->cred = $sql
-  $reply->cred = "Unsuccessful_Login!!!" . $req->cardNo, $req->pin;
+  $reply->cred = "Unsuccessful_Login!!!" . $req->cardNo . ' ' . $req->pin;
 }
 
   $reply->msgType = "LoginReply";
