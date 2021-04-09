@@ -2,9 +2,10 @@
 $servername = "cslinux0.comp.hkbu.edu.hk";
 $username = "comp4107_grp10";
 $password = "689748";
+$dbname = "comp4107_grp10";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
@@ -15,17 +16,7 @@ $req = json_decode($_POST["BAMSReq"], false);
 
 if (strcmp($req->msgType, "LoginReq") === 0) {
 
-// $sql = "SELECT cardNo FROM Cards WHERE cardNo = " . "'" . $req->cardNo . "'" . " and pin = " . "'" . $req->pin . "';";
-// $sql = "SELECT cardNo FROM Cards WHERE cardNo = " . "'" . $req->cardNo . "';";
-
-// // Check connection
-// if ($conn->connect_error) {
-//   die("Connection failed: " . $conn->connect_error);
-// } else {
-// $reply->cred = "Credible_Credential!!!";
-// }
-
-$sql = "SELECT * FROM Cards";
+$sql = "SELECT cardNo FROM Cards WHERE cardNo = " . "'" . $req->cardNo . "'" . " and pin = " . "'" . $req->pin . "'";
 
 $result = $conn->query($sql);
 
