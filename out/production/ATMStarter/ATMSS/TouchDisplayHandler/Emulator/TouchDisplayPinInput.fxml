@@ -32,5 +32,16 @@
 				</Label>
 			</children>
 		</AnchorPane>
+
+		<AnchorPane prefHeight="50.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="300.0">
+			<children>
+				<Label fx:id="pinWrongLabel"  text= "">
+					<font>
+						<Font name="System Bold" size="13.0"/>
+					</font>
+				</Label>
+			</children>
+		</AnchorPane>
+
 	</children>
 </AnchorPane>

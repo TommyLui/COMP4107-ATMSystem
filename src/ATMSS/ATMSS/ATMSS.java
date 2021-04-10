@@ -16,11 +16,11 @@ public class ATMSS extends AppThread {
     private MBox bamsMBox;
     private MBox buzzerMBox;
 
-
     private String loginState = "logout";
     private String cardNum = "";
     private String pin = "";
     private String cred = "";
+    private int wrongPinCounter = 0;
 
     //------------------------------------------------------------
     // ATMSS
@@ -152,8 +152,16 @@ public class ATMSS extends AppThread {
                 loginState = "login";
                 touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
             }else{
-
                 System.out.println("Login fail with cred: " + cred);
+                wrongPinCounter ++;
+                System.out.println("wrongPinCounter: " + wrongPinCounter);
+                pin = "";
+                if (wrongPinCounter < 3) {
+                    touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputtedWrong"));
+                }else {
+                    loginState = "cardLocked";
+                    touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "CardLocked"));
+                }
             }
         } else if (msgDetails.contains("logout")) {
 
@@ -283,8 +291,9 @@ public class ATMSS extends AppThread {
                     break;
             }
             System.out.println("pin: " + pin);
-
         }
+
+
 
     } // processKeyPressed
 
