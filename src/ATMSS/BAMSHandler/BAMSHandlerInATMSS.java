@@ -72,7 +72,8 @@ public class BAMSHandlerInATMSS extends AppThread {
                     break;
 
                 case "GetAccReq":
-                    testGetAcc(bams);
+                    getAcc(bams);
+//                    testGetAcc(bams);
                     break;
 
                 case "WithdrawReq":
@@ -83,8 +84,24 @@ public class BAMSHandlerInATMSS extends AppThread {
                     testDeposit(bams);
                     break;
 
-                case "EnquiryReq":
-                    testEnquiry(bams);
+                case "EnquiryReq1":
+                    enquiry(bams, "1");
+//                    testEnquiry(bams);
+                    break;
+
+                case "EnquiryReq2":
+                    enquiry(bams, "2");
+//                    testEnquiry(bams);
+                    break;
+
+                case "EnquiryReq3":
+                    enquiry(bams, "3");
+//                    testEnquiry(bams);
+                    break;
+
+                case "EnquiryReq4":
+                    enquiry(bams, "4");
+//                    testEnquiry(bams);
                     break;
 
                 case "TransferReq":
@@ -132,16 +149,26 @@ public class BAMSHandlerInATMSS extends AppThread {
         atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "logout result: " + result));
     } // testLogout
 
-
     //------------------------------------------------------------
-    // testGetAcc
-    protected void testGetAcc(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
+    // getAcc
+    protected void getAcc(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
         System.out.println("GetAcc:");
-        String accounts = bams.getAccounts("12345678-1", "cred-1");
+        String accounts = bams.getAccounts("4107-7014", "1234");
         System.out.println("accounts: " + accounts);
         System.out.println();
         atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "accounts: " + accounts));
-    } // testGetAcc
+    } // getAcc
+
+
+//    //------------------------------------------------------------
+//    // testGetAcc
+//    protected void testGetAcc(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
+//        System.out.println("GetAcc:");
+//        String accounts = bams.getAccounts("12345678-1", "cred-1");
+//        System.out.println("accounts: " + accounts);
+//        System.out.println();
+//        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "accounts: " + accounts));
+//    } // testGetAcc
 
 
     //------------------------------------------------------------
@@ -165,16 +192,29 @@ public class BAMSHandlerInATMSS extends AppThread {
         atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "depAmount: " + depAmount));
     } // testDeposit
 
-
     //------------------------------------------------------------
-    // testEnquiry
-    protected void testEnquiry(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
+    // enquiry
+    protected void enquiry(BAMSHandler bams, String aid) throws BAMSInvalidReplyException, IOException {
         System.out.println("Enquiry:");
-        double amount = bams.enquiry("12345678-4", "111-222-334", "cred-4");
+        System.out.println("Card no: 4107-7014");
+        System.out.println("aid: "+aid);
+        String cardNo = "4107-7014";
+        double amount = bams.enquiry("4107-7014", aid, "1234");
         System.out.println("amount: " + amount);
-        System.out.println();
-        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "amount: " + amount));
-    } // testEnquiry
+        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response,
+                "card no: " + cardNo + "@account id: "+ aid + "@amount: " + amount));
+    } // enquiry
+
+
+//    //------------------------------------------------------------
+//    // testEnquiry
+//    protected void testEnquiry(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
+//        System.out.println("Enquiry:");
+//        double amount = bams.enquiry("12345678-4", "111-222-334", "cred-4");
+//        System.out.println("amount: " + amount);
+//        System.out.println();
+//        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "amount: " + amount));
+//    } // testEnquiry
 
 
     //------------------------------------------------------------

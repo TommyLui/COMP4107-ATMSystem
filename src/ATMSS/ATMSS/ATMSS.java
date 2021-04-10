@@ -92,6 +92,27 @@ public class ATMSS extends AppThread {
                     log.info("BAMS response: " + msg.getDetails());
                     processBAMSResponse(msg.getDetails());
 
+
+                case CD_provideCash:
+                    log.info("ProvideCash: " + msg.getDetails());
+                    break;
+
+                case CD_GetCash:
+                    log.info("GetCash: " + msg.getDetails());
+                    break;
+
+                case CD_Error:
+                    log.info("CashDispenserError: " + msg.getDetails());
+                    break;
+
+                case CD_TimeOut:
+                    log.info("CashDispenserTimeOut: " + msg.getDetails());
+                    break;
+
+                case CD_NotEnoughCash:
+                    log.info("CashDispenser: " + msg.getDetails());
+                    break;
+
                 case TimesUp:
                     Timer.setTimer(id, mbox, pollingTime);
                     log.info("Poll: " + msg.getDetails());
@@ -128,13 +149,15 @@ public class ATMSS extends AppThread {
         } else if (msgDetails.contains("logout")) {
 
         } else if (msgDetails.contains("accounts")) {
-
+            System.out.println("I am accounts");
+            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
         } else if (msgDetails.contains("outAmount")) {
 
         } else if (msgDetails.contains("depAmount")) {
 
         } else if (msgDetails.contains("amount")) {
-
+            System.out.println("I am amount");
+            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
         } else if (msgDetails.contains("transAmount")) {
 
         } else if (msgDetails.contains("accStmtReq")) {

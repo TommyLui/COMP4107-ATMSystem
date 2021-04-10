@@ -106,12 +106,38 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 			break;
 
 
+//		case "CheckBalance":
+//			reloadStage("TouchDisplayCheckBalance.fxml");
+//			break;
+
 	    default:
 		log.severe(id + ": update display with unknown display type -- " + msg.getDetails());
 		break;
 	}
     } // handleUpdateDisplay
 
+	//------------------------------------------------------------
+	// handleBAMSUpdateDisplay
+	protected void handleBAMSUpdateDisplay(Msg msg) {
+    	if (msg.getDetails().contains("accounts")) {
+			reloadStage("TouchDisplayCheckBalance.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			touchDisplayEmulatorController.setStackPaneVisibiliy(msg.getDetails());
+		} else if (msg.getDetails().contains("amount")) {
+//    		System.out.println("I made it!!! "+msg.getDetails());
+			reloadStage("TouchDisplayCheckAccBalance.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			touchDisplayEmulatorController.setAccBalanceText(msg.getDetails());
+		}
+	} // handleBAMSUpdateDisplay
 
     //------------------------------------------------------------
     // reloadStage

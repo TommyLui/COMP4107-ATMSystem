@@ -88,7 +88,7 @@ public class AdvicePrinterEmulatorController {
         switch(errMsg) {
             case "Jam paper":
                 apStatus = "paper jam";
-                advicePrinterMBox.send(new Msg(id, advicePrinterMBox, Msg.Type.BAMS_Request, "LoginReq"));
+//                advicePrinterMBox.send(new Msg(id, advicePrinterMBox, Msg.Type.BAMS_Request, "LoginReq"));
                 break;
 
             case "running out of paper":
@@ -109,7 +109,6 @@ public class AdvicePrinterEmulatorController {
 //        this.name = name;
 //        this.amountOfMoney = amountOfMoney;
 //        this.refNo = refNo;
-
         remainingPapers = Integer.parseInt(remainingPaperLabel.getText());
 
         if (remainingPapers > 0) {
