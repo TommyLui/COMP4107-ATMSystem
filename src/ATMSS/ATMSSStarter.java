@@ -5,6 +5,7 @@ import ATMSS.AdvicePrinterHandler.AdvicePrinterHandler;
 import ATMSS.BAMSHandler.BAMSHandlerInATMSS;
 import ATMSS.BuzzerHandler.BuzzerHandler;
 import ATMSS.KeypadHandler.Emulator.KeypadEmulator;
+import ATMSS.CashDispenserHandler.CashDispenserHandler;
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.Msg;
 import AppKickstarter.timer.Timer;
@@ -29,7 +30,7 @@ public class ATMSSStarter extends AppKickstarter {
     protected AdvicePrinterHandler advicePrinterHandler;
 	protected BuzzerHandler buzzerHandler;
 	protected DepositCollectorHandler depositCollectorHandler;
-
+	protected CashDispenserHandler cashDispenserHandler;
 	//------------------------------------------------------------
     // main
     public static void main(String [] args) { new ATMSSStarter().startApp(); } // main
@@ -70,6 +71,7 @@ public class ATMSSStarter extends AppKickstarter {
 		advicePrinterHandler = new AdvicePrinterHandler("AdvicePrinterHandler", this);
 		buzzerHandler = new BuzzerHandler("BuzzerHandler", this);
 		depositCollectorHandler = new DepositCollectorHandler("DepositCollectorHandler", this);
+		cashDispenserHandler = new CashDispenserHandler("CashDispenserHandler", this);
 	} catch (Exception e) {
 	    System.out.println("AppKickstarter: startApp failed");
 	    e.printStackTrace();
@@ -86,6 +88,7 @@ public class ATMSSStarter extends AppKickstarter {
 	new Thread(advicePrinterHandler).start();
 	new Thread(buzzerHandler).start();
 	new Thread(depositCollectorHandler).start();
+	new Thread(cashDispenserHandler).start();
     } // startHandlers
 
 
@@ -105,5 +108,6 @@ public class ATMSSStarter extends AppKickstarter {
 	advicePrinterHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
 	buzzerHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
 	depositCollectorHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
+	cashDispenserHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
     } // stopApp
 } // ATM.ATMSSStarter

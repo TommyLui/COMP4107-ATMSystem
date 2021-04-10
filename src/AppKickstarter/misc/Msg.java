@@ -105,6 +105,10 @@ public class Msg {
     /** Print Count message */ DC_Count_Cash ,
     /** DC error */ DC_Error ,
     /**Dc running Time Out */ DC_TimeOut,
-
+   /** Key pressed */			CD_provideCash,
+    /** Eject card */			CD_GetCash,
+    /** Get TimeOut */  CD_TimeOut,
+    /** Get Not Enough Cash */  CD_NotEnoughCash,
+    /** Get Not Enough Cash */  CD_Error,
     } // Type
 } // Msg
