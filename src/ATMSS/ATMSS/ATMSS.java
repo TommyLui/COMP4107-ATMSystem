@@ -16,6 +16,11 @@ public class ATMSS extends AppThread {
     private MBox bamsMBox;
     private MBox buzzerMBox;
 
+
+    private String loginState = "logout";
+    private String cardNum = "";
+    private String pin = "";
+
     //------------------------------------------------------------
     // ATMSS
     public ATMSS(String id, AppKickstarter appKickstarter) throws Exception {
@@ -55,6 +60,14 @@ public class ATMSS extends AppThread {
 
                 case CR_CardInserted:
                     log.info("CardInserted: " + msg.getDetails());
+                    if (loginState != "cardInserted") {
+                        loginState = "cardInserted";
+                        cardNum = msg.getDetails();
+                        System.out.println("cardNum: " + cardNum);
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputPage"));
+                    }else {
+                        System.out.println("card already inserted");
+                    }
                     break;
 
                 case AP_PrintSuccessful:
@@ -170,19 +183,101 @@ public class ATMSS extends AppThread {
     //------------------------------------------------------------
     // processKeyPressed
     private void processKeyPressed(Msg msg) {
-        // *** The following is an example only!! ***
-        if (msg.getDetails().compareToIgnoreCase("Cancel") == 0) {
-            cardReaderMBox.send(new Msg(id, mbox, Msg.Type.CR_EjectCard, ""));
-        } else if (msg.getDetails().compareToIgnoreCase("1") == 0) {
-            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "BlankScreen"));
-        } else if (msg.getDetails().compareToIgnoreCase("2") == 0) {
-            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
-        } else if (msg.getDetails().compareToIgnoreCase("3") == 0) {
-            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "Confirmation"));
-        }else if (msg.getDetails().compareToIgnoreCase("4") == 0) {
-            System.out.println("4 pressed");
-            buzzerMBox.send(new Msg(id, mbox, Msg.Type.BZ_Buzz, "Buzz"));
+
+        System.out.println("login state: " + loginState);
+
+        if (loginState == "cardInserted"){
+            switch (msg.getDetails()) {
+                case "Cancel":
+                    System.out.println("Cancel pressed");
+                    break;
+                case "1":
+                    System.out.println("1 pressed");
+                    if (pin.length()<6) {
+                        pin = pin + "1";
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                    }
+                    break;
+                case "2":
+                    System.out.println("2 pressed");
+                    if (pin.length()<6) {
+                        pin = pin + "2";
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                    }
+                    break;
+                case "3":
+                    System.out.println("3 pressed");
+                    if (pin.length()<6) {
+                        pin = pin + "3";
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                    }
+                    break;
+                case "4":
+                    System.out.println("4 pressed");
+                    if (pin.length()<6) {
+                        pin = pin + "4";
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                    }
+                    break;
+                case "5":
+                    System.out.println("5 pressed");
+                    if (pin.length()<6) {
+                        pin = pin + "5";
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                    }
+                    break;
+                case "6":
+                    System.out.println("6 pressed");
+                    if (pin.length()<6) {
+                        pin = pin + "6";
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                    }
+                    break;
+                case "7":
+                    System.out.println("7 pressed");
+                    if (pin.length()<6) {
+                        pin = pin + "7";
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                    }
+                    break;
+                case "8":
+                    System.out.println("8 pressed");
+                    if (pin.length()<6) {
+                        pin = pin + "8";
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                    }
+                    break;
+                case "9":
+                    System.out.println("9 pressed");
+                    if (pin.length()<6) {
+                        pin = pin + "9";
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                    }
+                    break;
+                case "0":
+                    System.out.println("0 pressed");
+                    if (pin.length()<6) {
+                        pin = pin + "0";
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                    }
+                    break;
+                case "Erase":
+                    System.out.println("Erase pressed");
+                    if (pin.length()>0) {
+                        pin = pin.substring(0, pin.length() - 1);
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinErase"));
+                    }
+                    break;
+                case "Enter":
+                    System.out.println("Enter pressed");
+                    String loginDetails = "LoginReq," + cardNum + "," + pin;
+                    bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, loginDetails));
+                    break;
+            }
+            System.out.println("pin: " + pin);
+
         }
+
     } // processKeyPressed
 
 

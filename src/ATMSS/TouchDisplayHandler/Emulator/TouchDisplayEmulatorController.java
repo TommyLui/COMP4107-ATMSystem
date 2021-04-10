@@ -5,6 +5,7 @@ import AppKickstarter.misc.MBox;
 import AppKickstarter.misc.Msg;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -42,11 +43,13 @@ public class TouchDisplayEmulatorController {
     public ArrayList<StackPane> stackPanes = new ArrayList<>();
     public ArrayList<Text> accountTexts = new ArrayList<>();
 
+    public Label pinLabel;
+
 
     //------------------------------------------------------------
     // initialize
     public void initialize(String id, AppKickstarter appKickstarter, Logger log, TouchDisplayEmulator touchDisplayEmulator) {
-        this.id = id;
+    this.id = id;
 	this.appKickstarter = appKickstarter;
 	this.log = log;
 	this.touchDisplayEmulator = touchDisplayEmulator;
@@ -143,5 +146,20 @@ public class TouchDisplayEmulatorController {
         }
 //        cardReaderTextArea.appendText(status+"\n");
     } // setStackPaneVisibiliy
+
+
+    public void pinInput() {
+        String currentPinLabel = pinLabel.getText();
+        currentPinLabel = currentPinLabel + "*";
+        pinLabel.setText(currentPinLabel);
+        System.out.println("currentPinLabel: " + currentPinLabel);
+    }
+
+    public void pinErase() {
+        String currentPinLabel = pinLabel.getText();
+        currentPinLabel = currentPinLabel.substring(0, currentPinLabel.length() - 1);
+        pinLabel.setText(currentPinLabel);
+        System.out.println("currentPinLabel: " + currentPinLabel);
+    }
 
 } // TouchDisplayEmulatorController

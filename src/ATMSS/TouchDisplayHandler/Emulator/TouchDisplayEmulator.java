@@ -38,7 +38,7 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 	Parent root;
 	myStage = new Stage();
 	FXMLLoader loader = new FXMLLoader();
-	String fxmlName = "TouchDisplayEmulator.fxml";
+	String fxmlName = "TouchDisplayInitial.fxml";
 	loader.setLocation(TouchDisplayEmulator.class.getResource(fxmlName));
 	root = loader.load();
 	touchDisplayEmulatorController = (TouchDisplayEmulatorController) loader.getController();
@@ -72,6 +72,39 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 	    case "Confirmation":
 		reloadStage("TouchDisplayConfirmation.fxml");
 		break;
+
+		case "PinInputPage":
+		reloadStage("TouchDisplayPinInput.fxml");
+		break;
+
+		case "PinInputted":
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						touchDisplayEmulatorController.pinInput();
+					} catch (Exception e) {
+						log.severe(id + ": failed to update PinInputted");
+						e.printStackTrace();
+					}
+				}
+			});
+			break;
+
+		case "PinErase":
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						touchDisplayEmulatorController.pinErase();
+					} catch (Exception e) {
+						log.severe(id + ": failed to do PinErase");
+						e.printStackTrace();
+					}
+				}
+			});
+			break;
+
 
 //		case "CheckBalance":
 //			reloadStage("TouchDisplayCheckBalance.fxml");
@@ -116,7 +149,6 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
     // reloadStage
     private void reloadStage(String fxmlFName) {
         TouchDisplayEmulator touchDisplayEmulator = this;
-
         Platform.runLater(new Runnable() {
 	    @Override
 	    public void run() {

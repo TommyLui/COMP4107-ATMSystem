@@ -50,7 +50,7 @@ public class BuzzerEmulator extends BuzzerHandler {
 	    atmssStarter.stopApp();
 	    Platform.exit();
 	});
-	myStage.show();
+//	myStage.show();
     } // TouchDisplayEmulator
 
     //------------------------------------------------------------

@@ -7,14 +7,9 @@ import AppKickstarter.misc.Msg;
 import java.util.Date;
 import java.util.logging.Logger;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
-import javax.xml.soap.Text;
 
 //======================================================================
 // DepositCollectorEmulatorController
