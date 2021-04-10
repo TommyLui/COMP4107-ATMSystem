@@ -62,64 +62,64 @@ public class BAMSHandlerInATMSS extends AppThread {
 
     protected void handleBAMSRequest(String request) {
         try {
-            switch (request) {
-                case "LoginReq":
-                    testLogin(bams);
-                    break;
+            if (request.contains("LoginReq")) {
+                Login(bams, request);
+            } else{
+                switch (request) {
+                    case "LogoutReq":
+                        testLogout(bams);
+                        break;
 
-                case "LogoutReq":
-                    testLogout(bams);
-                    break;
-
-                case "GetAccReq":
-                    getAcc(bams);
+                    case "GetAccReq":
+                        getAcc(bams);
 //                    testGetAcc(bams);
-                    break;
+                        break;
 
-                case "WithdrawReq":
-                    testWithdraw(bams);
-                    break;
-                    
-                case "DepositReq":
-                    testDeposit(bams);
-                    break;
+                    case "WithdrawReq":
+                        testWithdraw(bams);
+                        break;
 
-                case "EnquiryReq1":
-                    enquiry(bams, "1");
+                    case "DepositReq":
+                        testDeposit(bams);
+                        break;
+
+                    case "EnquiryReq1":
+                        enquiry(bams, "1");
 //                    testEnquiry(bams);
-                    break;
+                        break;
 
-                case "EnquiryReq2":
-                    enquiry(bams, "2");
+                    case "EnquiryReq2":
+                        enquiry(bams, "2");
 //                    testEnquiry(bams);
-                    break;
+                        break;
 
-                case "EnquiryReq3":
-                    enquiry(bams, "3");
+                    case "EnquiryReq3":
+                        enquiry(bams, "3");
 //                    testEnquiry(bams);
-                    break;
+                        break;
 
-                case "EnquiryReq4":
-                    enquiry(bams, "4");
+                    case "EnquiryReq4":
+                        enquiry(bams, "4");
 //                    testEnquiry(bams);
-                    break;
+                        break;
 
-                case "TransferReq":
-                    testTransfer(bams);
-                    break;
+                    case "TransferReq":
+                        testTransfer(bams);
+                        break;
 
-                case "AccStmtReq":
-                    testAccStmtReq(bams);
-                    break;
+                    case "AccStmtReq":
+                        testAccStmtReq(bams);
+                        break;
 
-                case "ChqBookReq":
-                    testChqBookReq(bams);
-                    break;
+                    case "ChqBookReq":
+                        testChqBookReq(bams);
+                        break;
 
-                case "ChgPinReq":
-                    testChgPinReq(bams);
-                    break;
-            }
+                    case "ChgPinReq":
+                        testChgPinReq(bams);
+                        break;
+                }
+        }
 
         } catch (BAMSInvalidReplyException e) {
             e.printStackTrace();
@@ -127,6 +127,21 @@ public class BAMSHandlerInATMSS extends AppThread {
             e.printStackTrace();
         }
     }
+
+    //------------------------------------------------------------
+    // Login
+    protected void Login(BAMSHandler bams, String request) throws BAMSInvalidReplyException, IOException {
+        String[] details = request.split(",");
+        System.out.println(details[0]);
+        System.out.println(details[1]);
+        System.out.println(details[2]);
+        System.out.println("Login:");
+        String cred = bams.login(details[1], details[2]);
+        System.out.println("cred: " + cred);
+        System.out.println();
+        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "cred: " + cred));
+    } // Login
+
 
     //------------------------------------------------------------
     // testLogin

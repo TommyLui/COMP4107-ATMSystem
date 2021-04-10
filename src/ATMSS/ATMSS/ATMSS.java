@@ -265,7 +265,8 @@ public class ATMSS extends AppThread {
                     break;
                 case "Enter":
                     System.out.println("Enter pressed");
-                    bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, "LoginReq"));
+                    String loginDetails = "LoginReq," + cardNum + "," + pin;
+                    bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, loginDetails));
                     break;
             }
             System.out.println("pin: " + pin);

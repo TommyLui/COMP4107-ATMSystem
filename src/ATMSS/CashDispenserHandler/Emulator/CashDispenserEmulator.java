@@ -48,7 +48,7 @@ public class CashDispenserEmulator extends CashDispenserHandler {
             atmssStarter.stopApp();
             Platform.exit();
         });
-        myStage.show();
+//        myStage.show();
     } // CashDispenserEmulator
 
 

@@ -12,18 +12,18 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$cred = "1234";
-
 $req = json_decode($_POST["BAMSReq"], false);
 
 if (strcmp($req->msgType, "LoginReq") === 0) {
+  $cred = $req->cardNo. date(DATE_RFC2822);
 
   $sql = "SELECT cardNo FROM Cards WHERE cardNo = " . "'" . $req->cardNo . "'" . " and pin = " . "'" . $req->pin . "'";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
       // output data of each row
-    $reply->cred = "Credible_Credential!!!";
+//     $reply->cred = "Credible_Credential!!!";
+    $reply->cred = $cred;
   } else {
         // $reply->cred = $sql
     $reply->cred = "Unsuccessful_Login!!!" . $req->cardNo . ' ' . $req->pin;
@@ -46,9 +46,13 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
 // $sql = "SELECT aid FROM Accounts WHERE cardNo = " . "'" . $req->cardNo . "'" . " and cred = " . "'" . $req->cred . "'";
     $sql = "SELECT aid FROM Accounts WHERE cardNo = " . "'" . $req->cardNo . "'";
     $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
   // loop through data of each row
-    while($row = $result->fetch_assoc()) {
-      $reply->accounts = $reply->accounts . $row["aid"] . '/';
+      while($row = $result->fetch_assoc()) {
+        $reply->accounts = $reply->accounts . $row["aid"] . '/';
+      }
+    } else {
+      $reply->accounts = "Error";
     }
   } else {
     $reply->accounts = "Error";

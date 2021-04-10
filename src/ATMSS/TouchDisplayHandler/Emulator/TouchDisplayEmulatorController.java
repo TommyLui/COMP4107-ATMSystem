@@ -102,8 +102,6 @@ public class TouchDisplayEmulatorController {
         int x = (int) mouseEvent.getX();
 	    int y = (int) mouseEvent.getY();
 
-    int x = (int) mouseEvent.getX();
-	int y = (int) mouseEvent.getY();
 	log.fine(id + ": mouse clicked: -- (" + x + ", " + y + ")");
 	touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_MouseClicked, x + " " + y));
     } // td_mouseClick
