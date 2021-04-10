@@ -61,7 +61,7 @@ public class ATMSS extends AppThread {
 
                 case CR_CardInserted:
                     log.info("CardInserted: " + msg.getDetails());
-                    if (loginState != "cardInserted") {
+                    if (!loginState.equalsIgnoreCase("cardInserted")) {
                         loginState = "cardInserted";
                         cardNum = msg.getDetails();
                         System.out.println("cardNum: " + cardNum);
