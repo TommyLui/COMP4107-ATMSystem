@@ -48,18 +48,15 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
     $result = $conn->query($sql);
   // loop through data of each row
     while($row = $result->fetch_assoc()) {
-//     echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-      // echo "aid: " . $row["aid"];
       $reply->accounts = $reply->accounts . $row["aid"] . '/';
     }
-//   $reply->accounts = "111-222-333/111-222-334/111-222-335/111-222-336";
   } else {
     $reply->accounts = "Error";
   }
 
-    $reply->msgType = "GetAccReply";
-    $reply->cardNo = $req->cardNo;
-    $reply->cred = $req->cred;
+  $reply->msgType = "GetAccReply";
+  $reply->cardNo = $req->cardNo;
+  $reply->cred = $req->cred;
 
 } else if (strcmp($req->msgType, "WithdrawReq") === 0) {
   $reply->msgType = "WithdrawReply";
@@ -76,11 +73,23 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
   $reply->amount = $req->amount;
   $reply->depAmount = $req->amount;
 } else if (strcmp($req->msgType, "EnquiryReq") === 0) {
-  $reply->msgType = "EnquiryReply";
-  $reply->cardNo = $req->cardNo;
-  $reply->accNo = $req->accNo;
-  $reply->cred = $req->cred;
-  $reply->amount = "109700";
+
+  if (strcmp($req->cred, $cred) === 0) {
+    $sql = "SELECT balance FROM Accounts WHERE cardNo = " . "'" . $req->cardNo . "'" . " and aid = " . "'" . $req->accNo . "'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $reply->amount = strval($row["balance"]);
+    } else {
+      $reply->amount = "Error";
+    }
+
+    $reply->msgType = "EnquiryReply";
+    $reply->cardNo = $req->cardNo;
+    $reply->accNo = $req->accNo;
+    $reply->cred = $req->cred;
+  }
 } else if (strcmp($req->msgType, "TransferReq") === 0) {
   $reply->msgType = "TransferReply";
   $reply->cardNo = $req->cardNo;

@@ -27,11 +27,24 @@ public class TouchDisplayHandler extends HWHandler {
                 handleUpdateDisplay(msg);
                 break;
 
+            case BAMS_Request:
+                atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Request, msg.getDetails()));
+                break;
+
+            case BAMS_Response:
+                handleBAMSUpdateDisplay(msg);
+                break;
+
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
         }
     } // processMsg
 
+    //------------------------------------------------------------
+    // handleBAMSUpdateDisplay
+    protected void handleBAMSUpdateDisplay(Msg msg) {
+        log.info(id + ": BAMS update display -- " + msg.getDetails());
+    } // handleBAMSUpdateDisplay
 
     //------------------------------------------------------------
     // handleUpdateDisplay
