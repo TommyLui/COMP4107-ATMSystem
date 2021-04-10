@@ -35,10 +35,20 @@ public class TouchDisplayHandler extends HWHandler {
                 handleBAMSUpdateDisplay(msg);
                 break;
 
+            case BAMS_Error:
+                handleBAMSErrorDisplay(msg);
+                break;
+
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
         }
     } // processMsg
+
+    //------------------------------------------------------------
+    // handleBAMSErrorDisplay
+    protected void handleBAMSErrorDisplay(Msg msg) {
+        log.info(id + ": BAMS update error display -- " + msg.getDetails());
+    } // handleBAMSErrorDisplay
 
     //------------------------------------------------------------
     // handleBAMSUpdateDisplay

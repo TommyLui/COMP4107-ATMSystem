@@ -156,10 +156,17 @@ public class BAMSHandlerInATMSS extends AppThread {
     // getAcc
     protected void getAcc(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
         System.out.println("GetAcc:");
-        String accounts = bams.getAccounts("4107-7014", "1234");
+        String cardNo = "4107-7014";
+        String accounts = bams.getAccounts(cardNo, "1234");
         System.out.println("accounts: " + accounts);
-        System.out.println();
-        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "accounts: " + accounts));
+        if (!accounts.contains("Error")) {
+//            System.out.println("accounts: " + accounts);
+            System.out.println();
+            atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "accounts: " + accounts));
+        } else {
+            // Handle error
+            atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Error, "Error"));
+        }
     } // getAcc
 
 
@@ -199,10 +206,11 @@ public class BAMSHandlerInATMSS extends AppThread {
     // enquiry
     protected void enquiry(BAMSHandler bams, String aid) throws BAMSInvalidReplyException, IOException {
         System.out.println("Enquiry:");
-        System.out.println("Card no: 4107-7014");
-        System.out.println("aid: "+aid);
         String cardNo = "4107-7014";
-        double amount = bams.enquiry("4107-7014", aid, "1234");
+
+        System.out.println("Card no: "+cardNo);
+        System.out.println("aid: "+aid);
+        double amount = bams.enquiry(cardNo, aid, "1234");
         System.out.println("amount: " + amount);
         atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response,
                 "card no: " + cardNo + "@account id: "+ aid + "@amount: " + amount));

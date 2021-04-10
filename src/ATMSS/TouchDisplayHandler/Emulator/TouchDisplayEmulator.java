@@ -84,6 +84,12 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
     } // handleUpdateDisplay
 
 	//------------------------------------------------------------
+	// handleBAMSErrorDisplay
+	protected void handleBAMSErrorDisplay(Msg msg) {
+    	reloadStage("TouchDisplayCheckBalanceError.fxml");
+	} // handleBAMSErrorDisplay
+
+	//------------------------------------------------------------
 	// handleBAMSUpdateDisplay
 	protected void handleBAMSUpdateDisplay(Msg msg) {
     	if (msg.getDetails().contains("accounts")) {

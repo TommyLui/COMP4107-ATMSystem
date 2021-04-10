@@ -78,7 +78,12 @@ public class ATMSS extends AppThread {
                 case BAMS_Response:
                     log.info("BAMS response: " + msg.getDetails());
                     processBAMSResponse(msg.getDetails());
+                    break;
 
+                case BAMS_Error:
+                    log.info("BAMS error: " + msg.getDetails());
+                    touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Error, msg.getDetails()));
+                    break;
 
                 case CD_provideCash:
                     log.info("ProvideCash: " + msg.getDetails());

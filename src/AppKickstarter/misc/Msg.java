@@ -99,6 +99,7 @@ public class Msg {
     /** Error occured in Advice Printer */ AP_Error,
     /** Request to BAMS */    BAMS_Request,
     /** Response from BAMS*/    BAMS_Response,
+    /** Response from BAMS*/    BAMS_Error,
     /** (TEST) Testing case in AdvicePrinter */ TEST_AP_PrintReceipt,
     /** BZ_Buzz */			BZ_Buzz,
     /** Collect Cash */ DC_Collect_Cash,
