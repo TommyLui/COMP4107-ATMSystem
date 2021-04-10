@@ -12,21 +12,22 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+$cred = "1234";
+
 $req = json_decode($_POST["BAMSReq"], false);
 
 if (strcmp($req->msgType, "LoginReq") === 0) {
 
-$sql = "SELECT cardNo FROM Cards WHERE cardNo = " . "'" . $req->cardNo . "'" . " and pin = " . "'" . $req->pin . "'";
+  $sql = "SELECT cardNo FROM Cards WHERE cardNo = " . "'" . $req->cardNo . "'" . " and pin = " . "'" . $req->pin . "'";
+  $result = $conn->query($sql);
 
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-  // output data of each row
-  $reply->cred = "Credible_Credential!!!";
-} else {
-// $reply->cred = $sql
-  $reply->cred = "Unsuccessful_Login!!!" . $req->cardNo . ' ' . $req->pin;
-}
+  if ($result->num_rows > 0) {
+      // output data of each row
+    $reply->cred = "Credible_Credential!!!";
+  } else {
+        // $reply->cred = $sql
+    $reply->cred = "Unsuccessful_Login!!!" . $req->cardNo . ' ' . $req->pin;
+  }
 
   $reply->msgType = "LoginReply";
   $reply->cardNo = $req->cardNo;
@@ -37,11 +38,29 @@ if ($result->num_rows > 0) {
   $reply->cardNo = $req->cardNo;
   $reply->cred = $req->cred;
   $reply->result = "succ";
+
 } else if (strcmp($req->msgType, "GetAccReq") === 0) {
-  $reply->msgType = "GetAccReply";
-  $reply->cardNo = $req->cardNo;
-  $reply->cred = $req->cred;
-  $reply->accounts = "111-222-333/111-222-334/111-222-335/111-222-336";
+
+  if (strcmp($req->cred, $cred) === 0) {
+
+// $sql = "SELECT aid FROM Accounts WHERE cardNo = " . "'" . $req->cardNo . "'" . " and cred = " . "'" . $req->cred . "'";
+    $sql = "SELECT aid FROM Accounts WHERE cardNo = " . "'" . $req->cardNo . "'";
+    $result = $conn->query($sql);
+  // loop through data of each row
+    while($row = $result->fetch_assoc()) {
+//     echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+      // echo "aid: " . $row["aid"];
+      $reply->accounts = $reply->accounts . $row["aid"] . '/';
+    }
+//   $reply->accounts = "111-222-333/111-222-334/111-222-335/111-222-336";
+  } else {
+    $reply->accounts = "Error";
+  }
+
+    $reply->msgType = "GetAccReply";
+    $reply->cardNo = $req->cardNo;
+    $reply->cred = $req->cred;
+
 } else if (strcmp($req->msgType, "WithdrawReq") === 0) {
   $reply->msgType = "WithdrawReply";
   $reply->cardNo = $req->cardNo;
