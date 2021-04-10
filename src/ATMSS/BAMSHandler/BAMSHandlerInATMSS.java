@@ -2,6 +2,7 @@ package ATMSS.BAMSHandler;
 
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.*;
+import com.sun.javafx.tools.packager.Log;
 
 import java.io.IOException;
 
@@ -64,16 +65,20 @@ public class BAMSHandlerInATMSS extends AppThread {
         try {
             if (request.contains("LoginReq")) {
                 Login(bams, request);
-            } else{
+            } else if (request.contains("GetAccReq")) {
+                getAcc(bams, request);
+            } else if (request.contains("EnquiryReq")) {
+                enquiry(bams, request);
+            } else {
                 switch (request) {
                     case "LogoutReq":
                         testLogout(bams);
                         break;
 
-                    case "GetAccReq":
-                        getAcc(bams);
+//                    case "GetAccReq":
+//                        getAcc(bams);
 //                    testGetAcc(bams);
-                        break;
+//                        break;
 
                     case "WithdrawReq":
                         testWithdraw(bams);
@@ -83,25 +88,25 @@ public class BAMSHandlerInATMSS extends AppThread {
                         testDeposit(bams);
                         break;
 
-                    case "EnquiryReq1":
-                        enquiry(bams, "1");
-//                    testEnquiry(bams);
-                        break;
-
-                    case "EnquiryReq2":
-                        enquiry(bams, "2");
-//                    testEnquiry(bams);
-                        break;
-
-                    case "EnquiryReq3":
-                        enquiry(bams, "3");
-//                    testEnquiry(bams);
-                        break;
-
-                    case "EnquiryReq4":
-                        enquiry(bams, "4");
-//                    testEnquiry(bams);
-                        break;
+//                    case "EnquiryReq1":
+//                        enquiry(bams, "1");
+////                    testEnquiry(bams);
+//                        break;
+//
+//                    case "EnquiryReq2":
+//                        enquiry(bams, "2");
+////                    testEnquiry(bams);
+//                        break;
+//
+//                    case "EnquiryReq3":
+//                        enquiry(bams, "3");
+////                    testEnquiry(bams);
+//                        break;
+//
+//                    case "EnquiryReq4":
+//                        enquiry(bams, "4");
+////                    testEnquiry(bams);
+//                        break;
 
                     case "TransferReq":
                         testTransfer(bams);
@@ -166,10 +171,21 @@ public class BAMSHandlerInATMSS extends AppThread {
 
     //------------------------------------------------------------
     // getAcc
-    protected void getAcc(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
+    protected void getAcc(BAMSHandler bams, String request) throws BAMSInvalidReplyException, IOException {
         System.out.println("GetAcc:");
-        String cardNo = "4107-7014";
-        String accounts = bams.getAccounts(cardNo, "1234");
+        String[] details = request.split(",");
+        System.out.println(details[0]);
+        System.out.println(details[1]);
+        System.out.println(details[2]);
+
+        String cardNo = details[1];
+        String cred = details[2];
+
+        log.info("cardNo: "+cardNo);
+        log.info("cred: "+cred);
+
+        String accounts = bams.getAccounts(cardNo, cred);
+
         System.out.println("accounts: " + accounts);
         if (!accounts.contains("Error")) {
 //            System.out.println("accounts: " + accounts);
@@ -216,16 +232,26 @@ public class BAMSHandlerInATMSS extends AppThread {
 
     //------------------------------------------------------------
     // enquiry
-    protected void enquiry(BAMSHandler bams, String aid) throws BAMSInvalidReplyException, IOException {
-        System.out.println("Enquiry:");
-        String cardNo = "4107-7014";
+    protected void enquiry(BAMSHandler bams, String request) throws BAMSInvalidReplyException, IOException {
 
-        System.out.println("Card no: "+cardNo);
-        System.out.println("aid: "+aid);
-        double amount = bams.enquiry(cardNo, aid, "1234");
-        System.out.println("amount: " + amount);
-        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response,
-                "card no: " + cardNo + "@account id: "+ aid + "@amount: " + amount));
+        try {
+            System.out.println("Enquiry:");
+
+            String[] details = request.split(",");
+            String aid = details[1];
+            String cardNo = details[2];
+            String cred = details[3];
+
+            System.out.println("Card no: " + cardNo);
+            System.out.println("aid: " + aid);
+
+            double amount = bams.enquiry(cardNo, aid, cred);
+            System.out.println("amount: " + amount);
+            atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response,
+                    "card no: " + cardNo + "@account id: " + aid + "@amount: " + amount));
+        } catch (NumberFormatException exception) {
+            atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Error, "Error"));
+        }
     } // enquiry
 
 

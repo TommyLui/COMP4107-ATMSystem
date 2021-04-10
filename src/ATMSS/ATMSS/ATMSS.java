@@ -86,7 +86,7 @@ public class ATMSS extends AppThread {
 
                 case BAMS_Request:
                     log.info("BAMS request: " + msg.getDetails());
-                    bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, msg.getDetails()));
+                    bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, msg.getDetails()+","+cardNum+","+cred));
                     break;
 
                 case BAMS_Response:
@@ -158,7 +158,6 @@ public class ATMSS extends AppThread {
                 loginState = "login";
                 touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
             }else{
-
                 System.out.println("Login fail with cred: " + cred);
             }
         } else if (msgDetails.contains("logout")) {

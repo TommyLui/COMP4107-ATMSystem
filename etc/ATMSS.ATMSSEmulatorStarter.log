@@ -1,66 +1,71 @@
-210411-01:01:56 [INFO] -- 
-210411-01:01:56 [INFO] -- 
-210411-01:01:56 [INFO] -- ============================================================
-210411-01:01:56 [INFO] -- ATMSSStarter: Application Starting...
-210411-01:01:57 [INFO] -- DepositCollectorHandler: starting...
-210411-01:01:57 [INFO] -- AdvicePrinterHandler: starting...
-210411-01:01:57 [INFO] -- CashDispenserHandler: starting...
-210411-01:01:57 [INFO] -- BuzzerHandler: starting...
-210411-01:01:57 [INFO] -- TouchDisplayHandler: starting...
-210411-01:01:57 [INFO] -- CardReaderHandler: starting...
-210411-01:01:57 [INFO] -- BAMSHandler: starting...
-210411-01:01:57 [INFO] -- timer: starting...
-210411-01:01:57 [INFO] -- KeypadHandler: starting...
-210411-01:01:57 [INFO] -- ATMSS: starting...
-210411-01:02:11 [INFO] -- CardInserted: 4107-7014
-210411-01:02:11 [INFO] -- TouchDisplayHandler: update display -- PinInputPage
-210411-01:02:11 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
-210411-01:02:22 [INFO] -- KeyPressed: 1
-210411-01:02:22 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210411-01:02:22 [INFO] -- KeyPressed: 2
-210411-01:02:22 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210411-01:02:23 [INFO] -- KeyPressed: 3
-210411-01:02:23 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210411-01:02:24 [INFO] -- KeyPressed: 4
-210411-01:02:24 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210411-01:02:24 [INFO] -- KeyPressed: 5
-210411-01:02:24 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210411-01:02:24 [INFO] -- KeyPressed: 6
-210411-01:02:24 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210411-01:02:27 [INFO] -- KeyPressed: Enter
-210411-01:02:27 [INFO] -- BAMS response: cred:c64328cea619941b3de086e6caba5629ec2e0144
-210411-01:02:27 [INFO] -- ProvideCash: cred:c64328cea619941b3de086e6caba5629ec2e0144
-210411-01:02:27 [INFO] -- TouchDisplayHandler: update display -- MainMenu
-210411-01:02:27 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
-210411-01:02:34 [INFO] -- KeyPressed: 1
-210411-01:02:35 [INFO] -- KeyPressed: 2
-210411-01:02:35 [INFO] -- KeyPressed: 3
-210411-01:02:36 [INFO] -- KeyPressed: 6
-210411-01:02:36 [INFO] -- KeyPressed: 5
-210411-01:02:36 [INFO] -- KeyPressed: 4
-210411-01:02:37 [INFO] -- KeyPressed: 7
-210411-01:02:37 [INFO] -- KeyPressed: 8
-210411-01:02:37 [INFO] -- KeyPressed: 9
-210411-01:02:38 [INFO] -- KeyPressed: 0
-210411-01:02:38 [INFO] -- KeyPressed: .
-210411-01:02:39 [INFO] -- KeyPressed: 00
-210411-01:02:41 [INFO] -- KeyPressed: Enter
-210411-01:02:42 [INFO] -- KeyPressed: ???
-210411-01:02:42 [INFO] -- KeyPressed: Erase
-210411-01:02:43 [INFO] -- KeyPressed: Cancel
-210411-01:02:46 [INFO] -- KeyPressed: Erase
-210411-01:02:48 [INFO] -- 
-210411-01:02:48 [INFO] -- 
-210411-01:02:48 [INFO] -- ============================================================
-210411-01:02:48 [INFO] -- ATMSSStarter: Application Stopping...
-210411-01:02:48 [INFO] -- timer: received terminate!
-210411-01:02:48 [INFO] -- DepositCollectorHandler: terminating...
-210411-01:02:48 [INFO] -- KeypadHandler: terminating...
-210411-01:02:48 [INFO] -- ATMSS: terminating...
-210411-01:02:48 [INFO] -- TouchDisplayHandler: terminating...
-210411-01:02:48 [INFO] -- CardReaderHandler: terminating...
-210411-01:02:48 [INFO] -- AdvicePrinterHandler: terminating...
-210411-01:02:48 [INFO] -- BuzzerHandler: terminating...
-210411-01:02:48 [INFO] -- timer: terminating...
-210411-01:02:48 [INFO] -- BAMSHandler: terminating...
-210411-01:02:48 [INFO] -- CashDispenserHandler: terminating...
+210411-02:05:17 [INFO] -- 
+210411-02:05:17 [INFO] -- 
+210411-02:05:17 [INFO] -- ============================================================
+210411-02:05:17 [INFO] -- ATMSSStarter: Application Starting...
+210411-02:05:18 [INFO] -- timer: starting...
+210411-02:05:18 [INFO] -- BuzzerHandler: starting...
+210411-02:05:18 [INFO] -- AdvicePrinterHandler: starting...
+210411-02:05:18 [INFO] -- DepositCollectorHandler: starting...
+210411-02:05:18 [INFO] -- CashDispenserHandler: starting...
+210411-02:05:18 [INFO] -- TouchDisplayHandler: starting...
+210411-02:05:18 [INFO] -- BAMSHandler: starting...
+210411-02:05:18 [INFO] -- ATMSS: starting...
+210411-02:05:18 [INFO] -- CardReaderHandler: starting...
+210411-02:05:18 [INFO] -- KeypadHandler: starting...
+210411-02:05:22 [INFO] -- CardInserted: 2026-6202
+210411-02:05:22 [INFO] -- TouchDisplayHandler: update display -- PinInputPage
+210411-02:05:22 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
+210411-02:05:32 [INFO] -- MouseCLicked: 358 288
+210411-02:05:37 [INFO] -- KeyPressed: 4
+210411-02:05:37 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-02:05:37 [INFO] -- KeyPressed: 5
+210411-02:05:37 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-02:05:38 [INFO] -- KeyPressed: 6
+210411-02:05:38 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-02:05:38 [INFO] -- KeyPressed: 7
+210411-02:05:38 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-02:05:39 [INFO] -- KeyPressed: 8
+210411-02:05:39 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-02:05:39 [INFO] -- KeyPressed: 9
+210411-02:05:39 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-02:05:39 [INFO] -- KeyPressed: ENTER
+210411-02:05:41 [INFO] -- KeyPressed: Enter
+210411-02:05:41 [INFO] -- BAMS response: cred:185cf674a4e5f41fc6d22704ff7eb1545866ccb9
+210411-02:05:41 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210411-02:05:41 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210411-02:05:42 [INFO] -- BAMS request: GetAccReq
+210411-02:05:42 [INFO] -- cardNo: 2026-6202
+210411-02:05:42 [INFO] -- cred: 185cf674a4e5f41fc6d22704ff7eb1545866ccb9
+210411-02:05:42 [INFO] -- BAMS response: accounts: 1/
+210411-02:05:42 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayCheckBalance.fxml
+210411-02:05:43 [INFO] -- BAMS request: EnquiryReq,1
+210411-02:05:43 [INFO] -- BAMS response: card no: 2026-6202@account id: 1@amount: 5000000.0
+210411-02:05:43 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayCheckAccBalance.fxml
+210411-02:05:45 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210411-02:05:45 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210411-02:05:46 [INFO] -- BAMS request: GetAccReq
+210411-02:05:46 [INFO] -- cardNo: 2026-6202
+210411-02:05:46 [INFO] -- cred: 185cf674a4e5f41fc6d22704ff7eb1545866ccb9
+210411-02:05:46 [INFO] -- BAMS response: accounts: 1/
+210411-02:05:46 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayCheckBalance.fxml
+210411-02:05:46 [INFO] -- BAMS request: EnquiryReq,1
+210411-02:05:46 [INFO] -- BAMS response: card no: 2026-6202@account id: 1@amount: 5000000.0
+210411-02:05:46 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayCheckAccBalance.fxml
+210411-02:05:47 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210411-02:05:47 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210411-02:05:47 [INFO] -- BAMS request: GetAccReq
+210411-02:05:47 [INFO] -- cardNo: 2026-6202
+210411-02:05:47 [INFO] -- cred: 185cf674a4e5f41fc6d22704ff7eb1545866ccb9
+210411-02:05:47 [INFO] -- BAMS response: accounts: 1/
+210411-02:05:47 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayCheckBalance.fxml
+210411-02:05:48 [INFO] -- BAMS request: EnquiryReq,1
+210411-02:05:48 [INFO] -- BAMS response: card no: 2026-6202@account id: 1@amount: 5000000.0
+210411-02:05:48 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayCheckAccBalance.fxml
+210411-02:05:49 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210411-02:05:49 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210411-02:06:18 [INFO] -- Poll: TimesUp 48664 0
+210411-02:06:18 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210411-02:06:18 [INFO] -- PollAck: CardReaderHandler is up!
+210411-02:06:18 [INFO] -- PollAck: TouchDisplayHandler is up!
+210411-02:06:18 [INFO] -- PollAck: KeypadHandler is up!
+210411-02:06:18 [INFO] -- PollAck: BAMSHandler is up!

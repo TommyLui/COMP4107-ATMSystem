@@ -24,7 +24,7 @@
 
 <!--                <Rectangle arcHeight="5.0" arcWidth="5.0" AnchorPane.bottomAnchor="50" AnchorPane.rightAnchor="100"-->
 <!--                           fill="white" height="40.0" stroke="BLACK" strokeType="OUTSIDE" width="160.0"/>-->
-                <Text fx:id="balanceErrorText" text="Error occured in BAMS system." AnchorPane.bottomAnchor="410" AnchorPane.leftAnchor="100"/>
+                <Text fx:id="balanceErrorText" text="Error occured in ATM system." AnchorPane.bottomAnchor="410" AnchorPane.leftAnchor="100"/>
             </children>
         </AnchorPane>
     </children>

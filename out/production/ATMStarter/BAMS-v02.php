@@ -42,9 +42,11 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
 
 } else if (strcmp($req->msgType, "GetAccReq") === 0) {
 
-  if (strcmp($req->cred, $cred) === 0) {
+  $sql = "SELECT cardNo FROM Cards WHERE cardNo = " . "'" . $req->cardNo . "'" . " and cred = " . "'" . $req->cred . "'";
+  $result = $conn->query($sql);
 
-// $sql = "SELECT aid FROM Accounts WHERE cardNo = " . "'" . $req->cardNo . "'" . " and cred = " . "'" . $req->cred . "'";
+  if ($result->num_rows > 0) {
+      // $sql = "SELECT aid FROM Accounts WHERE cardNo = " . "'" . $req->cardNo . "'" . " and cred = " . "'" . $req->cred . "'";
     $sql = "SELECT aid FROM Accounts WHERE cardNo = " . "'" . $req->cardNo . "'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -79,9 +81,13 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
   $reply->depAmount = $req->amount;
 } else if (strcmp($req->msgType, "EnquiryReq") === 0) {
 
-  if (strcmp($req->cred, $cred) === 0) {
-    $sql = "SELECT balance FROM Accounts WHERE cardNo = " . "'" . $req->cardNo . "'" . " and aid = " . "'" . $req->accNo . "'";
-    $result = $conn->query($sql);
+  $sql = "SELECT cardNo FROM Cards WHERE cardNo = " . "'" . $req->cardNo . "'" . " and cred = " . "'" . $req->cred . "'";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+
+      $sql = "SELECT balance FROM Accounts WHERE cardNo = " . "'" . $req->cardNo . "'" . " and aid = " . "'" . $req->accNo . "'";
+      $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();
@@ -89,12 +95,15 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
     } else {
       $reply->amount = "Error";
     }
-
-    $reply->msgType = "EnquiryReply";
-    $reply->cardNo = $req->cardNo;
-    $reply->accNo = $req->accNo;
-    $reply->cred = $req->cred;
+  } else {
+    $reply->amount = "Error";
   }
+
+  $reply->msgType = "EnquiryReply";
+  $reply->cardNo = $req->cardNo;
+  $reply->accNo = $req->accNo;
+  $reply->cred = $req->cred;
+
 } else if (strcmp($req->msgType, "TransferReq") === 0) {
   $reply->msgType = "TransferReply";
   $reply->cardNo = $req->cardNo;

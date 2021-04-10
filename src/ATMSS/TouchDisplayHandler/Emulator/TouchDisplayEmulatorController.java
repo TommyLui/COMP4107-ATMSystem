@@ -78,19 +78,19 @@ public class TouchDisplayEmulatorController {
 
         if (source.contains("StackPane[id=account1StackPane]")) {
 //            System.out.println("Src1: "+ source);
-            msgDetail = "EnquiryReq1";
+            msgDetail = "EnquiryReq,1";
             touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, msgDetail));
         } else if (source.contains("StackPane[id=account2StackPane]")) {
 //            System.out.println("Src2: "+ source);
-            msgDetail = "EnquiryReq2";
+            msgDetail = "EnquiryReq,2";
             touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, msgDetail));
         } else if (source.contains("StackPane[id=account3StackPane]")) {
 //            System.out.println("Src3: "+ source);
-            msgDetail = "EnquiryReq3";
+            msgDetail = "EnquiryReq,3";
             touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, msgDetail));
         } else if (source.contains("StackPane[id=account4StackPane]")) {
 //            System.out.println("Src4: "+ source);
-            msgDetail = "EnquiryReq4";
+            msgDetail = "EnquiryReq,4";
             touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, msgDetail));
         }
 
