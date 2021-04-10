@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.awt.*;
@@ -44,6 +45,7 @@ public class TouchDisplayEmulatorController {
     public ArrayList<Text> accountTexts = new ArrayList<>();
 
     public Label pinLabel;
+    public Label pinWrongLabel;
 
 
     //------------------------------------------------------------
@@ -160,6 +162,12 @@ public class TouchDisplayEmulatorController {
         currentPinLabel = currentPinLabel.substring(0, currentPinLabel.length() - 1);
         pinLabel.setText(currentPinLabel);
         System.out.println("currentPinLabel: " + currentPinLabel);
+    }
+
+    public void pinWrong() {
+        pinLabel.setText("");
+        pinWrongLabel.setText("Please input a correct pin");
+        pinWrongLabel.setTextFill(Color.color(0.9,0,0));
     }
 
 } // TouchDisplayEmulatorController

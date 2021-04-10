@@ -105,6 +105,23 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 			});
 			break;
 
+		case "PinInputtedWrong":
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						touchDisplayEmulatorController.pinWrong();
+					} catch (Exception e) {
+						log.severe(id + ": failed to update PinInputtedWrong");
+						e.printStackTrace();
+					}
+				}
+			});
+			break;
+
+		case "CardLocked":
+			reloadStage("TouchDisplayCardLocked.fxml");
+			break;
 
 //		case "CheckBalance":
 //			reloadStage("TouchDisplayCheckBalance.fxml");
