@@ -2,8 +2,6 @@ package ATMSS.BAMSHandler;
 
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.*;
-import ATMSS.BAMSHandler.BAMSHandler;
-import ATMSS.BAMSHandler.BAMSInvalidReplyException;
 
 import java.io.IOException;
 
@@ -80,7 +78,7 @@ public class BAMSHandlerInATMSS extends AppThread {
                 case "WithdrawReq":
                     testWithdraw(bams);
                     break;
-
+                    
                 case "DepositReq":
                     testDeposit(bams);
                     break;
@@ -105,7 +103,6 @@ public class BAMSHandlerInATMSS extends AppThread {
                     testChgPinReq(bams);
                     break;
             }
-
 
         } catch (BAMSInvalidReplyException e) {
             e.printStackTrace();

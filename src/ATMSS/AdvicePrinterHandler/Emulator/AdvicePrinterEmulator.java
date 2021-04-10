@@ -11,8 +11,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
-import java.util.Date;
-
 
 //======================================================================
 // AdvicePrinterEmulator
@@ -50,7 +48,7 @@ public class AdvicePrinterEmulator extends AdvicePrinterHandler {
 	    atmssStarter.stopApp();
 	    Platform.exit();
 	});
-	myStage.show();
+//	myStage.show();
     } // AdvicePrinterEmulator
 
 	//------------------------------------------------------------

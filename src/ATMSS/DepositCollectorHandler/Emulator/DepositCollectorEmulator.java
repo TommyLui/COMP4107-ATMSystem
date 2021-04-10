@@ -11,8 +11,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
-import java.util.Date;
-
 public class DepositCollectorEmulator extends DepositCollectorHandler {
     private final int WIDTH = 500;
     private final int HEIGHT = 500;
@@ -49,7 +47,7 @@ public class DepositCollectorEmulator extends DepositCollectorHandler {
             atmssStarter.stopApp();
             Platform.exit();
         });
-        myStage.show();
+//        myStage.show();
     }
     // DepositCollectorEmulator
     //------------------------------------------------------------

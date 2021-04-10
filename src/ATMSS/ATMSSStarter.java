@@ -4,7 +4,6 @@ import ATMSS.DepositCollectorHandler.DepositCollectorHandler;
 import ATMSS.AdvicePrinterHandler.AdvicePrinterHandler;
 import ATMSS.BAMSHandler.BAMSHandlerInATMSS;
 import ATMSS.BuzzerHandler.BuzzerHandler;
-import ATMSS.KeypadHandler.Emulator.KeypadEmulator;
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.Msg;
 import AppKickstarter.timer.Timer;
