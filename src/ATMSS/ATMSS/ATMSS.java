@@ -20,6 +20,7 @@ public class ATMSS extends AppThread {
     private String loginState = "logout";
     private String cardNum = "";
     private String pin = "";
+    private String cred = "";
 
     //------------------------------------------------------------
     // ATMSS
@@ -92,7 +93,6 @@ public class ATMSS extends AppThread {
                     log.info("BAMS response: " + msg.getDetails());
                     processBAMSResponse(msg.getDetails());
 
-
                 case CD_provideCash:
                     log.info("ProvideCash: " + msg.getDetails());
                     break;
@@ -145,7 +145,16 @@ public class ATMSS extends AppThread {
     // processBAMSResponse
     private void processBAMSResponse(String msgDetails) {
         if (msgDetails.contains("cred")) {
+            if (!msgDetails.contains("Fail")){
+                String[] creds = msgDetails.split(":");
+                cred = creds[1];
+                System.out.println("Login successful with cred: " + cred);
+                loginState = "login";
+                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+            }else{
 
+                System.out.println("Login fail with cred: " + cred);
+            }
         } else if (msgDetails.contains("logout")) {
 
         } else if (msgDetails.contains("accounts")) {
@@ -265,8 +274,12 @@ public class ATMSS extends AppThread {
                     break;
                 case "Enter":
                     System.out.println("Enter pressed");
-                    String loginDetails = "LoginReq," + cardNum + "," + pin;
-                    bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, loginDetails));
+                    if (cardNum != "" && pin != "") {
+                        String loginDetails = "LoginReq," + cardNum + "," + pin;
+                        bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, loginDetails));
+                    }else {
+                        System.out.println("No pin inputted");
+                    }
                     break;
             }
             System.out.println("pin: " + pin);

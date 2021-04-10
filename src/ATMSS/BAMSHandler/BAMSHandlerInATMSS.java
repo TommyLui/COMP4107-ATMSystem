@@ -139,7 +139,7 @@ public class BAMSHandlerInATMSS extends AppThread {
         String cred = bams.login(details[1], details[2]);
         System.out.println("cred: " + cred);
         System.out.println();
-        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "cred: " + cred));
+        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "cred:" + cred));
     } // Login
 
 

@@ -15,18 +15,19 @@ if ($conn->connect_error) {
 $req = json_decode($_POST["BAMSReq"], false);
 
 if (strcmp($req->msgType, "LoginReq") === 0) {
-  $cred = $req->cardNo. date(DATE_RFC2822);
+  $cardAndDate = cardNo. date(DATE_RFC2822);
+  $cred = sha1($cardAndDate);
 
   $sql = "SELECT cardNo FROM Cards WHERE cardNo = " . "'" . $req->cardNo . "'" . " and pin = " . "'" . $req->pin . "'";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
-      // output data of each row
-//     $reply->cred = "Credible_Credential!!!";
+    $sql2 = "UPDATE Cards SET cred = " . "'"  . $cred . "'" . " WHERE cardNo = " . "'" . $req->cardNo . "'";
+    $result2 = $conn->query($sql2);
+
     $reply->cred = $cred;
   } else {
-        // $reply->cred = $sql
-    $reply->cred = "Unsuccessful_Login!!!" . $req->cardNo . ' ' . $req->pin;
+    $reply->cred = "LoginFail" . ' ' . $req->cardNo . ' ' . $req->pin;
   }
 
   $reply->msgType = "LoginReply";
