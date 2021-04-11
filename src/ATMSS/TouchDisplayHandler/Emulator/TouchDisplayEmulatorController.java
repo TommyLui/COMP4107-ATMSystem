@@ -35,6 +35,7 @@ public class TouchDisplayEmulatorController {
     public Text account2Text;
     public Text account3Text;
     public Text account4Text;
+    public Text balanceErrorText;
 
     public Text accBalanceAccNo;
     public Text accBalanceCardNo;
@@ -46,6 +47,7 @@ public class TouchDisplayEmulatorController {
 
     public Label pinLabel;
     public Label pinWrongLabel;
+    public Label notifyLabel;
 
 
     //------------------------------------------------------------
@@ -57,6 +59,13 @@ public class TouchDisplayEmulatorController {
 	this.touchDisplayEmulator = touchDisplayEmulator;
 	this.touchDisplayMBox = appKickstarter.getThread("TouchDisplayHandler").getMBox();
     } // initialize
+
+    //------------------------------------------------------------
+    // td_changePin
+    public void td_changePin(Event event) {
+        System.out.println("event: " + event);
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "ChangePinExisting"));
+    } // td_checkAccBalance
 
     //------------------------------------------------------------
     // td_checkAccBalance
@@ -107,6 +116,31 @@ public class TouchDisplayEmulatorController {
 	log.fine(id + ": mouse clicked: -- (" + x + ", " + y + ")");
 	touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_MouseClicked, x + " " + y));
     } // td_mouseClick
+
+    //------------------------------------------------------------
+    // modifyNotifyLabel
+    public void modifyNotifyLabel(String msgDetails) {
+        switch (msgDetails) {
+            case "ChangePinExisting":
+                notifyLabel.setText("Please input your existing pin (should be 6-digits long)");
+                break;
+            case "ChangePinNew":
+                notifyLabel.setText("Please input your new pin (should be 6-digits long)");
+                break;
+        }
+    } // modifyNotifyLabel
+
+    //------------------------------------------------------------
+    // setChangePinText
+    public void setChangePinText() {
+        accBalanceCardNo.setText("Change pin successful!");
+    } // setChangePinText
+
+    //------------------------------------------------------------
+    // setBalanceErrorText
+    public void setBalanceErrorText () {
+        balanceErrorText.setText("You have wrongly typed in your existing password / new password 3 times, please try again.");
+    } // setBalanceErrorText
 
     //------------------------------------------------------------
     // setAccBalanceText

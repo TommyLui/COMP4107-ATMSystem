@@ -125,12 +125,21 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
   $reply->cred = $req->cred;
   $reply->result = "succ";
 } else if (strcmp($req->msgType, "ChgPinReq") === 0) {
+
+    $sql = "UPDATE Cards SET pin = " . "'" . $req->newPin . "'" . " WHERE cardNo = " . "'" . $req->cardNo . "'" . " and cred = " . "'" . $req->cred . "'" . " and pin = " . "'" . $req->oldPin . "'";
+    
+    if ($conn->query($sql) === TRUE) {
+      $reply->result = "succ";
+    } else {
+      $reply->result = "Error";
+    }
+
   $reply->msgType = "ChgPinReply";
   $reply->cardNo = $req->cardNo;
   $reply->oldPin = $req->oldPin;
   $reply->newPin = $req->newPin;
   $reply->cred = $req->cred;
-  $reply->result = "succ";
+  
 } else if (strcmp($req->msgType, "ChgLangReq") === 0) {
   $reply->msgType = "ChgLangReply";
   $reply->cardNo = $req->cardNo;

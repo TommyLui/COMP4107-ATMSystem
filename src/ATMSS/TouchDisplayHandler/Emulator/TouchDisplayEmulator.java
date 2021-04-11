@@ -77,6 +77,39 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 		reloadStage("TouchDisplayPinInput.fxml");
 		break;
 
+		case "ChangePinExisting":
+			handleChangePin(msg.getDetails());
+			break;
+
+		case "ChangePinNew":
+			handleChangePin(msg.getDetails());
+			break;
+
+		case "ChangePinInputtedWrong":
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						touchDisplayEmulatorController.pinWrong();
+					} catch (Exception e) {
+						log.severe(id + ": failed to change pin");
+						e.printStackTrace();
+					}
+				}
+			});
+			break;
+
+		case "ChangePinInputtedWrong3Times":
+			reloadStage("TouchDisplayCheckBalanceError.fxml");
+
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			touchDisplayEmulatorController.setBalanceErrorText();
+			break;
+
 		case "PinInputted":
 			Platform.runLater(new Runnable() {
 				@Override
@@ -134,6 +167,26 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
     } // handleUpdateDisplay
 
 	//------------------------------------------------------------
+	// handleChangePin
+	protected void handleChangePin(String msgDetails) {
+		reloadStage("TouchDisplayPinInput.fxml");
+
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					touchDisplayEmulatorController.modifyNotifyLabel(msgDetails);
+				} catch (Exception e) {
+					log.severe(id + ": failed to update print label (existing pin)");
+					e.printStackTrace();
+				}
+			}
+		});
+
+	} // handleChangePin
+
+
+	//------------------------------------------------------------
 	// handleBAMSErrorDisplay
 	protected void handleBAMSErrorDisplay(Msg msg) {
     	reloadStage("TouchDisplayCheckBalanceError.fxml");
@@ -159,6 +212,15 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 				e.printStackTrace();
 			}
 			touchDisplayEmulatorController.setAccBalanceText(msg.getDetails());
+		} else if (msg.getDetails().contains("chgPinReq")) {
+			//    		System.out.println("I made it!!! "+msg.getDetails());
+			reloadStage("TouchDisplayCheckAccBalance.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			touchDisplayEmulatorController.setChangePinText();
 		}
 	} // handleBAMSUpdateDisplay
 

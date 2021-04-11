@@ -69,6 +69,8 @@ public class BAMSHandlerInATMSS extends AppThread {
                 getAcc(bams, request);
             } else if (request.contains("EnquiryReq")) {
                 enquiry(bams, request);
+            } else if (request.contains("ChgPinReq")) {
+                chgPinReq(bams, request);
             } else {
                 switch (request) {
                     case "LogoutReq":
@@ -120,9 +122,9 @@ public class BAMSHandlerInATMSS extends AppThread {
                         testChqBookReq(bams);
                         break;
 
-                    case "ChgPinReq":
-                        testChgPinReq(bams);
-                        break;
+//                    case "ChgPinReq":
+//                        chgPinReq(bams);
+//                        break;
                 }
         }
 
@@ -300,13 +302,50 @@ public class BAMSHandlerInATMSS extends AppThread {
 
 
     //------------------------------------------------------------
-    // testChgPinReq
-    protected void testChgPinReq(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
+    // chgPinReq
+    protected void chgPinReq(BAMSHandler bams, String request) throws BAMSInvalidReplyException, IOException {
+
+        System.out.println("chgPinReq:");
+        String[] details = request.split(",");
+        System.out.println(details[0]);
+        System.out.println(details[1]);
+        System.out.println(details[2]);
+        System.out.println(details[3]);
+        System.out.println(details[4]);
+
+        String cardNo = details[1];
+        String oldPin = details[2];
+        String newPin = details[3];
+        String cred = details[4];
+
+        log.info("cardNo: "+cardNo);
+        log.info("oldPin: "+oldPin);
+        log.info("newPin: "+newPin);
+        log.info("cred: "+cred);
+
         System.out.println("ChgPinReq:");
-        String result = bams.chgPinReq("12345678-4", "456123789", "987321654", "cred-8");
+
+        String result = bams.chgPinReq(cardNo, oldPin, newPin, cred);
+
         System.out.println("result: " + result);
         System.out.println();
-        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "chgPinReq result: " + result));
-    } // testChgPinReq
+
+        if (result.equals("succ")) {
+            atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "chgPinReq result: " + result + ","+ newPin));
+        } else {
+
+        }
+    } // chgPinReq
+
+
+//    //------------------------------------------------------------
+//    // testChgPinReq
+//    protected void testChgPinReq(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
+//        System.out.println("ChgPinReq:");
+//        String result = bams.chgPinReq("12345678-4", "456123789", "987321654", "cred-8");
+//        System.out.println("result: " + result);
+//        System.out.println();
+//        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "chgPinReq result: " + result));
+//    } // testChgPinReq
 
 }
