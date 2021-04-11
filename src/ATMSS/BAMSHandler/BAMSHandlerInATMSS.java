@@ -274,7 +274,8 @@ public class BAMSHandlerInATMSS extends AppThread {
             System.out.println("depAmount: " + depAmount);
             System.out.println();
 
-
+            atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response,
+                    "reDeposit," +  depAmount));
         } catch (NumberFormatException exception) {
             atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Error, "Error"));
         }

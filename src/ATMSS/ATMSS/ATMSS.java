@@ -253,6 +253,8 @@ public class ATMSS extends AppThread {
             String[] result = msgDetails.split(",");
             pin = result[1];
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
+        }else if (msgDetails.contains("reDeposit")){
+            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
         }
     } // processBAMSResponse
 
