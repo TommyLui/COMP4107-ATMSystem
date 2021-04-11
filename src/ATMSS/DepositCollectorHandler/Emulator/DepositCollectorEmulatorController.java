@@ -29,6 +29,7 @@ public class DepositCollectorEmulatorController {
     private int num1000Note;
     private int totalNote;
     private int totalCash;
+    private int amount;
     public TextField num100NoteLabel;
     public TextField num500NoteLabel;
     public TextField num1000NoteLabel;
@@ -73,9 +74,13 @@ public class DepositCollectorEmulatorController {
                 }
 
                 totalNote = num100Note + num500Note + num1000Note;
+                totalCash = (num100Note * 100) + (num500Note * 500) + (num1000Note * 1000);
+                amount = (num100Note * 100) + (num500Note * 500) + (num1000Note * 1000);
                 if(totalNote > 100){
                     System.out.println("Over Enter Cash");
                 }
+                depositCollectorMBox.send(new Msg(id, depositCollectorMBox, Msg.Type.DC_Collect_Cash,
+                        totalNote + "," + amount));
 
                 break;
             /*
@@ -88,21 +93,11 @@ public class DepositCollectorEmulatorController {
             case "Count":
                 totalCash = (num100Note * 100) + (num500Note * 500) + (num1000Note * 1000);
 
-                //Solution 1
-                    System.out.println("Number of $100 = " + num100Note + ", Total $100 = $" + num100Note * 100);
-                    System.out.println("Number of $500 = " + num500Note + ", Total $500 = $" + num500Note * 500);
-                    System.out.println("Number of $1000 = " + num1000Note + ", Total $1000 = $" + num1000Note * 1000);
-                    System.out.println("Number of total Note = " + totalNote + ", Total Cash = $" + totalCash);
-
-                    //Solution 2:
-
-                    depositCollectorMBox.send(new Msg(id, depositCollectorMBox, Msg.Type.DC_Count_Cash,
-                            "--------------------\n" +
-                                    "Number of $100 = " + num100Note + ", Total $100 = $" + num100Note * 100 + "\n" +
-                                    "Number of $500 = " + num500Note + ", Total $500 = $" + num500Note * 500 + "\n" +
-                                    "Number of $1000 = " + num1000Note + ", Total $1000 = $" + num1000Note * 1000 + "\n" +
-                                    "Number of $total Note = " + totalNote + ", Total Cash = $" + totalCash + "\n" +
-                                    "--------------------\n"));
+                depositCollectorMBox.send(new Msg(id, depositCollectorMBox, Msg.Type.DC_Count_Cash,
+                        "\nNumber of $100 = " + num100Note + ", Total $100 = $" + num100Note * 100 + "\n" +
+                                "Number of $500 = " + num500Note + ", Total $500 = $" + num500Note * 500 + "\n" +
+                                "Number of $1000 = " + num1000Note + ", Total $1000 = $" + num1000Note * 1000 + "\n" +
+                                "Number of $total Note = " + totalNote + ", Total Cash = $" + totalCash + "\n"));
 
                 break;
 

@@ -2,7 +2,7 @@ package ATMSS.BAMSHandler;
 
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.*;
-import com.sun.javafx.tools.packager.Log;
+//import com.sun.javafx.tools.packager.Log;
 
 import java.io.IOException;
 
@@ -71,7 +71,11 @@ public class BAMSHandlerInATMSS extends AppThread {
                 enquiry(bams, request);
             } else if (request.contains("ChgPinReq")) {
                 chgPinReq(bams, request);
-            } else {
+            } else if (request.contains("DepositReq")) {
+                testDeposit(bams, request);
+            }else if (request.contains("GetAccDeposit")) {
+                getAcc(bams, request);
+            }else {
                 switch (request) {
                     case "LogoutReq":
                         testLogout(bams);
@@ -87,7 +91,7 @@ public class BAMSHandlerInATMSS extends AppThread {
                         break;
 
                     case "DepositReq":
-                        testDeposit(bams);
+                        //testDeposit(bams);
                         break;
 
 //                    case "EnquiryReq1":
@@ -174,28 +178,56 @@ public class BAMSHandlerInATMSS extends AppThread {
     //------------------------------------------------------------
     // getAcc
     protected void getAcc(BAMSHandler bams, String request) throws BAMSInvalidReplyException, IOException {
-        System.out.println("GetAcc:");
-        String[] details = request.split(",");
-        System.out.println(details[0]);
-        System.out.println(details[1]);
-        System.out.println(details[2]);
+        if(request.contains("GetAccDeposit")){
+            System.out.println("GetAcc:");
+            String[] details = request.split(",");
+            System.out.println(details[0]);
+            System.out.println(details[1]);
+            System.out.println(details[2]);
 
-        String cardNo = details[1];
-        String cred = details[2];
+            String cardNo = details[1];
+            String cred = details[2];
 
-        log.info("cardNo: "+cardNo);
-        log.info("cred: "+cred);
+            log.info("cardNo: " + cardNo);
+            log.info("cred: " + cred);
 
-        String accounts = bams.getAccounts(cardNo, cred);
+            String accounts = bams.getAccounts(cardNo, cred);
 
-        System.out.println("accounts: " + accounts);
-        if (!accounts.contains("Error")) {
+            System.out.println("accounts: " + accounts);
+
+            if (!accounts.contains("Error")) {
 //            System.out.println("accounts: " + accounts);
-            System.out.println();
-            atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "accounts: " + accounts));
-        } else {
-            // Handle error
-            atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Error, "Error"));
+                System.out.println();
+                atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "accountDeposit: " + accounts));
+            } else {
+                // Handle error
+                atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Error, "Error"));
+            }
+        } else if (request.contains("GetAccReq")){
+            System.out.println("GetAcc:");
+            String[] details = request.split(",");
+            System.out.println(details[0]);
+            System.out.println(details[1]);
+            System.out.println(details[2]);
+
+            String cardNo = details[1];
+            String cred = details[2];
+
+            log.info("cardNo: " + cardNo);
+            log.info("cred: " + cred);
+
+            String accounts = bams.getAccounts(cardNo, cred);
+
+            System.out.println("accounts: " + accounts);
+
+            if (!accounts.contains("Error")) {
+//            System.out.println("accounts: " + accounts);
+                System.out.println();
+                atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "accounts: " + accounts));
+            } else {
+                // Handle error
+                atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Error, "Error"));
+            }
         }
     } // getAcc
 
@@ -224,12 +256,29 @@ public class BAMSHandlerInATMSS extends AppThread {
 
     //------------------------------------------------------------
     // testDeposit
-    protected void testDeposit(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
-        System.out.println("Deposit:");
-        double depAmount = bams.deposit("12345678-3", "111-222-333", "cred-3", "109703");
-        System.out.println("depAmount: " + depAmount);
-        System.out.println();
-        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "depAmount: " + depAmount));
+    protected void testDeposit(BAMSHandler bams, String request) throws BAMSInvalidReplyException, IOException {
+        try {
+            System.out.println("Deposit:");
+            String[] details = request.split(",");
+            String cardNo = details[1];
+            String aid = details[2];
+            String cred = details[3];
+            String amount = details[4];
+
+            System.out.println("Card no: " + cardNo);
+            System.out.println("aid: " + aid);
+            System.out.println("cred: " + cred);
+            System.out.println("amount: " + amount);
+
+            double depAmount = bams.deposit(cardNo, aid, cred, amount);
+            System.out.println("depAmount: " + depAmount);
+            System.out.println();
+
+
+        } catch (NumberFormatException exception) {
+            atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Error, "Error"));
+        }
+
     } // testDeposit
 
     //------------------------------------------------------------

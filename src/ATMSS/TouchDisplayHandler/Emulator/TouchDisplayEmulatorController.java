@@ -61,12 +61,52 @@ public class TouchDisplayEmulatorController {
     } // initialize
 
     //------------------------------------------------------------
+    // td_deposit
+    public void td_deposit(Event event) {
+        System.out.println("event: " + event);
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, "GetAccDeposit"));
+    }
+    // td_deposit
+    //------------------------------------------------------------
+    // td_refresh
+    public void td_refresh(Event event) {
+        System.out.println("event: " + event);
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "RefreshDeposit"));
+    }
+    // td_refresh
+    //------------------------------------------------------------
+    //------------------------------------------------------------
+    // td_AccDeposit
+    public void td_AccDeposit(Event event) {
+        String source = event.getSource().toString(); //yields complete string
+        String msgDetail;
+
+        if (source.contains("StackPane[id=account1StackPane]")) {
+//            System.out.println("Src1: "+ source);
+            msgDetail = "DepositReq,1";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_selectedAcc, msgDetail));
+        } else if (source.contains("StackPane[id=account2StackPane]")) {
+//            System.out.println("Src2: "+ source);
+            msgDetail = "DepositReq,2";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_selectedAcc, msgDetail));
+        } else if (source.contains("StackPane[id=account3StackPane]")) {
+//            System.out.println("Src3: "+ source);
+            msgDetail = "DepositReq,3";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_selectedAcc, msgDetail));
+        } else if (source.contains("StackPane[id=account4StackPane]")) {
+//            System.out.println("Src4: "+ source);
+            msgDetail = "DepositReq,4";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_selectedAcc, msgDetail));
+        }
+    }
+    // td_AccDeposit
+    //------------------------------------------------------------
     // td_changePin
     public void td_changePin(Event event) {
         System.out.println("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "ChangePinExisting"));
-    } // td_checkAccBalance
-
+    }
+    // td_changePin
     //------------------------------------------------------------
     // td_checkAccBalance
     public void td_checkBalance(Event event) {

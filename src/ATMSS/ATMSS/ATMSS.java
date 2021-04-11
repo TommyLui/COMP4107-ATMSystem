@@ -15,6 +15,7 @@ public class ATMSS extends AppThread {
     private MBox advicePrinterMBox;
     private MBox bamsMBox;
     private MBox buzzerMBox;
+    private MBox depositCollectorMBox;
 
     private String loginState = "logout";
     private String cardNum = "";
@@ -26,6 +27,8 @@ public class ATMSS extends AppThread {
     private int wrongPinCounter = 0;
     private int wrongExistingPinCounter = 0;
     private int wrongNewPinCounter = 0;
+    private String depositAc;
+    private String aid = "";
 
     String[] pins = {existingPin, newPin}; // 0: existing pin, 1: new pin
 
@@ -49,6 +52,7 @@ public class ATMSS extends AppThread {
         advicePrinterMBox = appKickstarter.getThread("AdvicePrinterHandler").getMBox();
         bamsMBox = appKickstarter.getThread("BAMSHandler").getMBox();
         buzzerMBox = appKickstarter.getThread("BuzzerHandler").getMBox();
+        depositCollectorMBox = appKickstarter.getThread("DepositCollectorHandler").getMBox();
 
         for (boolean quit = false; !quit; ) {
             Msg msg = mbox.receive();
@@ -126,6 +130,52 @@ public class ATMSS extends AppThread {
                     log.info("CashDispenser: " + msg.getDetails());
                     break;
 
+                case DC_Collect_Cash:
+                    String[] collectCash = msg.getDetails().split(",");
+                    String totalNote = collectCash[0];
+                    String amount = collectCash[1];
+
+                    System.out.println(totalNote);
+                    System.out.println(amount);
+
+                    String details = cardNum + "," + aid + "," + cred + "," + amount;
+                    bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request,"DepositReq,"+ details ));
+
+                    /*
+                    log.info("DepositCollectorCash: " + msg.getDetails());
+                    String DepositCollectorState = msg.getDetails();
+
+                    if(DepositCollectorState.contains("CollectSuccess")){
+                        String collectedDetail = "DepositReq" + msg.getDetails();
+                        bamsMBox.send(new Msg(id, mbox, Msg.Type.Poll, collectedDetail));
+                    }else{
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay,
+                                "OpenSlot"));
+                    }
+                    */
+
+                    break;
+
+                case DC_Count_Cash:
+                    log.info("DepositCollectorCountCash: " + msg.getDetails());
+                    break;
+
+                case DC_Error:
+                    log.info("DepositCollectorError: " + msg.getDetails());
+                    break;
+
+                case DC_TimeOut:
+                    log.info("DepositCollectorTimeOut: " + msg.getDetails());
+                    break;
+
+                case TD_selectedAcc:
+                    String[] tempDetail = msg.getDetails().split(",");
+                    depositAc = tempDetail[1];
+                    System.out.println(depositAc);
+                    aid = tempDetail[1];
+                    touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "OpenDeposit"));
+                    break;
+
                 case TimesUp:
                     Timer.setTimer(id, mbox, pollingTime);
                     log.info("Poll: " + msg.getDetails());
@@ -134,6 +184,8 @@ public class ATMSS extends AppThread {
                     touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.Poll, ""));
                     advicePrinterMBox.send(new Msg(id, mbox, Msg.Type.Poll, ""));
                     bamsMBox.send(new Msg(id, mbox, Msg.Type.Poll, ""));
+                    buzzerMBox.send(new Msg(id, mbox, Msg.Type.Poll, ""));
+                    depositCollectorMBox.send(new Msg(id, mbox, Msg.Type.Poll, ""));
                     break;
 
                 case PollAck:
@@ -181,7 +233,10 @@ public class ATMSS extends AppThread {
         } else if (msgDetails.contains("accounts")) {
             System.out.println("I am accounts");
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
-        } else if (msgDetails.contains("outAmount")) {
+        } else if (msgDetails.contains("accountDeposit")) {
+            System.out.println("I am accounts for Deposit");
+            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
+        }else if (msgDetails.contains("outAmount")) {
 
         } else if (msgDetails.contains("depAmount")) {
 
