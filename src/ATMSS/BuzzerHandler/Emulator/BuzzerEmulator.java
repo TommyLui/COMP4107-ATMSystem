@@ -12,7 +12,7 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 /**
- * Buzzer Emulator class is using to simulate a real buzzer of the atm machine.
+ * Buzzer Emulator class is using to simulate a real buzzer of the atm machine
  */
 //======================================================================
 // BuzzerEmulator
@@ -25,10 +25,9 @@ public class BuzzerEmulator extends BuzzerHandler {
     private BuzzerEmulatorController buzzerEmulatorController;
 
 	/**
-	 * The constructor of the buzzer emulator class
-	 * @param id The handler's thread id.
-	 * @param atmssStarter The app kickstarter using.
-	 * @throws Exception
+	 * The constructor for the buzzer emulator class
+	 * @param id the name of the buzzer
+	 * @param atmssStarter a reference to the AppKickstarter
 	 */
     //------------------------------------------------------------
     // BuzzerEmulator
@@ -40,7 +39,7 @@ public class BuzzerEmulator extends BuzzerHandler {
 
 
 	/**
-	 * The start function configures the GUI setup of the buzzer emulator and runs the emulator.
+	 * The start function configures the GUI setup of the buzzer emulator and runs the GUI
 	 * @throws Exception
 	 */
     //------------------------------------------------------------

@@ -32,6 +32,7 @@ public class ATMSS extends AppThread {
     private String depositAc;
     private String aid = "";
     private String withdrawalAc;
+    private String getCashBuzzState = "on";
     private int accountNum = 0;
     private int containdot = 0;
     private String accNo = "";
@@ -151,6 +152,7 @@ public class ATMSS extends AppThread {
                     if (loginState.equals("login")) {
                     log.info("GetCash: " + msg.getDetails());
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+                        getCashBuzzState = "off";
                     }
                     break;
 
@@ -369,7 +371,10 @@ public class ATMSS extends AppThread {
             new Thread(() -> {
                 try {
                     Thread.sleep(10000);
-                    cashDispenserMBox.send(new Msg(id, mbox, Msg.Type.CD_RetainMoney, ""));
+                    if (!getCashBuzzState.equals("off")) {
+                        cashDispenserMBox.send(new Msg(id, mbox, Msg.Type.CD_RetainMoney, ""));
+                    }
+                    getCashBuzzState = "on";
                     touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
                 } catch (InterruptedException e) {
                     e.printStackTrace();

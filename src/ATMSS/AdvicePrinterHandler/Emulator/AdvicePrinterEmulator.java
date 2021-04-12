@@ -14,7 +14,6 @@ import javafx.stage.WindowEvent;
 import java.sql.Timestamp;
 import java.util.Date;
 
-
 //======================================================================
 // AdvicePrinterEmulator
 public class AdvicePrinterEmulator extends AdvicePrinterHandler {
@@ -23,7 +22,12 @@ public class AdvicePrinterEmulator extends AdvicePrinterHandler {
     private Stage myStage;
     private AdvicePrinterEmulatorController advicePrinterEmulatorController;
 
-    //------------------------------------------------------------
+	/**
+	 * Constructor for the AdvicePrinterEmulator
+	 * @param id the name of the AdvicePrinterEmulator
+	 * @param atmssStarter a reference to the atmssStarter
+	 */
+	//------------------------------------------------------------
     // AdvicePrinterEmulator
     public AdvicePrinterEmulator(String id, ATMSSStarter atmssStarter) {
 	super(id, atmssStarter);
@@ -32,6 +36,10 @@ public class AdvicePrinterEmulator extends AdvicePrinterHandler {
     } // AdvicePrinterEmulator
 
 
+	/**
+	 * Start method for constructing the GUI for AdvicePrinterEmulator
+	 * @throws Exception
+	 */
     //------------------------------------------------------------
     // start
     public void start() throws Exception {
@@ -54,6 +62,10 @@ public class AdvicePrinterEmulator extends AdvicePrinterHandler {
 	myStage.show();
     } // AdvicePrinterEmulator
 
+	/**
+	 * Handle print advice request
+	 * @param content the content in the receipt
+	 */
 	//------------------------------------------------------------
 	// handlePrintReceipt
 	protected void handlePrintReceipt(String content) {

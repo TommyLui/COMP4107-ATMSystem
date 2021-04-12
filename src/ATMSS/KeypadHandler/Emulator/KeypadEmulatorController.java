@@ -9,7 +9,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 
-
+/**
+ * Keypad Emulator Controller class is using to interact with the keypad emulator
+ */
 //======================================================================
 // KeypadEmulatorController
 public class KeypadEmulatorController {
@@ -19,7 +21,13 @@ public class KeypadEmulatorController {
     private KeypadEmulator keypadEmulator;
     private MBox keypadMBox;
 
-
+	/**
+	 *
+	 * @param id the name of buzzer
+	 * @param appKickstarter a reference to the AppKickstarter
+	 * @param log a reference to the logger
+	 * @param keypadEmulator a reference to the emulator
+	 */
     //------------------------------------------------------------
     // initialize
     public void initialize(String id, AppKickstarter appKickstarter, Logger log, KeypadEmulator keypadEmulator) {
@@ -31,6 +39,7 @@ public class KeypadEmulatorController {
     } // initialize
 
 
+
     //------------------------------------------------------------
     // buttonPressed
     public void buttonPressed(ActionEvent actionEvent) {
@@ -39,7 +48,10 @@ public class KeypadEmulatorController {
 	keypadMBox.send(new Msg(id, keypadMBox, Msg.Type.KP_KeyPressed, btnTxt));
     } // buttonPressed
 
-
+	/**
+	 * handle the key press event
+	 * @param keyEvent
+	 */
     //------------------------------------------------------------
     // keyPressed
     public void keyPressed(KeyEvent keyEvent) {

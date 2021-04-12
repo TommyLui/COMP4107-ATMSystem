@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
+/**
+ * TouchDisplay Emulator class is using to simulate a real touch display of the atm machine
+ */
 //======================================================================
 // TouchDisplayEmulator
 public class TouchDisplayEmulator extends TouchDisplayHandler {
@@ -22,6 +25,11 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
     private Stage myStage;
     private TouchDisplayEmulatorController touchDisplayEmulatorController;
 
+	/**
+	 * The constructor for the touch display emulator class
+	 * @param id the name of the touch display
+	 * @param atmssStarter a reference to the AppKickstarter
+	 */
     //------------------------------------------------------------
     // TouchDisplayEmulator
     public TouchDisplayEmulator(String id, ATMSSStarter atmssStarter) throws Exception {
@@ -30,6 +38,10 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 	this.id = id;
     } // TouchDisplayEmulator
 
+	/**
+	 * The start function configures the GUI setup of the touch display emulator and runs the GUI
+	 * @throws Exception
+	 */
     //------------------------------------------------------------
     // start
     public void start() throws Exception {
@@ -53,6 +65,10 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 	myStage.show();
     } // TouchDisplayEmulator
 
+	/**
+	 * This function is for handling the dusplay update request from "atmss"
+	 * @param msg The display page
+	 */
     //------------------------------------------------------------
     // handleUpdateDisplay
     protected void handleUpdateDisplay(Msg msg) {
@@ -356,6 +372,10 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 		}
 	} // handleBAMSUpdateDisplay
 
+	/**
+	 * This function is using to reload the GUI display by a fxml file.
+	 * @param fxmlFName The name of the fxml file.
+	 */
     //------------------------------------------------------------
     // reloadStage
     private void reloadStage(String fxmlFName) {

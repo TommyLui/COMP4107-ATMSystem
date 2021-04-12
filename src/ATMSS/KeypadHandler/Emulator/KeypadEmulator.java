@@ -11,6 +11,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
+/**
+ * Keypad Emulator class is using to simulate a real keypad of the atm machine
+ */
 //======================================================================
 // KeypadEmulator
 public class KeypadEmulator extends KeypadHandler {
@@ -19,7 +22,12 @@ public class KeypadEmulator extends KeypadHandler {
     private Stage myStage;
     private KeypadEmulatorController keypadEmulatorController;
 
-    //------------------------------------------------------------
+	/**
+	 * The constructor for the keypd emulator class
+	 * @param id the name of the keypad
+	 * @param atmssStarter a reference to the AppKickstarter
+	 */
+	//------------------------------------------------------------
     // KeypadEmulator
     public KeypadEmulator(String id, ATMSSStarter atmssStarter) {
 	super(id, atmssStarter);
@@ -28,6 +36,10 @@ public class KeypadEmulator extends KeypadHandler {
     } // KeypadEmulator
 
 
+	/**
+	 * The start function configures the GUI setup of the keypad emulator and runs the GUI
+	 * @throws Exception
+	 */
     //------------------------------------------------------------
     // start
     public void start() throws Exception {
