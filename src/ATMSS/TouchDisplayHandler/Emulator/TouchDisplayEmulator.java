@@ -84,6 +84,10 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 			reloadStage("TouchDisplayWaitPushCash.fxml");
 			break;
 
+		case "GetCash":
+			reloadStage("TouchDisplayGetCash.fxml");
+			break;
+
 
 		case "ChangePinExisting":
 			handleChangePin(msg.getDetails());

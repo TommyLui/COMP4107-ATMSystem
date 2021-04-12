@@ -128,6 +128,7 @@ public class ATMSS extends AppThread {
 
                 case CD_GetCash:
                     log.info("GetCash: " + msg.getDetails());
+                    touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
                     break;
 
                 case CD_Error:
@@ -331,7 +332,7 @@ public class ATMSS extends AppThread {
             System.out.println("I am accounts for Deposit");
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
         }else if (msgDetails.contains("outAmount")) {
-            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "GetCash"));
         } else if (msgDetails.contains("depAmount")) {
 
         } else if (msgDetails.contains("amount")) {
