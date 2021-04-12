@@ -100,8 +100,8 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
     }   
 
   } else {
-      $reply->amount = "Error";
-      $reply->outAmount = "Error";
+    $reply->amount = "Error";
+    $reply->outAmount = "Error";
   }
 
   $reply->msgType = "WithdrawReply";
@@ -199,10 +199,17 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
   $reply->result = "succ";
 } else if (strcmp($req->msgType, "ChgPinReq") === 0) {
 
-  $sql = "UPDATE Cards SET pin = " . "'" . $req->newPin . "'" . " WHERE cardNo = " . "'" . $req->cardNo . "'" . " and cred = " . "'" . $req->cred . "'" . " and pin = " . "'" . $req->oldPin . "'";
+  $sql = "SELECT cardNo FROM Cards WHERE cardNo = " . "'" . $req->cardNo . "'" . " and cred = " . "'" . $req->cred . "'";
+  $result = $conn->query($sql);
 
-  if ($conn->query($sql) === TRUE) {
-    $reply->result = "succ";
+  if ($result->num_rows > 0) {
+    $sql = "UPDATE Cards SET pin = " . "'" . $req->newPin . "'" . " WHERE cardNo = " . "'" . $req->cardNo . "'" . " and cred = " . "'" . $req->cred . "'" . " and pin = " . "'" . $req->oldPin . "'";
+
+    if ($conn->query($sql) === TRUE) {
+      $reply->result = "succ";
+    } else {
+      $reply->result = "Error";
+    }
   } else {
     $reply->result = "Error";
   }
