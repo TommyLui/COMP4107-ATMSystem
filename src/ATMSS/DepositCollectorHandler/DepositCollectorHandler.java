@@ -27,7 +27,21 @@ public class DepositCollectorHandler extends HWHandler {
     protected void processMsg(Msg msg) {
         switch (msg.getType()) {
             case DC_Collect_Cash:
+                atmss.send(new Msg(id, mbox, Msg.Type.DC_Collect_Cash, msg.getDetails()));
                 collectCashDeposit(msg.getDetails());
+                break;
+
+            case DC_Count_Cash:
+                atmss.send(new Msg(id, mbox, Msg.Type.DC_Count_Cash, msg.getDetails()));
+                countCashDeposit(msg.getDetails());
+                break;
+
+            case DC_Error:
+                atmss.send(new Msg(id, mbox, Msg.Type.DC_Error, "Time out"));
+                break;
+
+            case DC_TimeOut:
+                atmss.send(new Msg(id, mbox, Msg.Type.DC_TimeOut, "Time out"));
                 break;
 
             default:
@@ -39,6 +53,10 @@ public class DepositCollectorHandler extends HWHandler {
     // handlePrintReceipt
     protected void collectCashDeposit(String content) {
         log.info(id + ": Collect Cash Successful");
+    } // handlePrintReceipt
+
+    protected void countCashDeposit(String content) {
+        log.info(id + ":Count Cash Successful");
     } // handlePrintReceipt
 
 }

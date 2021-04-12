@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
-
 //======================================================================
 // TouchDisplayEmulator
 public class TouchDisplayEmulator extends TouchDisplayHandler {
@@ -31,7 +30,6 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 	this.id = id;
     } // TouchDisplayEmulator
 
-
     //------------------------------------------------------------
     // start
     public void start() throws Exception {
@@ -39,6 +37,7 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 	myStage = new Stage();
 	FXMLLoader loader = new FXMLLoader();
 	String fxmlName = "TouchDisplayInitial.fxml";
+//	String fxmlName = "TouchDisplayMainMenu.fxml";
 	loader.setLocation(TouchDisplayEmulator.class.getResource(fxmlName));
 	root = loader.load();
 	touchDisplayEmulatorController = (TouchDisplayEmulatorController) loader.getController();
@@ -53,7 +52,6 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 	});
 	myStage.show();
     } // TouchDisplayEmulator
-
 
     //------------------------------------------------------------
     // handleUpdateDisplay
@@ -105,6 +103,22 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 				case "ChangePinExisting":
 					handleChangePin(msg.getDetails());
 					break;
+		case "OpenDeposit":
+			reloadStage("TouchDisplayOpenDeposit.fxml");
+			break;
+
+		case "Waiting":
+			reloadStage("TouchDisplayWaitPushCash.fxml");
+			break;
+
+		case "GetCash":
+			reloadStage("TouchDisplayGetCash.fxml");
+			break;
+
+
+		case "ChangePinExisting":
+			handleChangePin(msg.getDetails());
+			break;
 
 				case "ChangePinNew":
 					handleChangePin(msg.getDetails());
@@ -183,9 +197,39 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 					});
 					break;
 
-				case "CardLocked":
-					reloadStage("TouchDisplayCardLocked.fxml");
-					break;
+
+		case "CardLocked":
+			reloadStage("TouchDisplayCardLocked.fxml");
+			break;
+
+		case "EjectCard":
+			reloadStage("TouchDisplayEjectCard.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			atmss.send(new Msg(id, mbox, Msg.Type.CR_EjectCard, "EjectCard"));
+			break;
+
+		case "Initialization":
+			reloadStage("TouchDisplayInitial.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			break;
+
+		case "RemoveCardTimeOut":
+			reloadStage("TouchDisplayCardRetaining.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			atmss.send(new Msg(id, mbox, Msg.Type.CR_Lock, ""));
+			break;
 
 //		case "CheckBalance":
 //			reloadStage("TouchDisplayCheckBalance.fxml");
@@ -286,6 +330,38 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 
 		} else if (msg.getDetails().contains("NotEnoughACError")){
     		reloadStage("TouchDisplayShowTransDetails.fxml");
+		}else if (msg.getDetails().contains("accountDeposit")) {
+			reloadStage("TouchDisplayDeposit.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			touchDisplayEmulatorController.setStackPaneVisibiliy(msg.getDetails());
+		}else if (msg.getDetails().contains("DepositReq")) {
+			reloadStage("TouchDisplayOpenDeposit.fxml");
+			atmss.send(new Msg(id, mbox, Msg.Type.TD_selectedAcc, msg.getDetails()));
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}else if (msg.getDetails().contains("accountWithdrawal")) {
+			reloadStage("TouchDisplayWithdrawal.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			touchDisplayEmulatorController.setStackPaneVisibiliy(msg.getDetails());
+		}else if (msg.getDetails().contains("WithdrawalReq")) {
+			reloadStage("TouchDisplayWaitPushCash.fxml");
+			atmss.send(new Msg(id, mbox, Msg.Type.TD_selectedAccWithdrawal, msg.getDetails()));
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	} // handleBAMSUpdateDisplay
 

@@ -6,20 +6,20 @@ import AppKickstarter.misc.Msg;
 
 
 //======================================================================
-// TouchDisplayHandler
+// BuzzerHandler
 public class BuzzerHandler extends HWHandler {
     //------------------------------------------------------------
-    // TouchDisplayHandler
+    // BuzzerHandler
     public BuzzerHandler(String id, AppKickstarter appKickstarter) throws Exception {
 	super(id, appKickstarter);
-    } // TouchDisplayHandler
+    } // BuzzerHandler
 
     //------------------------------------------------------------
     // processMsg
     protected void processMsg(Msg msg) {
         switch (msg.getType()) {
             case BZ_Buzz:
-                handleUpdateBuzz(msg);
+                handleBuzz(msg);
                 break;
 
             default:
@@ -29,8 +29,8 @@ public class BuzzerHandler extends HWHandler {
 
 
     //------------------------------------------------------------
-    // handleUpdateDisplay
-    protected void handleUpdateBuzz(Msg msg) {
+    // handleBuzz
+    protected void handleBuzz(Msg msg) {
 	log.info(id + ": update buzz -- " + msg.getDetails());
-    } // handleUpdateDisplay
-} // TouchDisplayHandler
+    } // handleBuzz
+} // BuzzerHandler

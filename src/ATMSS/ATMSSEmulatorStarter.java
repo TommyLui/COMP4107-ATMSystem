@@ -29,7 +29,6 @@ public class ATMSSEmulatorStarter extends ATMSSStarter {
     // main
     public static void main(String [] args) { new ATMSSEmulatorStarter().startApp(); } // main
 
-
     //------------------------------------------------------------
     // startHandlers
     @Override

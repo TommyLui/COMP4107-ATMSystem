@@ -31,6 +31,10 @@ public class CardReaderHandler extends HWHandler {
                 handleCardRemove();
                 break;
 
+            case CR_Lock:
+                handleCardLock();
+                break;
+
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
         }
@@ -50,10 +54,13 @@ public class CardReaderHandler extends HWHandler {
 	log.info(id + ": card ejected");
     } // handleCardEject
 
-
     //------------------------------------------------------------
     // handleCardRemove
     protected void handleCardRemove() {
 	log.info(id + ": card removed");
     } // handleCardRemove
+
+    //------------------------------------------------------------
+    // handleCardLock
+    protected void handleCardLock() { log.info(id + ": card locked"); } // handleCardRemove
 } // CardReaderHandler

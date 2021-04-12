@@ -7,14 +7,23 @@ import AppKickstarter.misc.*;
 
 //======================================================================
 // AdvicePrinterHandler
+
 public class AdvicePrinterHandler extends HWHandler {
+    /**
+     * The constructor for AdvicePrinterHandler
+     * @param id
+     * @param appKickstarter
+     */
     //------------------------------------------------------------
     // AdvicePrinterHandler
     public AdvicePrinterHandler(String id, AppKickstarter appKickstarter) {
 	super(id, appKickstarter);
     } // AdvicePrinterHandler
 
-
+    /**
+     * Process the message inside the mailbox of AdvicePrinter
+     * @param msg a message sent to the mailbox of AdvicePrinter
+     */
     //------------------------------------------------------------
     // processMsg
     protected void processMsg(Msg msg) {
@@ -38,6 +47,10 @@ public class AdvicePrinterHandler extends HWHandler {
         }
     } // processMsg
 
+    /**
+     * Handle print advice request from processMsg()
+     * @param content
+     */
     //------------------------------------------------------------
     // handlePrintReceipt
     protected void handlePrintReceipt(String content) {

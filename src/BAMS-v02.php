@@ -107,6 +107,44 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
     $reply->outAmount = "Error";
   }
 
+
+  $sql = "SELECT cardNo FROM Cards WHERE cardNo = " . "'" . $req->cardNo . "'" . " and cred = " . "'" . $req->cred . "'";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    $sql = "SELECT balance FROM Accounts WHERE cardNo = " . "'" . $req->cardNo . "'" . " and aid = " . "'" . $req->accNo . "'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+        $req->outAmount = $row["balance"];
+      }
+
+      if ($req->outAmount > $req->amount) {
+        $reply->outAmount = strval($req->outAmount - floatval($req->amount));
+        $sql = "UPDATE Accounts SET balance = " . "'" . $reply->outAmount . "'" . " WHERE cardNo = " . "'" . $req->cardNo . "'" . " and aid = " . "'" . $req->accNo . "'";
+
+        if ($conn->query($sql) === TRUE) {
+
+        } else {
+          $reply->amount = "Error";
+          $reply->outAmount = "Error";
+        }
+      } else {
+        $reply->amount = "Error";
+        $reply->outAmount = "Error";
+      }
+
+    } else {
+      $reply->amount = "Error";
+      $reply->outAmount = "Error";
+    }
+
+  } else {
+    $reply->amount = "Error";
+    $reply->outAmount = "Error";
+  }
+
   $reply->msgType = "WithdrawReply";
   $reply->cardNo = $req->cardNo;
   $reply->accNo = $req->accNo;

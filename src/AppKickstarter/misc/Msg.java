@@ -101,6 +101,7 @@ public class Msg {
     /** Error occured in Advice Printer */ AP_Error,
     /** Request to BAMS */    BAMS_Request,
     /** Response from BAMS*/    BAMS_Response,
+    /** Response from BAMS*/    BAMS_DcResponse,
     /** Response from BAMS*/    BAMS_Error,
     /** (TEST) Testing case in AdvicePrinter */ TEST_AP_PrintReceipt,
     /** BZ_Buzz */			BZ_Buzz,
@@ -113,5 +114,9 @@ public class Msg {
     /** Get TimeOut */  CD_TimeOut,
     /** Get Not Enough Cash */  CD_NotEnoughCash,
     /** Get Not Enough Cash */  CD_Error,
+    /** TD deposit selected account */ TD_selectedAcc,
+    /** TD withdrawal selected account */   TD_selectedAccWithdrawal,
+    /** CR ejected user card */ CR_CardEjected,
+    /** CR lock because containing card*/ CR_Lock,
     } // Type
 } // Msg

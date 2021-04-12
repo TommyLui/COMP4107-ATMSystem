@@ -37,7 +37,7 @@ public class BuzzerEmulatorController {
     public void buttonPressed(ActionEvent actionEvent) {
         Button btn = (Button) actionEvent.getSource();
         String btnTxt = btn.getText();
-        System.out.println("Buzz btn pressed:" + btnTxt);
+        log.info("Buzz btn pressed:" + btnTxt);
         updateBuzzerStatus(btnTxt);
     } // buttonPressed
 

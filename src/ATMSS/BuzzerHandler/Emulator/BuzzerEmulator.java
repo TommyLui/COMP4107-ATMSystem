@@ -11,9 +11,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
-
+/**
+ * Buzzer Emulator class is using to simulate a real buzzer of the atm machine.
+ */
 //======================================================================
-// TouchDisplayEmulator
+// BuzzerEmulator
 public class BuzzerEmulator extends BuzzerHandler {
     private final int WIDTH = 320;
     private final int HEIGHT = 350;
@@ -22,15 +24,25 @@ public class BuzzerEmulator extends BuzzerHandler {
     private Stage myStage;
     private BuzzerEmulatorController buzzerEmulatorController;
 
+	/**
+	 * The constructor of the buzzer emulator class
+	 * @param id The handler's thread id.
+	 * @param atmssStarter The app kickstarter using.
+	 * @throws Exception
+	 */
     //------------------------------------------------------------
-    // TouchDisplayEmulator
+    // BuzzerEmulator
     public BuzzerEmulator(String id, ATMSSStarter atmssStarter) throws Exception {
 	super(id, atmssStarter);
 	this.atmssStarter = atmssStarter;
 	this.id = id;
-    } // TouchDisplayEmulator
+    } // BuzzerEmulator
 
 
+	/**
+	 * The start function configures the GUI setup of the buzzer emulator and runs the emulator.
+	 * @throws Exception
+	 */
     //------------------------------------------------------------
     // start
     public void start() throws Exception {
@@ -50,12 +62,16 @@ public class BuzzerEmulator extends BuzzerHandler {
 	    atmssStarter.stopApp();
 	    Platform.exit();
 	});
-//	myStage.show();
-    } // TouchDisplayEmulator
+	myStage.show();
+    } // BuzzerEmulator
 
+	/**
+	 * This function is for handling the buzzing request from "atmss"
+	 * @param msg The buzzing type
+	 */
     //------------------------------------------------------------
-    // handleUpdateDisplay
-    protected void handleUpdateBuzz(Msg msg) {
+    // handleBuzz
+    protected void handleBuzz(Msg msg) {
 	log.info(id + ": update display -- " + msg.getDetails());
 
 	switch (msg.getDetails()) {
@@ -73,9 +89,13 @@ public class BuzzerEmulator extends BuzzerHandler {
 		log.severe(id + ": update display with unknown display type -- " + msg.getDetails());
 		break;
 	}
-    } // handleUpdateDisplay
+    } // handleBuzz
 
 
+	/**
+	 * This function is using to reload the GUI display by a fxml file.
+	 * @param fxmlFName The name of the fxml file.
+	 */
     //------------------------------------------------------------
     // reloadStage
     private void reloadStage(String fxmlFName) {
@@ -101,6 +121,4 @@ public class BuzzerEmulator extends BuzzerHandler {
 	});
     } // reloadStage
 
-
-
-} // TouchDisplayEmulator
+} // BuzzerEmulator

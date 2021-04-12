@@ -27,19 +27,34 @@
                                width="300.0"/>
                     <Text>Change pin</Text>
             </StackPane>
-                <StackPane AnchorPane.bottomAnchor="140" AnchorPane.rightAnchor="0" onMouseClicked="#td_TransferMoney">
+                <StackPane AnchorPane.bottomAnchor="140" AnchorPane.leftAnchor="0" onMouseClicked="#td_TransferMoney">
                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" stroke="BLACK" strokeType="OUTSIDE"
                                width="300.0" AnchorPane.bottomAnchor="140" AnchorPane.rightAnchor="0"/>
                     <Text>Money Transfer</Text>
                 </StackPane>
+
+                <StackPane AnchorPane.bottomAnchor="70" AnchorPane.leftAnchor="0" onMouseClicked="#td_deposit">
+                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" stroke="BLACK" strokeType="OUTSIDE"
+                               width="300.0" />
+                    <Text>Deposit</Text>
+                </StackPane>
+
+                <StackPane AnchorPane.bottomAnchor="70" AnchorPane.rightAnchor="0" onMouseClicked="#td_withdrawal">
+                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" stroke="BLACK" strokeType="OUTSIDE"
+                               width="300.0" AnchorPane.bottomAnchor="70" AnchorPane.rightAnchor="0"/>
+                    <Text>Withdrawal</Text>
+                </StackPane>
+
+                <StackPane AnchorPane.bottomAnchor="140" AnchorPane.rightAnchor="0" onMouseClicked="#td_ejectCard">
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" stroke="BLACK" strokeType="OUTSIDE"
-                           width="300.0" AnchorPane.bottomAnchor="70" AnchorPane.leftAnchor="0"/>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" stroke="BLACK" strokeType="OUTSIDE"
-                           width="300.0" AnchorPane.bottomAnchor="70" AnchorPane.rightAnchor="0"/>
+                           width="300.0" AnchorPane.bottomAnchor="140" AnchorPane.rightAnchor="0"/>
+                    <Text>Eject card</Text>
+                </StackPane>
+
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" stroke="BLACK" strokeType="OUTSIDE"
                            width="300.0" AnchorPane.bottomAnchor="140" AnchorPane.leftAnchor="0"/>
-<!--                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" stroke="BLACK" strokeType="OUTSIDE"-->
-<!--                           width="300.0" AnchorPane.bottomAnchor="140" AnchorPane.rightAnchor="0"/>-->
+
+
                 <!--				<Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="480.0"-->
                 <!--						   onMouseClicked="#td_mouseClick" stroke="BLACK" strokeType="OUTSIDE" width="640"-->
                 <!--						   AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0"/>-->
@@ -48,4 +63,3 @@
     </children>
 </AnchorPane>
 
-0

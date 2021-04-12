@@ -16,7 +16,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-
 //======================================================================
 // TouchDisplayEmulatorController
 public class TouchDisplayEmulatorController {
@@ -59,18 +58,90 @@ public class TouchDisplayEmulatorController {
 	this.touchDisplayEmulator = touchDisplayEmulator;
 	this.touchDisplayMBox = appKickstarter.getThread("TouchDisplayHandler").getMBox();
     } // initialize
+    //------------------------------------------------------------
+    // td_deposit
+    public void td_withdrawal(Event event) {
+        log.info("event: " + event);
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, "GetAccWithdrawal"));
+    }
+    // td_deposit
+    //------------------------------------------------------------
+    // td_deposit
+    public void td_deposit(Event event) {
+        log.info("event: " + event);
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, "GetAccDeposit"));
+    }
+    // td_deposit
+    //------------------------------------------------------------
+    // td_refresh
+    public void td_refresh(Event event) {
+        log.info("event: " + event);
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "RefreshDeposit"));
+    }
+    // td_refresh
+    //------------------------------------------------------------
+    //------------------------------------------------------------
+    // td_AccWithdrawal
+    public void td_AccWithdrawal(Event event) {
+        String source = event.getSource().toString(); //yields complete string
+        String msgDetail;
 
+        if (source.contains("StackPane[id=account1StackPane]")) {
+//            System.out.println("Src1: "+ source);
+            msgDetail = "WithdrawalReq,1";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_selectedAccWithdrawal, msgDetail));
+        } else if (source.contains("StackPane[id=account2StackPane]")) {
+//            System.out.println("Src2: "+ source);
+            msgDetail = "WithdrawalReq,2";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_selectedAccWithdrawal, msgDetail));
+        } else if (source.contains("StackPane[id=account3StackPane]")) {
+//            System.out.println("Src3: "+ source);
+            msgDetail = "WithdrawalReq,3";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_selectedAccWithdrawal, msgDetail));
+        } else if (source.contains("StackPane[id=account4StackPane]")) {
+//            System.out.println("Src4: "+ source);
+            msgDetail = "WithdrawalReq,4";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_selectedAccWithdrawal, msgDetail));
+        }
+    }
+    // td_AccWithdrawal
+    //------------------------------------------------------------
+    //------------------------------------------------------------
+    // td_AccDeposit
+    public void td_AccDeposit(Event event) {
+        String source = event.getSource().toString(); //yields complete string
+        String msgDetail;
+
+        if (source.contains("StackPane[id=account1StackPane]")) {
+//            System.out.println("Src1: "+ source);
+            msgDetail = "DepositReq,1";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_selectedAcc, msgDetail));
+        } else if (source.contains("StackPane[id=account2StackPane]")) {
+//            System.out.println("Src2: "+ source);
+            msgDetail = "DepositReq,2";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_selectedAcc, msgDetail));
+        } else if (source.contains("StackPane[id=account3StackPane]")) {
+//            System.out.println("Src3: "+ source);
+            msgDetail = "DepositReq,3";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_selectedAcc, msgDetail));
+        } else if (source.contains("StackPane[id=account4StackPane]")) {
+//            System.out.println("Src4: "+ source);
+            msgDetail = "DepositReq,4";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_selectedAcc, msgDetail));
+        }
+    }
+    // td_AccDeposit
     //------------------------------------------------------------
     // td_changePin
     public void td_changePin(Event event) {
-        System.out.println("event: " + event);
+        log.info("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "ChangePinExisting"));
-    } // td_checkAccBalance
-
+    }
+    // td_changePin
     //------------------------------------------------------------
     // td_checkAccBalance
     public void td_checkBalance(Event event) {
-        System.out.println("event: " + event);
+        log.info("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, "GetAccReq"));
     } // td_checkAccBalance
 
@@ -137,9 +208,14 @@ public class TouchDisplayEmulatorController {
     //------------------------------------------------------------
     // td_returnMainMenu
     public void td_returnMainMenu(Event event) {
-        System.out.println("event: " + event);
+        log.info("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
     } // td_returnMainMenu
+
+    public void td_ejectCard(Event event) {
+        log.info("event: " + event);
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "EjectCard"));
+    }
 
     //------------------------------------------------------------
     // td_checkAccBalance
@@ -279,14 +355,14 @@ public class TouchDisplayEmulatorController {
         String currentPinLabel = pinLabel.getText();
         currentPinLabel = currentPinLabel + "*";
         pinLabel.setText(currentPinLabel);
-        System.out.println("currentPinLabel: " + currentPinLabel);
+        log.info("currentPinLabel: " + currentPinLabel);
     }
 
     public void pinErase() {
         String currentPinLabel = pinLabel.getText();
         currentPinLabel = currentPinLabel.substring(0, currentPinLabel.length() - 1);
         pinLabel.setText(currentPinLabel);
-        System.out.println("currentPinLabel: " + currentPinLabel);
+        log.info("currentPinLabel: " + currentPinLabel);
     }
 
     public void pinWrong() {

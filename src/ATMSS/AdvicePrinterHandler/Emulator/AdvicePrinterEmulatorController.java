@@ -37,6 +37,13 @@ public class AdvicePrinterEmulatorController {
     private String refNo;
     private String apStatus;
 
+    /**
+     * Initialise the Advice Printer emulator and its mailbox
+     * @param id
+     * @param appKickstarter
+     * @param log
+     * @param advicePrinterEmulator
+     */
     //------------------------------------------------------------
     // initialize
     public void initialize(String id, AppKickstarter appKickstarter, Logger log, AdvicePrinterEmulator advicePrinterEmulator) {
@@ -47,6 +54,10 @@ public class AdvicePrinterEmulatorController {
 	this.advicePrinterMBox = appKickstarter.getThread("AdvicePrinterHandler").getMBox();
     } // initialize
 
+    /**
+     * Handle the button actions in AdvicePrinterEmulator
+     * @param actionEvent
+     */
     //------------------------------------------------------------
     // buttonPressed
     public void buttonPressed(ActionEvent actionEvent) {
@@ -82,6 +93,10 @@ public class AdvicePrinterEmulatorController {
         } // buttonPressed
     }
 
+    /**
+     * Handle erroneous situation in Advice Printer
+     * @param errMsg Corresponding error message
+     */
     //------------------------------------------------------------
     // sendErrorMsg
     public void sendErrorMsg(String errMsg) {
@@ -100,6 +115,10 @@ public class AdvicePrinterEmulatorController {
         advicePrinterMBox.send(new Msg(id, advicePrinterMBox, Msg.Type.AP_Error, apStatus));
     } // sendErrorMsg
 
+    /**
+     * Handle the print advice function
+     * @param content
+     */
     //------------------------------------------------------------
     // printAdvice
     public void printAdvice(String content) {
