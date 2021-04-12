@@ -22,8 +22,6 @@ public class DepositCollectorEmulatorController {
 
 
     private String depositCollectStatus;
-    private String slotStatus;
-    public TextField slotStatusText;
     private int num100Note;
     private int num500Note;
     private int num1000Note;
@@ -35,6 +33,14 @@ public class DepositCollectorEmulatorController {
     public TextField num1000NoteLabel;
     public TextField depositCollectStatusField;
 
+    /**
+     * Initialise the Deposit Collect emulator and its mailbox
+     * @param id name of the application
+     * @param appKickstarter The app kickstarter using.
+     * @param log some message to print
+     * @param depositCollectorEmulator a reference to the Deposit Collector
+     */
+
     //------------------------------------------------------------
     // initialize
     public void initialize(String id, AppKickstarter appKickstarter, Logger log, DepositCollectorEmulator depositCollectorEmulator) {
@@ -45,13 +51,17 @@ public class DepositCollectorEmulatorController {
         this.depositCollectorMBox = appKickstarter.getThread("DepositCollectorHandler").getMBox();
     } // initialize
 
+    /**
+     * Handle the button actions in Deposit Collector Emulator
+     * @param actionEvent a action sent to the mailbox of Deposit Collector
+     */
+
     //------------------------------------------------------------
     // buttonPressed
     public void buttonPressed(ActionEvent actionEvent) {
         Button btn = (Button) actionEvent.getSource();
         String btnTxt = btn.getText();
         log.info("The btn pressed:" + btnTxt);
-
 
 
         switch (btn.getText()) {
@@ -109,6 +119,11 @@ public class DepositCollectorEmulatorController {
         } // buttonPressed
     }
 
+    /**
+     * Process the message inside the mailbox of Deposit Collector
+     * @param errMsg a message sent to the mailbox of Deposit Collector
+     */
+
     //------------------------------------------------------------
     // sendErrorMsg
     public void sendErrorMsg(String errMsg) {
@@ -124,6 +139,7 @@ public class DepositCollectorEmulatorController {
                 break;
         }
     }
+
 
     public void depositCollectStatus(String status) {
         depositCollectStatusField.setText(status);

@@ -16,6 +16,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+/**
+ * Touch Display Emulator Controller class is using to interact with the touch display emulator
+ */
+
 //======================================================================
 // TouchDisplayEmulatorController
 public class TouchDisplayEmulatorController {
@@ -48,7 +52,13 @@ public class TouchDisplayEmulatorController {
     public Label pinWrongLabel;
     public Label notifyLabel;
 
-
+    /**
+     * Initialize the reference
+     * @param id the name of buzzer
+     * @param appKickstarter a reference to the AppKickstarter
+     * @param log a reference to the logger
+     * @param touchDisplayEmulator a reference to the emulator
+     */
     //------------------------------------------------------------
     // initialize
     public void initialize(String id, AppKickstarter appKickstarter, Logger log, TouchDisplayEmulator touchDisplayEmulator) {
@@ -59,13 +69,23 @@ public class TouchDisplayEmulatorController {
 	this.touchDisplayMBox = appKickstarter.getThread("TouchDisplayHandler").getMBox();
     } // initialize
     //------------------------------------------------------------
-    // td_deposit
+
+    /**
+     * Handle the button press event
+     * @param event
+     */
+    // td_withdrawal
     public void td_withdrawal(Event event) {
         log.info("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, "GetAccWithdrawal"));
     }
-    // td_deposit
+    // td_withdrawal
     //------------------------------------------------------------
+
+    /**
+     * Handle the button press event
+     * @param event
+     */
     // td_deposit
     public void td_deposit(Event event) {
         log.info("event: " + event);
@@ -73,6 +93,11 @@ public class TouchDisplayEmulatorController {
     }
     // td_deposit
     //------------------------------------------------------------
+
+    /**
+     * Handle the button press event
+     * @param event
+     */
     // td_refresh
     public void td_refresh(Event event) {
         log.info("event: " + event);
@@ -80,6 +105,11 @@ public class TouchDisplayEmulatorController {
     }
     // td_refresh
     //------------------------------------------------------------
+
+    /**
+     * Handle the button press event
+     * @param event
+     */
     //------------------------------------------------------------
     // td_AccWithdrawal
     public void td_AccWithdrawal(Event event) {
@@ -106,6 +136,11 @@ public class TouchDisplayEmulatorController {
     }
     // td_AccWithdrawal
     //------------------------------------------------------------
+
+    /**
+     * Handle the button press event
+     * @param event
+     */
     //------------------------------------------------------------
     // td_AccDeposit
     public void td_AccDeposit(Event event) {
@@ -132,6 +167,11 @@ public class TouchDisplayEmulatorController {
     }
     // td_AccDeposit
     //------------------------------------------------------------
+
+    /**
+     * Handle the button press event
+     * @param event
+     */
     // td_changePin
     public void td_changePin(Event event) {
         log.info("event: " + event);
@@ -139,12 +179,21 @@ public class TouchDisplayEmulatorController {
     }
     // td_changePin
     //------------------------------------------------------------
+
+    /**
+     * Handle the button press event
+     * @param event
+     */
     // td_checkAccBalance
     public void td_checkBalance(Event event) {
         log.info("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, "GetAccReq"));
     } // td_checkAccBalance
 
+    /**
+     * Handle the button press event
+     * @param event
+     */
     //------------------------------------------------------------
     // td_returnMainMenu
     public void td_returnMainMenu(Event event) {
@@ -152,11 +201,19 @@ public class TouchDisplayEmulatorController {
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
     } // td_returnMainMenu
 
+    /**
+     * Handle the button press event
+     * @param event
+     */
     public void td_ejectCard(Event event) {
         log.info("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "EjectCard"));
     }
 
+    /**
+     * Handle the button press event
+     * @param event
+     */
     //------------------------------------------------------------
     // td_checkAccBalance
     public void td_checkAccBalance(MouseEvent event) {
@@ -183,6 +240,10 @@ public class TouchDisplayEmulatorController {
 
     } // td_checkAccBalance
 
+    /**
+     * Handle the mouse click event
+     * @param mouseEvent
+     */
     //------------------------------------------------------------
     // td_mouseClick
     public void td_mouseClick(MouseEvent mouseEvent) {
@@ -193,6 +254,10 @@ public class TouchDisplayEmulatorController {
 	touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_MouseClicked, x + " " + y));
     } // td_mouseClick
 
+    /**
+     * Change the GUI label text
+     * @param msgDetails the text type
+     */
     //------------------------------------------------------------
     // modifyNotifyLabel
     public void modifyNotifyLabel(String msgDetails) {
@@ -206,18 +271,27 @@ public class TouchDisplayEmulatorController {
         }
     } // modifyNotifyLabel
 
+    /**
+     * Change the GUI text
+     */
     //------------------------------------------------------------
     // setChangePinText
     public void setChangePinText() {
         accBalanceCardNo.setText("Change pin successful!");
     } // setChangePinText
 
+    /**
+     * Change the GUI text
+     */
     //------------------------------------------------------------
     // setBalanceErrorText
     public void setBalanceErrorText () {
         balanceErrorText.setText("You have wrongly typed in your existing password / new password 3 times, please try again.");
     } // setBalanceErrorText
 
+    /**
+     * Change the GUI text
+     */
     //------------------------------------------------------------
     // setAccBalanceText
     public void setAccBalanceText(String msgDetails) {
@@ -259,7 +333,9 @@ public class TouchDisplayEmulatorController {
 //        cardReaderTextArea.appendText(status+"\n");
     } // setStackPaneVisibiliy
 
-
+    /**
+     * Change the GUI text
+     */
     public void pinInput() {
         String currentPinLabel = pinLabel.getText();
         currentPinLabel = currentPinLabel + "*";
@@ -267,6 +343,9 @@ public class TouchDisplayEmulatorController {
         log.info("currentPinLabel: " + currentPinLabel);
     }
 
+    /**
+     * Change the GUI text
+     */
     public void pinErase() {
         String currentPinLabel = pinLabel.getText();
         currentPinLabel = currentPinLabel.substring(0, currentPinLabel.length() - 1);
@@ -274,6 +353,9 @@ public class TouchDisplayEmulatorController {
         log.info("currentPinLabel: " + currentPinLabel);
     }
 
+    /**
+     * Change the GUI text
+     */
     public void pinWrong() {
         pinLabel.setText("");
         pinWrongLabel.setText("Please input a correct pin");
