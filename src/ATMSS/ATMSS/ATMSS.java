@@ -213,6 +213,14 @@ public class ATMSS extends AppThread {
                     log.info(depositAc);
                     aid = tempDetail[1];
                     touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "OpenDeposit"));
+                    new Thread(() -> {
+                        try {
+                            Thread.sleep(100);
+                            buzzerMBox.send(new Msg(id, mbox, Msg.Type.BZ_Buzz, "Buzz"));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }).start();
                     break;
 
                 case TD_selectedAccWithdrawal:
@@ -382,7 +390,15 @@ public class ATMSS extends AppThread {
             }).start();
 
         }else if (msgDetails.contains("TransAmount")) {
-            advicePrinterMBox.send(new Msg(id, mbox, Msg.Type.AP_PrintReceipt, msgDetails));
+            System.out.println(msgDetails);
+            String[] transDetails = msgDetails.split(",");
+            if (transDetails[1].equalsIgnoreCase("-1.0")){
+                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MoneyTransferError"));
+            }else {
+                advicePrinterMBox.send(new Msg(id, mbox, Msg.Type.AP_PrintReceipt, msgDetails));
+                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+            }
+            TransAmount = "";
 
         } else if (msgDetails.contains("depAmount")) {
 
@@ -414,18 +430,7 @@ public class ATMSS extends AppThread {
         }else if (msgDetails.contains("reDeposit")){
             advicePrinterMBox.send(new Msg(id, mbox, Msg.Type.AP_PrintReceipt, msgDetails));
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
-
-            new Thread(() -> {
-                try {
-                    Thread.sleep(100);
-                    buzzerMBox.send(new Msg(id, mbox, Msg.Type.BZ_Buzz, "Buzz"));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }).start();
-
         }
-
 
     } // processBAMSResponse
 

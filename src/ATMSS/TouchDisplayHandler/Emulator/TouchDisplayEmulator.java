@@ -49,7 +49,7 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 	myStage = new Stage();
 	FXMLLoader loader = new FXMLLoader();
 	String fxmlName = "TouchDisplayInitial.fxml";
-//	String fxmlName = "TouchDisplayMainMenu.fxml";
+//	String fxmlName = "TouchDisplayMoneyTransferError.fxml";
 	loader.setLocation(TouchDisplayEmulator.class.getResource(fxmlName));
 	root = loader.load();
 	touchDisplayEmulatorController = (TouchDisplayEmulatorController) loader.getController();
@@ -239,6 +239,10 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 			atmss.send(new Msg(id, mbox, Msg.Type.CR_Lock, ""));
 			break;
 
+		case "MoneyTransferError":
+			reloadStage("TouchDisplayMoneyTransferError.fxml");
+			break;
+
 //		case "CheckBalance":
 //			reloadStage("TouchDisplayCheckBalance.fxml");
 //			break;
@@ -326,13 +330,13 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 		}else if (msg.getDetails().contains("accountDeposit")) {
 			System.out.print("Loading next page:" + msg.getDetails());
     		reloadStage("TouchDisplayDeposit.fxml");
-
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			touchDisplayEmulatorController.setStackPaneVisibiliy(msg.getDetails());
+
 		}else if (msg.getDetails().contains("DepositReq")) {
 			reloadStage("TouchDisplayOpenDeposit.fxml");
 			atmss.send(new Msg(id, mbox, Msg.Type.TD_selectedAcc, msg.getDetails()));

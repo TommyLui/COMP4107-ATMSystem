@@ -371,7 +371,7 @@ public class BAMSHandlerInATMSS extends AppThread {
             System.out.println("transAmount: " +  transAmount);
             System.out.println(bams.toString());
             atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response,
-                    "TransAmount," + transAmount+ "," + amount + "," + fromAcc + "," + cardNo));
+                    "TransAmount," + transAmount+ "," + amount + "," + fromAcc + "," + cardNo + "," + toAcc));
         } catch (java.io.IOException exception){
             System.out.println("Trans Error");
         }
@@ -381,7 +381,6 @@ public class BAMSHandlerInATMSS extends AppThread {
     protected void getSelectNextAcc(BAMSHandler bams, String request) throws BAMSInvalidReplyException, IOException {
 //        System.out.println("GetNextAcc:");
         String[] details = request.split(",");
-
 
         String cardNo = details[1];
         String cred = details[2];

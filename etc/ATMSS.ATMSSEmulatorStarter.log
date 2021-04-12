@@ -1,73 +1,151 @@
-210413-04:22:27 [INFO] -- 
-210413-04:22:27 [INFO] -- 
-210413-04:22:27 [INFO] -- ============================================================
-210413-04:22:27 [INFO] -- ATMSSStarter: Application Starting...
-210413-04:22:29 [INFO] -- timer: starting...
-210413-04:22:29 [INFO] -- BAMSHandler: starting...
-210413-04:22:29 [INFO] -- CardReaderHandler: starting...
-210413-04:22:29 [INFO] -- AdvicePrinterHandler: starting...
-210413-04:22:29 [INFO] -- DepositCollectorHandler: starting...
-210413-04:22:29 [INFO] -- KeypadHandler: starting...
-210413-04:22:29 [INFO] -- TouchDisplayHandler: starting...
-210413-04:22:29 [INFO] -- BuzzerHandler: starting...
-210413-04:22:29 [INFO] -- CashDispenserHandler: starting...
-210413-04:22:29 [INFO] -- ATMSS: starting...
-210413-04:22:37 [INFO] -- CardInserted: 4107-7014
-210413-04:22:37 [INFO] -- cardNum: 4107-7014
-210413-04:22:37 [INFO] -- TouchDisplayHandler: update display -- PinInputPage
-210413-04:22:37 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
-210413-04:22:38 [INFO] -- KeyPressed: 1
-210413-04:22:38 [INFO] -- login state: cardInserted
-210413-04:22:38 [INFO] -- 1 pressed
-210413-04:22:38 [INFO] -- pin: 1
-210413-04:22:38 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-04:22:38 [INFO] -- currentPinLabel: *
-210413-04:22:39 [INFO] -- KeyPressed: 2
-210413-04:22:39 [INFO] -- login state: cardInserted
-210413-04:22:39 [INFO] -- 2 pressed
-210413-04:22:39 [INFO] -- pin: 12
-210413-04:22:39 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-04:22:39 [INFO] -- currentPinLabel: **
-210413-04:22:39 [INFO] -- KeyPressed: 3
-210413-04:22:39 [INFO] -- login state: cardInserted
-210413-04:22:39 [INFO] -- 3 pressed
-210413-04:22:39 [INFO] -- pin: 123
-210413-04:22:39 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-04:22:39 [INFO] -- currentPinLabel: ***
-210413-04:22:40 [INFO] -- KeyPressed: 4
-210413-04:22:40 [INFO] -- login state: cardInserted
-210413-04:22:40 [INFO] -- 4 pressed
-210413-04:22:40 [INFO] -- pin: 1234
-210413-04:22:40 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-04:22:40 [INFO] -- currentPinLabel: ****
-210413-04:22:40 [INFO] -- KeyPressed: 5
-210413-04:22:40 [INFO] -- login state: cardInserted
-210413-04:22:40 [INFO] -- 5 pressed
-210413-04:22:40 [INFO] -- pin: 12345
-210413-04:22:40 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-04:22:40 [INFO] -- currentPinLabel: *****
-210413-04:22:40 [INFO] -- KeyPressed: 6
-210413-04:22:40 [INFO] -- login state: cardInserted
-210413-04:22:40 [INFO] -- 6 pressed
-210413-04:22:40 [INFO] -- pin: 123456
-210413-04:22:40 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-04:22:40 [INFO] -- currentPinLabel: ******
-210413-04:22:41 [INFO] -- KeyPressed: Enter
-210413-04:22:41 [INFO] -- login state: cardInserted
-210413-04:22:41 [INFO] -- Enter pressed
-210413-04:22:41 [INFO] -- pin: 123456
-210413-04:22:41 [INFO] -- LoginReq
-210413-04:22:41 [INFO] -- 4107-7014
-210413-04:22:41 [INFO] -- 123456
-210413-04:22:41 [INFO] -- Login:
-210413-04:22:42 [INFO] -- cred: 394ad200cf5748ac30fe86e41a944d1230329797
-210413-04:22:42 [INFO] -- BAMS response: cred:394ad200cf5748ac30fe86e41a944d1230329797
-210413-04:22:42 [INFO] -- Login successful with cred: 394ad200cf5748ac30fe86e41a944d1230329797
-210413-04:22:42 [INFO] -- TouchDisplayHandler: update display -- MainMenu
-210413-04:22:42 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
-210413-04:22:42 [INFO] -- BAMS request: SelectAccReq
-210413-04:22:42 [INFO] -- cardNo: 4107-7014
-210413-04:22:42 [INFO] -- cred: 394ad200cf5748ac30fe86e41a944d1230329797
-210413-04:22:42 [INFO] -- BAMS response: SelectTransAC: 1/2/3/
-210413-04:22:42 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMoneyTransSelAcc.fxml
-210413-04:22:42 [SEVERE] -- TouchDisplayHandler: failed to load TouchDisplayMoneyTransSelAcc.fxml
+210413-05:17:03 [INFO] -- 
+210413-05:17:03 [INFO] -- 
+210413-05:17:03 [INFO] -- ============================================================
+210413-05:17:03 [INFO] -- ATMSSStarter: Application Starting...
+210413-05:17:04 [INFO] -- TouchDisplayHandler: starting...
+210413-05:17:04 [INFO] -- KeypadHandler: starting...
+210413-05:17:04 [INFO] -- AdvicePrinterHandler: starting...
+210413-05:17:04 [INFO] -- CashDispenserHandler: starting...
+210413-05:17:04 [INFO] -- BuzzerHandler: starting...
+210413-05:17:04 [INFO] -- CardReaderHandler: starting...
+210413-05:17:04 [INFO] -- BAMSHandler: starting...
+210413-05:17:04 [INFO] -- timer: starting...
+210413-05:17:04 [INFO] -- DepositCollectorHandler: starting...
+210413-05:17:04 [INFO] -- ATMSS: starting...
+210413-05:17:12 [INFO] -- CardInserted: 4107-7014
+210413-05:17:12 [INFO] -- cardNum: 4107-7014
+210413-05:17:12 [INFO] -- TouchDisplayHandler: update display -- PinInputPage
+210413-05:17:12 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
+210413-05:17:16 [INFO] -- KeyPressed: 1
+210413-05:17:16 [INFO] -- login state: cardInserted
+210413-05:17:16 [INFO] -- 1 pressed
+210413-05:17:16 [INFO] -- pin: 1
+210413-05:17:16 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-05:17:16 [INFO] -- currentPinLabel: *
+210413-05:17:16 [INFO] -- KeyPressed: 2
+210413-05:17:16 [INFO] -- login state: cardInserted
+210413-05:17:16 [INFO] -- 2 pressed
+210413-05:17:16 [INFO] -- pin: 12
+210413-05:17:16 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-05:17:16 [INFO] -- currentPinLabel: **
+210413-05:17:17 [INFO] -- KeyPressed: 3
+210413-05:17:17 [INFO] -- login state: cardInserted
+210413-05:17:17 [INFO] -- 3 pressed
+210413-05:17:17 [INFO] -- pin: 123
+210413-05:17:17 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-05:17:17 [INFO] -- currentPinLabel: ***
+210413-05:17:17 [INFO] -- KeyPressed: 4
+210413-05:17:17 [INFO] -- login state: cardInserted
+210413-05:17:17 [INFO] -- 4 pressed
+210413-05:17:17 [INFO] -- pin: 1234
+210413-05:17:17 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-05:17:17 [INFO] -- currentPinLabel: ****
+210413-05:17:17 [INFO] -- KeyPressed: 5
+210413-05:17:17 [INFO] -- login state: cardInserted
+210413-05:17:17 [INFO] -- 5 pressed
+210413-05:17:17 [INFO] -- pin: 12345
+210413-05:17:17 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-05:17:17 [INFO] -- currentPinLabel: *****
+210413-05:17:18 [INFO] -- KeyPressed: 6
+210413-05:17:18 [INFO] -- login state: cardInserted
+210413-05:17:18 [INFO] -- 6 pressed
+210413-05:17:18 [INFO] -- pin: 123456
+210413-05:17:18 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-05:17:18 [INFO] -- currentPinLabel: ******
+210413-05:17:19 [INFO] -- KeyPressed: Enter
+210413-05:17:19 [INFO] -- login state: cardInserted
+210413-05:17:19 [INFO] -- Enter pressed
+210413-05:17:19 [INFO] -- pin: 123456
+210413-05:17:19 [INFO] -- LoginReq
+210413-05:17:19 [INFO] -- 4107-7014
+210413-05:17:19 [INFO] -- 123456
+210413-05:17:19 [INFO] -- Login:
+210413-05:17:19 [INFO] -- cred: b97983201ecdcbbfc90b0ccf53b8449f69e03cf7
+210413-05:17:19 [INFO] -- BAMS response: cred:b97983201ecdcbbfc90b0ccf53b8449f69e03cf7
+210413-05:17:19 [INFO] -- Login successful with cred: b97983201ecdcbbfc90b0ccf53b8449f69e03cf7
+210413-05:17:19 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210413-05:17:19 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210413-05:17:21 [INFO] -- BAMS request: SelectAccReq
+210413-05:17:21 [INFO] -- cardNo: 4107-7014
+210413-05:17:21 [INFO] -- cred: b97983201ecdcbbfc90b0ccf53b8449f69e03cf7
+210413-05:17:21 [INFO] -- BAMS response: SelectTransAC: 1/2/3/
+210413-05:17:21 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMoneyTransSelAcc.fxml
+210413-05:17:25 [INFO] -- Select Next Ac: SelectNextAccReq,1
+210413-05:17:25 [INFO] -- TouchDisplayHandler: update display -- SelectTransAC: 2/3/,SelectNextAcc
+210413-05:17:25 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplaySelNextAcc.fxml
+210413-05:17:26 [INFO] -- Select Next Ac: InputTransAmount,2
+210413-05:17:26 [INFO] -- TouchDisplayHandler: update display -- InputTransAmount
+210413-05:17:26 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayInputTransAmount.fxml
+210413-05:17:28 [INFO] -- KeyPressed: 1
+210413-05:17:28 [INFO] -- login state: login
+210413-05:17:28 [INFO] -- TouchDisplayHandler: update display -- AmountInputted,1
+210413-05:17:28 [INFO] -- KeyPressed: 5
+210413-05:17:28 [INFO] -- login state: login
+210413-05:17:28 [INFO] -- TouchDisplayHandler: update display -- AmountInputted,15
+210413-05:17:29 [INFO] -- KeyPressed: 00
+210413-05:17:29 [INFO] -- login state: login
+210413-05:17:29 [INFO] -- TouchDisplayHandler: update display -- AmountInputted,1500
+210413-05:17:29 [INFO] -- KeyPressed: 0
+210413-05:17:29 [INFO] -- login state: login
+210413-05:17:29 [INFO] -- TouchDisplayHandler: update display -- AmountInputted,15000
+210413-05:17:31 [INFO] -- KeyPressed: Enter
+210413-05:17:31 [INFO] -- login state: login
+210413-05:17:31 [INFO] -- BAMS response: TransAmount,15000.0,15000,1,4107-7014,2
+210413-05:17:31 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210413-05:17:31 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210413-05:17:31 [INFO] -- AdvicePrinterHandler: receipt printed
+210413-05:17:31 [INFO] -- Print advice successful: print advice okay
+210413-05:17:45 [INFO] -- event: MouseEvent [source = StackPane@e49bc50, target = Text[text="Account balance enquiry", x=0.0, y=0.0, alignment=LEFT, origin=BASELINE, boundsType=LOGICAL, font=Font[name=System Regular, family=System, style=Regular, size=12.0], fontSmoothingType=GRAY, fill=0x000000ff], eventType = MOUSE_CLICKED, consumed = false, x = 196.0, y = 33.0, z = 0.0, button = PRIMARY, pickResult = PickResult [node = Text[text="Account balance enquiry", x=0.0, y=0.0, alignment=LEFT, origin=BASELINE, boundsType=LOGICAL, font=Font[name=System Regular, family=System, style=Regular, size=12.0], fontSmoothingType=GRAY, fill=0x000000ff], point = Point3D [x = 110.0, y = -7.94921875, z = 0.0], distance = 970.3332099679081]
+210413-05:17:45 [INFO] -- BAMS request: GetAccReq
+210413-05:17:45 [INFO] -- GetAcc: 
+210413-05:17:45 [INFO] -- cardNo: 4107-7014
+210413-05:17:45 [INFO] -- cred: b97983201ecdcbbfc90b0ccf53b8449f69e03cf7
+210413-05:17:45 [INFO] -- accounts: 1/2/3/
+210413-05:17:45 [INFO] -- BAMS response: accounts: 1/2/3/
+210413-05:17:45 [INFO] -- I am accounts
+210413-05:17:45 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayCheckBalance.fxml
+210413-05:17:46 [INFO] -- BAMS request: EnquiryReq,1
+210413-05:17:46 [INFO] -- Enquiry:
+210413-05:17:46 [INFO] -- Card no: 4107-7014
+210413-05:17:46 [INFO] -- aid: 1
+210413-05:17:46 [INFO] -- amount: 75000.0
+210413-05:17:46 [INFO] -- BAMS response: card no: 4107-7014@account id: 1@amount: 75000.0
+210413-05:17:46 [INFO] -- I am amount
+210413-05:17:46 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayCheckAccBalance.fxml
+210413-05:17:48 [INFO] -- event: MouseEvent [source = StackPane[id=checkAccBalanceStackPane], target = Text[text="Return to Main Menu", x=0.0, y=0.0, alignment=LEFT, origin=BASELINE, boundsType=LOGICAL, font=Font[name=System Regular, family=System, style=Regular, size=12.0], fontSmoothingType=GRAY, fill=0x000000ff], eventType = MOUSE_CLICKED, consumed = false, x = 90.0, y = 16.0, z = 0.0, button = PRIMARY, pickResult = PickResult [node = Text[text="Return to Main Menu", x=0.0, y=0.0, alignment=LEFT, origin=BASELINE, boundsType=LOGICAL, font=Font[name=System Regular, family=System, style=Regular, size=12.0], fontSmoothingType=GRAY, fill=0x000000ff], point = Point3D [x = 66.0, y = -9.94921875, z = 0.0], distance = 970.3332099679081]
+210413-05:17:48 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210413-05:17:48 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210413-05:17:50 [INFO] -- event: MouseEvent [source = StackPane@699b6d99, target = Text[text="Eject card", x=0.0, y=0.0, alignment=LEFT, origin=BASELINE, boundsType=LOGICAL, font=Font[name=System Regular, family=System, style=Regular, size=12.0], fontSmoothingType=GRAY, fill=0x000000ff], eventType = MOUSE_CLICKED, consumed = false, x = 151.0, y = 28.0, z = 0.0, button = PRIMARY, pickResult = PickResult [node = Text[text="Eject card", x=0.0, y=0.0, alignment=LEFT, origin=BASELINE, boundsType=LOGICAL, font=Font[name=System Regular, family=System, style=Regular, size=12.0], fontSmoothingType=GRAY, fill=0x000000ff], point = Point3D [x = 26.0, y = -12.94921875, z = 0.0], distance = 970.3332099679081]
+210413-05:17:50 [INFO] -- TouchDisplayHandler: update display -- EjectCard
+210413-05:17:50 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayEjectCard.fxml
+210413-05:17:50 [INFO] -- CardReaderHandler: card ejected
+210413-05:17:50 [INFO] -- Card ejected
+210413-05:17:50 [INFO] -- Logout:
+210413-05:17:50 [INFO] -- Logout
+210413-05:17:50 [INFO] -- 4107-7014
+210413-05:17:50 [INFO] -- b97983201ecdcbbfc90b0ccf53b8449f69e03cf7
+210413-05:17:50 [INFO] -- result: succ
+210413-05:17:50 [INFO] -- BAMS response: logout result: succ
+210413-05:17:50 [INFO] -- logout respond msgDetails: logout result: succ
+210413-05:17:50 [INFO] -- BuzzerHandler: update display -- Buzz
+210413-05:17:50 [INFO] -- BuzzerHandler: loading fxml: BuzzerBuzzing.fxml
+210413-05:17:52 [INFO] -- BuzzerHandler: loading fxml: BuzzerEmulator.fxml
+210413-05:17:54 [INFO] -- CardReaderHandler: card removed
+210413-05:17:54 [INFO] -- loginState: logout
+210413-05:17:54 [INFO] -- TouchDisplayHandler: update display -- Initialization
+210413-05:17:54 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayInitial.fxml
+210413-05:17:57 [INFO] -- 
+210413-05:17:57 [INFO] -- 
+210413-05:17:57 [INFO] -- ============================================================
+210413-05:17:57 [INFO] -- ATMSSStarter: Application Stopping...
+210413-05:17:57 [INFO] -- timer: received terminate!
+210413-05:17:57 [INFO] -- KeypadHandler: terminating...
+210413-05:17:57 [INFO] -- DepositCollectorHandler: terminating...
+210413-05:17:57 [INFO] -- TouchDisplayHandler: terminating...
+210413-05:17:57 [INFO] -- AdvicePrinterHandler: terminating...
+210413-05:17:57 [INFO] -- BAMSHandler: terminating...
+210413-05:17:57 [INFO] -- timer: terminating...
+210413-05:17:57 [INFO] -- ATMSS: terminating...
+210413-05:17:57 [INFO] -- CardReaderHandler: terminating...
+210413-05:17:57 [INFO] -- BuzzerHandler: terminating...
+210413-05:17:57 [INFO] -- CashDispenserHandler: terminating...

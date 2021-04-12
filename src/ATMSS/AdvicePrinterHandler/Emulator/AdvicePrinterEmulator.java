@@ -111,8 +111,9 @@ public class AdvicePrinterEmulator extends AdvicePrinterHandler {
 			String[] details = content.split(",");
 			String outAmount = details[1];
 			String amount = details[2];
-			String aid = details[3];
+			String fromAcc = details[3];
 			String cardNo = details[4];
+			String toAcc = details[5];
 
 			Date currentDate = new Date();
 
@@ -120,7 +121,9 @@ public class AdvicePrinterEmulator extends AdvicePrinterHandler {
 					"Ref No.: "+"#"+(new Timestamp(currentDate.getTime()).getTime()) +"\n" +
 					"Date: "+currentDate+"\n" +
 					"Usage: "+"Transfer money"+"\n" +
-					"Card No. "+cardNo + "(Account id: "+aid+")"+"\n"+
+					"Card No. "+cardNo +"\n"+
+					"From account " + fromAcc + "\n" +
+					"To account " + toAcc + "\n" +
 					"Amount of money transfer: $"+amount+"\n" +
 					"--------------------\n";
 		}
