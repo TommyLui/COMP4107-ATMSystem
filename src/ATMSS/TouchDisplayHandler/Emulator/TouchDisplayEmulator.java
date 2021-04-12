@@ -115,6 +115,10 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 			reloadStage("TouchDisplayGetCash.fxml");
 			break;
 
+		case "PrintReceipt":
+			reloadStage("TouchDisplayPrintReceiptLoading.fxml");
+			atmss.send(new Msg(id, mbox, Msg.Type.AP_PrintReceipt, msg.getDetails()));
+			break;
 
 		case "ChangePinExisting":
 			handleChangePin(msg.getDetails());
