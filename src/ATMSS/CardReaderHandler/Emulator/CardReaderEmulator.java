@@ -69,7 +69,7 @@ public class CardReaderEmulator extends CardReaderHandler {
 	super.handleCardEject();
 	cardReaderEmulatorController.appendTextArea("Card Ejected");
 	cardReaderEmulatorController.updateCardStatus("Card Ejected");
-	System.out.println("Card ejected");
+	log.info("Card ejected");
 	atmss.send(new Msg(id, mbox, Msg.Type.CR_CardEjected, ""));
     } // handleCardEject
 
@@ -90,6 +90,6 @@ public class CardReaderEmulator extends CardReaderHandler {
 		super.handleCardLock();
 		cardReaderEmulatorController.appendTextArea("Card Locked");
 		cardReaderEmulatorController.updateCardStatus("Card Locked");
-		System.out.println("Card Locked");
+		log.info("Card Locked");
 	} // handleCardLock
 } // CardReaderEmulator

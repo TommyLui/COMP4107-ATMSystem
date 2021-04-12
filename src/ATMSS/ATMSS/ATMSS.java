@@ -80,10 +80,10 @@ public class ATMSS extends AppThread {
                         loginState = "cardInserted";
                         cardNum = msg.getDetails();
                         cardState = "cardInserted";
-                        System.out.println("cardNum: " + cardNum);
+                        log.info("cardNum: " + cardNum);
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputPage"));
                     } else {
-                        System.out.println("card already inserted");
+                        log.info("Card Insert button clicked but card already inserted");
                     }
                     break;
 
@@ -118,7 +118,7 @@ public class ATMSS extends AppThread {
                 case CD_provideCash:
                     log.info("ProvideCash: " + msg.getDetails());
                     String provideCash = msg.getDetails();
-                    System.out.println(provideCash);
+                    log.info(provideCash);
 
                     String detailsCD = cardNum + "," + aid + "," + cred + "," + provideCash;
                     bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request,"WithdrawReq,"+ detailsCD ));
@@ -148,8 +148,8 @@ public class ATMSS extends AppThread {
                     String totalNote = collectCash[0];
                     String amount = collectCash[1];
 
-                    System.out.println(totalNote);
-                    System.out.println(amount);
+                    log.info(totalNote);
+                    log.info(amount);
 
                     String details = cardNum + "," + aid + "," + cred + "," + amount;
                     bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request,"DepositReq,"+ details ));
@@ -184,7 +184,7 @@ public class ATMSS extends AppThread {
                 case TD_selectedAcc:
                     String[] tempDetail = msg.getDetails().split(",");
                     depositAc = tempDetail[1];
-                    System.out.println(depositAc);
+                    log.info(depositAc);
                     aid = tempDetail[1];
                     touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "OpenDeposit"));
                     break;
@@ -192,7 +192,7 @@ public class ATMSS extends AppThread {
                 case TD_selectedAccWithdrawal:
                     String[] tempDetail1 = msg.getDetails().split(",");
                     withdrawalAc = tempDetail1[1];
-                    System.out.println(withdrawalAc);
+                    log.info(withdrawalAc);
                     aid = tempDetail1[1];
                     touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "Waiting"));
                     break;
@@ -218,8 +218,7 @@ public class ATMSS extends AppThread {
                     break;
 
                 case CR_CardRemoved:
-                    System.out.println("CR_CardRemoved received");
-                    System.out.println("loginState: " + loginState);
+                    log.info("loginState: " + loginState);
                     if (cardState.equalsIgnoreCase("cardInserted") && cardNum.equalsIgnoreCase("")){
                         cardState = "";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "Initialization"));
@@ -268,11 +267,11 @@ public class ATMSS extends AppThread {
             if (!msgDetails.contains("Fail")) {
                 String[] creds = msgDetails.split(":");
                 cred = creds[1];
-                System.out.println("Login successful with cred: " + cred);
+                log.info("Login successful with cred: " + cred);
                 loginState = "login";
                 touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
             } else {
-                System.out.println("Login fail with cred: " + cred);
+                log.info("Login fail with cred: " + cred);
                 wrongPinCounter++;
 
                 new Thread(() -> {
@@ -284,7 +283,7 @@ public class ATMSS extends AppThread {
                     }
                 }).start();
 
-                System.out.println("wrongPinCounter: " + wrongPinCounter);
+                log.info("wrongPinCounter: " + wrongPinCounter);
                 pin = "";
                 if (wrongPinCounter < 3) {
                     touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputtedWrong"));
@@ -294,7 +293,7 @@ public class ATMSS extends AppThread {
                 }
             }
         } else if (msgDetails.contains("logout")) {
-            System.out.println("logout respond msgDetails: " + msgDetails);
+            log.info("logout respond msgDetails: " + msgDetails);
             loginState = "logout";
             cardNum = "";
             pin = "";
@@ -309,11 +308,10 @@ public class ATMSS extends AppThread {
             aid = "";
 
             new Thread(() -> {
-                System.out.println("new thread");
                 try {
                     Thread.sleep(10000);
                     if (cardState.equalsIgnoreCase("cardInserted") && cardNum.equalsIgnoreCase("")){
-                        System.out.println("RemoveCardTimeOut");
+                        log.info("RemoveCardTimeOut");
                         cardState = "cardRetained";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "RemoveCardTimeOut"));
                     }
@@ -323,25 +321,26 @@ public class ATMSS extends AppThread {
             }).start();
 
         } else if (msgDetails.contains("accounts")) {
-            System.out.println("I am accounts");
+            log.info("I am accounts");
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
         } else if (msgDetails.contains("accountDeposit")) {
-            System.out.println("I am accounts for Deposit");
+            log.info("I am accounts for Deposit");
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
         }else if (msgDetails.contains("accountWithdrawal")) {
-            System.out.println("I am accounts for Deposit");
+            log.info("I am accounts for Deposit");
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
         }else if (msgDetails.contains("outAmount")) {
+            advicePrinterMBox.send(new Msg(id, mbox, Msg.Type.AP_PrintReceipt, msgDetails));
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "GetCash"));
         } else if (msgDetails.contains("depAmount")) {
 
         } else if (msgDetails.contains("amount")) {
-            System.out.println("I am amount");
+            log.info("I am amount");
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
         } else if (msgDetails.contains("transAmount")) {
 
         } else if (msgDetails.contains("accStmtReq")) {
-            System.out.println("I am accStmtReq");
+            log.info("I am accStmtReq");
         } else if (msgDetails.contains("chqBookReq")) {
 
         } else if (msgDetails.contains("chgPinReq")) {
@@ -349,6 +348,7 @@ public class ATMSS extends AppThread {
             pin = result[1];
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
         }else if (msgDetails.contains("reDeposit")){
+            advicePrinterMBox.send(new Msg(id, mbox, Msg.Type.AP_PrintReceipt, msgDetails));
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
         }
 
@@ -364,93 +364,92 @@ public class ATMSS extends AppThread {
     //------------------------------------------------------------
     // processKeyPressed
     private void processKeyPressed(Msg msg) {
-
-        System.out.println("login state: " + loginState);
+        log.info("login state: " + loginState);
 
         if (loginState.equals("cardInserted")) {
             switch (msg.getDetails()) {
                 case "Cancel":
-                    System.out.println("Cancel pressed");
+                    log.info("Cancel pressed");
                     break;
                 case "1":
-                    System.out.println("1 pressed");
+                    log.info("1 pressed");
                     if (pin.length() < 6) {
                         pin = pin + "1";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "2":
-                    System.out.println("2 pressed");
+                    log.info("2 pressed");
                     if (pin.length() < 6) {
                         pin = pin + "2";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "3":
-                    System.out.println("3 pressed");
+                    log.info("3 pressed");
                     if (pin.length() < 6) {
                         pin = pin + "3";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "4":
-                    System.out.println("4 pressed");
+                    log.info("4 pressed");
                     if (pin.length() < 6) {
                         pin = pin + "4";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "5":
-                    System.out.println("5 pressed");
+                    log.info("5 pressed");
                     if (pin.length() < 6) {
                         pin = pin + "5";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "6":
-                    System.out.println("6 pressed");
+                    log.info("6 pressed");
                     if (pin.length() < 6) {
                         pin = pin + "6";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "7":
-                    System.out.println("7 pressed");
+                    log.info("7 pressed");
                     if (pin.length() < 6) {
                         pin = pin + "7";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "8":
-                    System.out.println("8 pressed");
+                    log.info("8 pressed");
                     if (pin.length() < 6) {
                         pin = pin + "8";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "9":
-                    System.out.println("9 pressed");
+                    log.info("9 pressed");
                     if (pin.length() < 6) {
                         pin = pin + "9";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "0":
-                    System.out.println("0 pressed");
+                    log.info("0 pressed");
                     if (pin.length() < 6) {
                         pin = pin + "0";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "Erase":
-                    System.out.println("Erase pressed");
+                    log.info("Erase pressed");
                     if (pin.length() > 0) {
                         pin = pin.substring(0, pin.length() - 1);
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinErase"));
                     }
                     break;
                 case "Enter":
-                    System.out.println("Enter pressed");
+                    log.info("Enter pressed");
                     if (!cardNum.equals("") && !pin.equals("")) {
                         String loginDetails = "LoginReq," + cardNum + "," + pin;
                         bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, loginDetails));
@@ -466,8 +465,8 @@ public class ATMSS extends AppThread {
                             }
                         }).start();
 
-                        System.out.println("No pin inputted");
-                        System.out.println("wrongPinCounter: " + wrongPinCounter);
+                        log.info("No pin inputted");
+                        log.info("wrongPinCounter: " + wrongPinCounter);
                         pin = "";
                         if (wrongPinCounter < 3) {
                             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputtedWrong"));
@@ -478,7 +477,7 @@ public class ATMSS extends AppThread {
                     }
                     break;
             }
-            System.out.println("pin: " + pin);
+            log.info("pin: " + pin);
 
         } else if (loginState.equals("login")) {
 
@@ -492,99 +491,99 @@ public class ATMSS extends AppThread {
 
             switch (msg.getDetails()) {
                 case "Cancel":
-                    System.out.println("Cancel pressed");
+                    log.info("Cancel pressed");
                     break;
                 case "1":
-                    System.out.println("1 pressed");
+                    log.info("1 pressed");
                     if (pins[i].length() < 6) {
                         pins[i] = pins[i] + "1";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "2":
-                    System.out.println("2 pressed");
+                    log.info("2 pressed");
                     if (pins[i].length() < 6) {
                         pins[i] = pins[i] + "2";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "3":
-                    System.out.println("3 pressed");
+                    log.info("3 pressed");
                     if (pins[i].length() < 6) {
                         pins[i] = pins[i] + "3";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "4":
-                    System.out.println("4 pressed");
+                    log.info("4 pressed");
                     if (pins[i].length() < 6) {
                         pins[i] = pins[i] + "4";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "5":
-                    System.out.println("5 pressed");
+                    log.info("5 pressed");
                     if (pins[i].length() < 6) {
                         pins[i] = pins[i] + "5";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "6":
-                    System.out.println("6 pressed");
+                    log.info("6 pressed");
                     if (pins[i].length() < 6) {
                         pins[i] = pins[i] + "6";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "7":
-                    System.out.println("7 pressed");
+                    log.info("7 pressed");
                     if (pins[i].length() < 6) {
                         pins[i] = pins[i] + "7";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "8":
-                    System.out.println("8 pressed");
+                    log.info("8 pressed");
                     if (pins[i].length() < 6) {
                         pins[i] = pins[i] + "8";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "9":
-                    System.out.println("9 pressed");
+                    log.info("9 pressed");
                     if (pins[i].length() < 6) {
                         pins[i] = pins[i] + "9";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "0":
-                    System.out.println("0 pressed");
+                    log.info("0 pressed");
                     if (pins[i].length() < 6) {
                         pins[i] = pins[i] + "0";
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
                     }
                     break;
                 case "Erase":
-                    System.out.println("Erase pressed");
+                    log.info("Erase pressed");
                     if (pins[i].length() > 0) {
                         pins[i] = pins[i].substring(0, pins[i].length() - 1);
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinErase"));
                     }
                     break;
                 case "Enter":
-                    System.out.println("Enter pressed");
+                    log.info("Enter pressed");
 //                    if (!cardNum.equals("") && !pins[i].equals("")) {
 
                     if (i == 0 && pins[i].equals(pin)) {
                         // proceed to next page
                         changePinState = "new";
-                        System.out.println("Existing pin");
+                        log.info("Existing pin");
                         touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "ChangePinNew"));
                         wrongExistingPinCounter = 0;
 
                     } else if (i == 1 && !pins[1].equals(pin) && pins[1].length() == 6) {
                         String chgPinDetails = "ChgPinReq," + cardNum + "," + pins[0] + "," + pins[1] + "," + cred;
-                        System.out.println("New pin");
+                        log.info("New pin");
                         bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, chgPinDetails));
                         pins[0] = "";
                         pins[1] = "";
@@ -615,13 +614,9 @@ public class ATMSS extends AppThread {
                             changePinState = "existing";
                         }
                     }
-
-//                    }else {
-//                        System.out.println("No pin inputted");
-//                    }
                     break;
             }
-            System.out.println("pin typed in: " + pins[i]);
+            log.info("pin typed in: " + pins[i]);
         }
 
 

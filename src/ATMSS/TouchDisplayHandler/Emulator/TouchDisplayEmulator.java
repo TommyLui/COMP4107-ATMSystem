@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
-
 //======================================================================
 // TouchDisplayEmulator
 public class TouchDisplayEmulator extends TouchDisplayHandler {
