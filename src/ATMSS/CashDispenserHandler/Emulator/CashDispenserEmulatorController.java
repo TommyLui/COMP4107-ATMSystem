@@ -69,4 +69,8 @@ CashDispenserEmulatorController {
         }
     } // updateCashDispenser
 
+    public void modiftyCashDispenserStatusField() {
+        cashDispenserStatusField.setText("Your money has been retained.");
+    }
+
 } // CashDispenserEmulatorController

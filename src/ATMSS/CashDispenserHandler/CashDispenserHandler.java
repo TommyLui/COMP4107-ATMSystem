@@ -39,10 +39,17 @@ public class CashDispenserHandler extends HWHandler {
                 atmss.send(new Msg(id, mbox, Msg.Type.CD_Error,"Error"));
                 break;
 
+            case CD_RetainMoney:
+                retainMoney();
+
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
         }
     } // processMsg
+
+    protected void retainMoney() {
+        log.info(id + ": retain money");
+    }
 
 
     //------------------------------------------------------------

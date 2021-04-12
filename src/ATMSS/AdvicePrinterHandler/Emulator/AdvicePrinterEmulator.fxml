@@ -13,7 +13,7 @@
     <children>
 	<AnchorPane prefHeight="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
 	    <children>
-		<Button mnemonicParsing="false" onAction="#buttonPressed" prefHeight="30.0" prefWidth="100.0" text="Print receipt" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0"><font><Font size="12.0" /></font></Button>
+<!--		<Button mnemonicParsing="false" onAction="#buttonPressed" prefHeight="30.0" prefWidth="100.0" text="Print receipt" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0"><font><Font size="12.0" /></font></Button>-->
 		<Button mnemonicParsing="false" onAction="#buttonPressed" prefHeight="30.0" prefWidth="100.0" text="Refill paper" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="0.0"><font><Font size="12.0" /></font></Button>
 		<Button mnemonicParsing="false" onAction="#buttonPressed" prefHeight="30.0" prefWidth="100.0" text="Jam paper" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="0.0"><font><Font size="12.0" /></font></Button>
 	    </children>

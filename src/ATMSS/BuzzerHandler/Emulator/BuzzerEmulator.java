@@ -74,6 +74,16 @@ public class BuzzerEmulator extends BuzzerHandler {
     protected void handleBuzz(Msg msg) {
 	log.info(id + ": update display -- " + msg.getDetails());
 
+	if (msg.getDetails().contains("withdrawMoney")) {
+		reloadStage("BuzzerBuzzing.fxml");
+		try {
+			Thread.sleep(10000);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		reloadStage("BuzzerEmulator.fxml");
+	}
+
 	switch (msg.getDetails()) {
 	    case "Buzz":
 		reloadStage("BuzzerBuzzing.fxml");

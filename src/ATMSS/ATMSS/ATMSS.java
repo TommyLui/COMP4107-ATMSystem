@@ -76,7 +76,7 @@ public class ATMSS extends AppThread {
 
                 case CR_CardInserted:
                     log.info("CardInserted: " + msg.getDetails());
-                    if (!loginState.equalsIgnoreCase("cardInserted")&&!cardState.equalsIgnoreCase("cardRetained")) {
+                    if (!loginState.equalsIgnoreCase("login")&&!loginState.equalsIgnoreCase("cardInserted")&&!cardState.equalsIgnoreCase("cardRetained")) {
                         loginState = "cardInserted";
                         cardNum = msg.getDetails();
                         cardState = "cardInserted";
@@ -116,19 +116,22 @@ public class ATMSS extends AppThread {
                     break;
 
                 case CD_provideCash:
-                    log.info("ProvideCash: " + msg.getDetails());
-                    String provideCash = msg.getDetails();
-                    log.info(provideCash);
+                    if (loginState.equals("login")) {
+                        log.info("ProvideCash: " + msg.getDetails());
+                        String provideCash = msg.getDetails();
+                        log.info(provideCash);
 
-                    String detailsCD = cardNum + "," + aid + "," + cred + "," + provideCash;
-                    bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request,"WithdrawReq,"+ detailsCD ));
-
+                        String detailsCD = cardNum + "," + aid + "," + cred + "," + provideCash;
+                        bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, "WithdrawReq," + detailsCD));
+                    }
 
                     break;
 
                 case CD_GetCash:
+                    if (loginState.equals("login")) {
                     log.info("GetCash: " + msg.getDetails());
-                    touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+                    }
                     break;
 
                 case CD_Error:
@@ -144,16 +147,17 @@ public class ATMSS extends AppThread {
                     break;
 
                 case DC_Collect_Cash:
-                    String[] collectCash = msg.getDetails().split(",");
-                    String totalNote = collectCash[0];
-                    String amount = collectCash[1];
+                    if (loginState.equals("login")) {
+                        String[] collectCash = msg.getDetails().split(",");
+                        String totalNote = collectCash[0];
+                        String amount = collectCash[1];
 
-                    log.info(totalNote);
-                    log.info(amount);
+                        log.info(totalNote);
+                        log.info(amount);
 
-                    String details = cardNum + "," + aid + "," + cred + "," + amount;
-                    bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request,"DepositReq,"+ details ));
-
+                        String details = cardNum + "," + aid + "," + cred + "," + amount;
+                        bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, "DepositReq," + details));
+                    }
                     /*
                     log.info("DepositCollectorCash: " + msg.getDetails());
                     String DepositCollectorState = msg.getDetails();
@@ -332,6 +336,26 @@ public class ATMSS extends AppThread {
         }else if (msgDetails.contains("outAmount")) {
             advicePrinterMBox.send(new Msg(id, mbox, Msg.Type.AP_PrintReceipt, msgDetails));
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "GetCash"));
+
+            new Thread(() -> {
+                try {
+                    Thread.sleep(100);
+                    buzzerMBox.send(new Msg(id, mbox, Msg.Type.BZ_Buzz, "Buzz,withdrawMoney"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
+
+            new Thread(() -> {
+                try {
+                    Thread.sleep(10000);
+                    cashDispenserMBox.send(new Msg(id, mbox, Msg.Type.CD_RetainMoney, ""));
+                    touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+
         } else if (msgDetails.contains("depAmount")) {
 
         } else if (msgDetails.contains("amount")) {
@@ -350,6 +374,16 @@ public class ATMSS extends AppThread {
         }else if (msgDetails.contains("reDeposit")){
             advicePrinterMBox.send(new Msg(id, mbox, Msg.Type.AP_PrintReceipt, msgDetails));
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+
+            new Thread(() -> {
+                try {
+                    Thread.sleep(100);
+                    buzzerMBox.send(new Msg(id, mbox, Msg.Type.BZ_Buzz, "Buzz"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
+
         }
 
 

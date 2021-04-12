@@ -109,6 +109,7 @@ public class Msg {
     /**Dc running Time Out */ DC_TimeOut,
    /** Key pressed */			CD_provideCash,
     /** Eject card */			CD_GetCash,
+    /** Retain money */ CD_RetainMoney,
     /** Get TimeOut */  CD_TimeOut,
     /** Get Not Enough Cash */  CD_NotEnoughCash,
     /** Get Not Enough Cash */  CD_Error,

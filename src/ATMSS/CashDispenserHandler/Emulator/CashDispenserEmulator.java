@@ -59,6 +59,9 @@ public class CashDispenserEmulator extends CashDispenserHandler {
         //cashDispenserEmulatorController.updateCardStatus("Cash Got");
     } // handleCardInsert
 
+    protected void retainMoney() {
+        cashDispenserEmulatorController.modiftyCashDispenserStatusField();
+    }
 
 
 } // CashDispenserEmulator
