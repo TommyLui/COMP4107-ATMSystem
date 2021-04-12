@@ -1,51 +1,112 @@
-210412-23:54:37 [INFO] -- 
-210412-23:54:37 [INFO] -- 
-210412-23:54:37 [INFO] -- ============================================================
-210412-23:54:37 [INFO] -- ATMSSStarter: Application Starting...
-210412-23:54:38 [INFO] -- AdvicePrinterHandler: starting...
-210412-23:54:38 [INFO] -- CardReaderHandler: starting...
-210412-23:54:38 [INFO] -- CashDispenserHandler: starting...
-210412-23:54:38 [INFO] -- DepositCollectorHandler: starting...
-210412-23:54:38 [INFO] -- KeypadHandler: starting...
-210412-23:54:38 [INFO] -- timer: starting...
-210412-23:54:38 [INFO] -- BuzzerHandler: starting...
-210412-23:54:38 [INFO] -- BAMSHandler: starting...
-210412-23:54:38 [INFO] -- TouchDisplayHandler: starting...
-210412-23:54:38 [INFO] -- ATMSS: starting...
-210412-23:54:43 [INFO] -- CardInserted: 4107-7014
-210412-23:54:43 [INFO] -- TouchDisplayHandler: update display -- PinInputPage
-210412-23:54:43 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
-210412-23:54:43 [INFO] -- KeyPressed: 1
-210412-23:54:43 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210412-23:54:43 [INFO] -- KeyPressed: 2
-210412-23:54:43 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210412-23:54:44 [INFO] -- KeyPressed: 3
-210412-23:54:44 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210412-23:54:44 [INFO] -- KeyPressed: 4
-210412-23:54:44 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210412-23:54:44 [INFO] -- KeyPressed: 5
-210412-23:54:44 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210412-23:54:45 [INFO] -- KeyPressed: 6
-210412-23:54:45 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210412-23:54:45 [INFO] -- KeyPressed: Enter
-210412-23:54:45 [INFO] -- BAMS response: cred:d9ed5dba007de414abb9ab03d8331a13a813bcef
-210412-23:54:45 [INFO] -- TouchDisplayHandler: update display -- MainMenu
-210412-23:54:45 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
-210412-23:54:48 [INFO] -- BAMS request: GetAccWithdrawal
-210412-23:54:48 [INFO] -- GetAcc: 
-210412-23:54:48 [INFO] -- cardNo: 4107-7014
-210412-23:54:48 [INFO] -- cred: d9ed5dba007de414abb9ab03d8331a13a813bcef
-210412-23:54:48 [INFO] -- accounts: 1/2/3/
-210412-23:54:48 [INFO] -- BAMS response: accountWithdrawal: 1/2/3/
-210412-23:54:48 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayWithdrawal.fxml
-210412-23:54:48 [INFO] -- TouchDisplayHandler: update display -- Waiting
-210412-23:54:48 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayWaitPushCash.fxml
-210412-23:54:54 [INFO] -- ProvideCash: 1000
-210412-23:54:54 [INFO] -- Withdraw: 
-210412-23:54:54 [INFO] -- outAmount: 489900
-210412-23:54:54 [INFO] -- BAMS response: outAmount,489900
-210412-23:54:54 [INFO] -- TouchDisplayHandler: update display -- GetCash
-210412-23:54:54 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayGetCash.fxml
-210412-23:54:58 [INFO] -- GetCash: Cash Dispenser Ready
-210412-23:54:58 [INFO] -- TouchDisplayHandler: update display -- MainMenu
-210412-23:54:58 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210413-00:42:42 [INFO] -- 
+210413-00:42:42 [INFO] -- 
+210413-00:42:42 [INFO] -- ============================================================
+210413-00:42:42 [INFO] -- ATMSSStarter: Application Starting...
+210413-00:42:46 [INFO] -- BAMSHandler: starting...
+210413-00:42:46 [INFO] -- timer: starting...
+210413-00:42:46 [INFO] -- CardReaderHandler: starting...
+210413-00:42:46 [INFO] -- KeypadHandler: starting...
+210413-00:42:46 [INFO] -- TouchDisplayHandler: starting...
+210413-00:42:46 [INFO] -- AdvicePrinterHandler: starting...
+210413-00:42:46 [INFO] -- BuzzerHandler: starting...
+210413-00:42:46 [INFO] -- CashDispenserHandler: starting...
+210413-00:42:46 [INFO] -- DepositCollectorHandler: starting...
+210413-00:42:46 [INFO] -- ATMSS: starting...
+210413-00:42:57 [INFO] -- CardInserted: 1005-5001
+210413-00:42:57 [INFO] -- TouchDisplayHandler: update display -- PinInputPage
+210413-00:42:57 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
+210413-00:43:00 [INFO] -- KeyPressed: 6
+210413-00:43:00 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-00:43:00 [INFO] -- KeyPressed: 5
+210413-00:43:00 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-00:43:00 [INFO] -- KeyPressed: 4
+210413-00:43:00 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-00:43:00 [INFO] -- KeyPressed: 3
+210413-00:43:00 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-00:43:01 [INFO] -- KeyPressed: 2
+210413-00:43:01 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-00:43:01 [INFO] -- KeyPressed: 1
+210413-00:43:01 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-00:43:02 [INFO] -- KeyPressed: Enter
+210413-00:43:02 [INFO] -- BAMS response: cred:1907f4c06ed7f7b32847e19c6b3c433f4c310d9b
+210413-00:43:02 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210413-00:43:02 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210413-00:43:04 [INFO] -- BAMS request: GetAccWithdrawal
+210413-00:43:04 [INFO] -- GetAcc: 
+210413-00:43:04 [INFO] -- cardNo: 1005-5001
+210413-00:43:04 [INFO] -- cred: 1907f4c06ed7f7b32847e19c6b3c433f4c310d9b
+210413-00:43:04 [INFO] -- accounts: 1/2/
+210413-00:43:04 [INFO] -- BAMS response: accountWithdrawal: 1/2/
+210413-00:43:04 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayWithdrawal.fxml
+210413-00:43:07 [INFO] -- TouchDisplayHandler: update display -- Waiting
+210413-00:43:07 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayWaitPushCash.fxml
+210413-00:43:17 [INFO] -- ProvideCash: 50
+210413-00:43:17 [INFO] -- Withdraw: 
+210413-00:43:17 [INFO] -- outAmount: 50050
+210413-00:43:17 [INFO] -- BAMS response: outAmount,50050,50,2,1005-5001
+210413-00:43:17 [INFO] -- TouchDisplayHandler: update display -- GetCash
+210413-00:43:17 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayGetCash.fxml
+210413-00:43:17 [INFO] -- AdvicePrinterHandler: receipt printed
+210413-00:43:17 [INFO] -- Print advice successful: print advice okay
+210413-00:43:22 [INFO] -- GetCash: Cash Dispenser Ready
+210413-00:43:22 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210413-00:43:22 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210413-00:43:46 [INFO] -- Poll: TimesUp 91827 0
+210413-00:43:46 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-00:43:46 [INFO] -- PollAck: CardReaderHandler is up!
+210413-00:43:46 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-00:43:46 [INFO] -- PollAck: BAMSHandler is up!
+210413-00:43:46 [INFO] -- PollAck: KeypadHandler is up!
+210413-00:43:46 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-00:43:46 [INFO] -- PollAck: BuzzerHandler is up!
+210413-00:43:46 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-00:43:46 [INFO] -- BAMS request: GetAccWithdrawal
+210413-00:43:46 [INFO] -- GetAcc: 
+210413-00:43:46 [INFO] -- cardNo: 1005-5001
+210413-00:43:46 [INFO] -- cred: 1907f4c06ed7f7b32847e19c6b3c433f4c310d9b
+210413-00:43:46 [INFO] -- accounts: 1/2/
+210413-00:43:46 [INFO] -- BAMS response: accountWithdrawal: 1/2/
+210413-00:43:46 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayWithdrawal.fxml
+210413-00:43:47 [INFO] -- TouchDisplayHandler: update display -- Waiting
+210413-00:43:47 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayWaitPushCash.fxml
+210413-00:43:56 [INFO] -- ProvideCash: 50000
+210413-00:43:56 [INFO] -- Withdraw: 
+210413-00:43:57 [INFO] -- outAmount: 50
+210413-00:43:57 [INFO] -- BAMS response: outAmount,50,50000,2,1005-5001
+210413-00:43:57 [INFO] -- TouchDisplayHandler: update display -- GetCash
+210413-00:43:57 [INFO] -- AdvicePrinterHandler: receipt printed
+210413-00:43:57 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayGetCash.fxml
+210413-00:43:57 [INFO] -- Print advice successful: print advice okay
+210413-00:43:59 [INFO] -- GetCash: Cash Dispenser Ready
+210413-00:43:59 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210413-00:43:59 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210413-00:44:02 [INFO] -- BAMS request: GetAccReq
+210413-00:44:02 [INFO] -- GetAcc: 
+210413-00:44:02 [INFO] -- cardNo: 1005-5001
+210413-00:44:02 [INFO] -- cred: 1907f4c06ed7f7b32847e19c6b3c433f4c310d9b
+210413-00:44:02 [INFO] -- accounts: 1/2/
+210413-00:44:02 [INFO] -- BAMS response: accounts: 1/2/
+210413-00:44:02 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayCheckBalance.fxml
+210413-00:44:03 [INFO] -- BAMS request: EnquiryReq,2
+210413-00:44:03 [INFO] -- BAMS response: card no: 1005-5001@account id: 2@amount: 50.0
+210413-00:44:03 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayCheckAccBalance.fxml
+210413-00:44:04 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210413-00:44:04 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210413-00:44:46 [INFO] -- Poll: TimesUp 24654 0
+210413-00:44:46 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-00:44:46 [INFO] -- PollAck: KeypadHandler is up!
+210413-00:44:46 [INFO] -- PollAck: CardReaderHandler is up!
+210413-00:44:46 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-00:44:46 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-00:44:46 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-00:44:46 [INFO] -- PollAck: BuzzerHandler is up!
+210413-00:44:46 [INFO] -- PollAck: BAMSHandler is up!
+210413-00:45:46 [INFO] -- Poll: TimesUp 37056 0
+210413-00:45:46 [INFO] -- PollAck: CardReaderHandler is up!
+210413-00:45:46 [INFO] -- PollAck: KeypadHandler is up!
+210413-00:45:46 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-00:45:46 [INFO] -- PollAck: BuzzerHandler is up!
+210413-00:45:46 [INFO] -- PollAck: BAMSHandler is up!
+210413-00:45:46 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-00:45:46 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-00:45:46 [INFO] -- PollAck: TouchDisplayHandler is up!

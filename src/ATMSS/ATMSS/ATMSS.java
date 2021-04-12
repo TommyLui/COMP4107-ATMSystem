@@ -332,6 +332,7 @@ public class ATMSS extends AppThread {
             System.out.println("I am accounts for Deposit");
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
         }else if (msgDetails.contains("outAmount")) {
+            advicePrinterMBox.send(new Msg(id, mbox, Msg.Type.AP_PrintReceipt, msgDetails));
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "GetCash"));
         } else if (msgDetails.contains("depAmount")) {
 
@@ -349,6 +350,7 @@ public class ATMSS extends AppThread {
             pin = result[1];
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
         }else if (msgDetails.contains("reDeposit")){
+            advicePrinterMBox.send(new Msg(id, mbox, Msg.Type.AP_PrintReceipt, msgDetails));
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
         }
 

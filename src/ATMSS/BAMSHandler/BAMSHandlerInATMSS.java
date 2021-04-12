@@ -294,7 +294,7 @@ public class BAMSHandlerInATMSS extends AppThread {
             log.info("outAmount: " + outAmount );
 
             atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response,
-                    "outAmount," + outAmount));
+                    "outAmount," + outAmount+ "," + amount + "," + aid + "," + cardNo));
         } catch (NumberFormatException exception) {
             atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Error, "Error"));
         }
@@ -317,7 +317,7 @@ public class BAMSHandlerInATMSS extends AppThread {
             log.info("depAmount: " + depAmount);
 
             atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response,
-                    "reDeposit," +  depAmount));
+                    "reDeposit," +  depAmount + "," + amount + "," + aid + "," + cardNo));
         } catch (NumberFormatException exception) {
             atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Error, "Error"));
         }

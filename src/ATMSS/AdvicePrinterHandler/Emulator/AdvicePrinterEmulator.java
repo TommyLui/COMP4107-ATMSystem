@@ -11,6 +11,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 
 //======================================================================
 // AdvicePrinterEmulator
@@ -48,7 +51,7 @@ public class AdvicePrinterEmulator extends AdvicePrinterHandler {
 	    atmssStarter.stopApp();
 	    Platform.exit();
 	});
-//	myStage.show();
+	myStage.show();
     } // AdvicePrinterEmulator
 
 	//------------------------------------------------------------
@@ -56,6 +59,44 @@ public class AdvicePrinterEmulator extends AdvicePrinterHandler {
 	protected void handlePrintReceipt(String content) {
 		// fixme
 		super.handlePrintReceipt(content);
+
+//		"reDeposit," +  depAmount + "," + amount + "," + aid + "," + cardNo
+		if (content.contains("reDeposit")) {
+			String[] details = content.split(",");
+			String depAmount = details[1];
+			String amount = details[2];
+			String aid = details[3];
+			String cardNo = details[4];
+
+			Date currentDate = new Date();
+
+			content = "--------------------\n" +
+					"Ref No.: "+"#"+(new Timestamp(currentDate.getTime()).getTime()) +"\n" +
+					"Date: "+currentDate+"\n" +
+					"Usage: "+"Deposit"+"\n" +
+					"Card No. "+cardNo + "(Account id: "+aid+")"+"\n"+
+					"Amount of money deposited: $"+amount+"\n" +
+					"Current balance: $"+depAmount+"\n"+
+					"--------------------\n";
+		} else if (content.contains("outAmount")) {
+			String[] details = content.split(",");
+			String outAmount = details[1];
+			String amount = details[2];
+			String aid = details[3];
+			String cardNo = details[4];
+
+			Date currentDate = new Date();
+
+			content = "--------------------\n" +
+					"Ref No.: "+"#"+(new Timestamp(currentDate.getTime()).getTime()) +"\n" +
+					"Date: "+currentDate+"\n" +
+					"Usage: "+"Withdraw money"+"\n" +
+					"Card No. "+cardNo + "(Account id: "+aid+")"+"\n"+
+					"Amount of money withdrawn: $"+amount+"\n" +
+					"Current balance: $"+outAmount+"\n"+
+					"--------------------\n";
+		}
+
 		advicePrinterEmulatorController.printAdvice(content);
 	} // handlePrintReceipt
 
