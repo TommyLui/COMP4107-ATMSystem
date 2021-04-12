@@ -47,7 +47,7 @@ public class DepositCollectorEmulator extends DepositCollectorHandler {
             atmssStarter.stopApp();
             Platform.exit();
         });
-       // myStage.show();
+        myStage.show();
     }
     // DepositCollectorEmulator
     //------------------------------------------------------------

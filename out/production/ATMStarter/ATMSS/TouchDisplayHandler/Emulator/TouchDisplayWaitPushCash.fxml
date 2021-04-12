@@ -15,7 +15,7 @@
 
         <AnchorPane prefHeight="50.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="210.0">
             <children>
-                <Label fx:id="welcomeLabel"  text= "Please input cash">
+                <Label fx:id="provideCashLabel"  text= "Please input cash">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>

@@ -83,13 +83,7 @@ public class DepositCollectorEmulatorController {
                         totalNote + "," + amount));
 
                 break;
-            /*
-            case "Slot Opening":
-                slotStatus(slotStatus);
 
-            case "Slot Closing":
-                slotStatus(slotStatus);
-            */
             case "Count":
                 totalCash = (num100Note * 100) + (num500Note * 500) + (num1000Note * 1000);
 
@@ -134,19 +128,5 @@ public class DepositCollectorEmulatorController {
     public void depositCollectStatus(String status) {
         depositCollectStatusField.setText(status);
     } // updateCardStatus
-/*
-    public void slotStatus(String slot) {
-        switch (slot) {
-            case "opening":
-                slotStatus = "opening";
-                slotStatusText.setText("Slot is Opening");
-                break;
 
-            case "closing":
-                slotStatus = "closing";
-                slotStatusText.setText("Slot is closing");
-                break;
-        }
-    }
- */
 }
