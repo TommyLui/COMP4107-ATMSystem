@@ -59,79 +59,189 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
     // handleUpdateDisplay
     protected void handleUpdateDisplay(Msg msg) {
 	log.info(id + ": update display -- " + msg.getDetails());
-
-	switch (msg.getDetails()) {
-	    case "BlankScreen":
-		reloadStage("TouchDisplayEmulator.fxml");
-		break;
-
-	    case "MainMenu":
-		reloadStage("TouchDisplayMainMenu.fxml");
-		break;
-
-	    case "Confirmation":
-		reloadStage("TouchDisplayConfirmation.fxml");
-		break;
-
-		case "PinInputPage":
-		reloadStage("TouchDisplayPinInput.fxml");
-		break;
-
-		case "PinInputted":
+		if (msg.getDetails().contains("SelectNextAcc")) {
+			System.out.println("I made it!!! "+msg.getDetails());
+			reloadStage("TouchDisplaySelNextAcc.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			touchDisplayEmulatorController.setNextAccStackVisible(msg.getDetails());
+		} else if(msg.getDetails().contains("AmountInputted")) {
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
 					try {
-						touchDisplayEmulatorController.pinInput();
+						touchDisplayEmulatorController.AmountInputted(msg.getDetails());
 					} catch (Exception e) {
-						log.severe(id + ": failed to update PinInputted");
+						log.severe(id + ": failed to update Amount inputted");
 						e.printStackTrace();
 					}
 				}
 			});
-			break;
+		}else {
+			switch (msg.getDetails()) {
+				case "BlankScreen":
+					reloadStage("TouchDisplayEmulator.fxml");
+					break;
 
-		case "PinErase":
-			Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
+				case "MainMenu":
+					reloadStage("TouchDisplayMainMenu.fxml");
+					break;
+
+				case "Confirmation":
+					reloadStage("TouchDisplayConfirmation.fxml");
+					break;
+
+				case "PinInputPage":
+					reloadStage("TouchDisplayPinInput.fxml");
+					break;
+
+				case "InputTransAmount":
+					reloadStage("TouchDisplayInputTransAmount.fxml");
+					break;
+
+				case "ChangePinExisting":
+					handleChangePin(msg.getDetails());
+					break;
+
+				case "ChangePinNew":
+					handleChangePin(msg.getDetails());
+					break;
+
+				case "TransMoneySelectAC":
+					TransMoneySelectAC(msg.getDetails());
+					break;
+
+				case "ChangePinInputtedWrong":
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							try {
+								touchDisplayEmulatorController.pinWrong();
+							} catch (Exception e) {
+								log.severe(id + ": failed to change pin");
+								e.printStackTrace();
+							}
+						}
+					});
+					break;
+
+				case "ChangePinInputtedWrong3Times":
+					reloadStage("TouchDisplayCheckBalanceError.fxml");
+
 					try {
-						touchDisplayEmulatorController.pinErase();
-					} catch (Exception e) {
-						log.severe(id + ": failed to do PinErase");
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-				}
-			});
-			break;
+					touchDisplayEmulatorController.setBalanceErrorText();
+					break;
 
-		case "PinInputtedWrong":
-			Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-					try {
-						touchDisplayEmulatorController.pinWrong();
-					} catch (Exception e) {
-						log.severe(id + ": failed to update PinInputtedWrong");
-						e.printStackTrace();
-					}
-				}
-			});
-			break;
 
-		case "CardLocked":
-			reloadStage("TouchDisplayCardLocked.fxml");
-			break;
+
+				case "PinInputted":
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							try {
+								touchDisplayEmulatorController.pinInput();
+							} catch (Exception e) {
+								log.severe(id + ": failed to update PinInputted");
+								e.printStackTrace();
+							}
+						}
+					});
+					break;
+
+				case "PinErase":
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							try {
+								touchDisplayEmulatorController.pinErase();
+							} catch (Exception e) {
+								log.severe(id + ": failed to do PinErase");
+								e.printStackTrace();
+							}
+						}
+					});
+					break;
+
+				case "PinInputtedWrong":
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							try {
+								touchDisplayEmulatorController.pinWrong();
+							} catch (Exception e) {
+								log.severe(id + ": failed to update PinInputtedWrong");
+								e.printStackTrace();
+							}
+						}
+					});
+					break;
+
+				case "CardLocked":
+					reloadStage("TouchDisplayCardLocked.fxml");
+					break;
 
 //		case "CheckBalance":
 //			reloadStage("TouchDisplayCheckBalance.fxml");
 //			break;
 
-	    default:
-		log.severe(id + ": update display with unknown display type -- " + msg.getDetails());
-		break;
-	}
+				default:
+					log.severe(id + ": update display with unknown display type -- " + msg.getDetails());
+					break;
+			}
+		}
     } // handleUpdateDisplay
+
+	//------------------------------------------------------------
+	// handleChangePin
+	protected void handleChangePin(String msgDetails) {
+		reloadStage("TouchDisplayPinInput.fxml");
+
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					touchDisplayEmulatorController.modifyNotifyLabel(msgDetails);
+				} catch (Exception e) {
+					log.severe(id + ": failed to update print label (existing pin)");
+					e.printStackTrace();
+				}
+			}
+		});
+
+	} // handleChangePin
+
+	//------------------------------------------------------------
+	// TransMoneySelectAC
+	protected void TransMoneySelectAC(String msgDetails) {
+		reloadStage("MoneyTransferSelectAccount.fxml");
+
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					touchDisplayEmulatorController.modifyNotifyLabel(msgDetails);
+				} catch (Exception e) {
+					log.severe(id + ": failed to update money transfer select account touch screen");
+					e.printStackTrace();
+				}
+			}
+		});
+
+	} // TransMoneySelectAC
+
+
+	//------------------------------------------------------------
+	// handleBAMSErrorDisplay
+	protected void handleBAMSErrorDisplay(Msg msg) {
+    	reloadStage("TouchDisplayCheckBalanceError.fxml");
+	} // handleBAMSErrorDisplay
 
 	//------------------------------------------------------------
 	// handleBAMSUpdateDisplay
@@ -153,6 +263,29 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 				e.printStackTrace();
 			}
 			touchDisplayEmulatorController.setAccBalanceText(msg.getDetails());
+		} else if (msg.getDetails().contains("chgPinReq")) {
+			//    		System.out.println("I made it!!! "+msg.getDetails());
+			reloadStage("TouchDisplayCheckAccBalance.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			touchDisplayEmulatorController.setChangePinText();
+		} else if (msg.getDetails().contains("SelectTransAC")) {
+			//    		System.out.println("I made it!!! "+msg.getDetails());
+			reloadStage("TouchDisplayMoneyTransSelAcc.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			touchDisplayEmulatorController.setStackPaneVisibiliy(msg.getDetails());
+		} else if (msg.getDetails().contains("transAmount")) {
+    		reloadStage("TouchDisplayMainMenu.fxml");
+
+		} else if (msg.getDetails().contains("NotEnoughACError")){
+    		reloadStage("TouchDisplayShowTransDetails.fxml");
 		}
 	} // handleBAMSUpdateDisplay
 

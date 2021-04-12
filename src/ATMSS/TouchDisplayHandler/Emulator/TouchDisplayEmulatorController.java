@@ -35,6 +35,7 @@ public class TouchDisplayEmulatorController {
     public Text account2Text;
     public Text account3Text;
     public Text account4Text;
+    public Text balanceErrorText;
 
     public Text accBalanceAccNo;
     public Text accBalanceCardNo;
@@ -46,6 +47,7 @@ public class TouchDisplayEmulatorController {
 
     public Label pinLabel;
     public Label pinWrongLabel;
+    public Label notifyLabel;
 
 
     //------------------------------------------------------------
@@ -59,10 +61,77 @@ public class TouchDisplayEmulatorController {
     } // initialize
 
     //------------------------------------------------------------
+    // td_changePin
+    public void td_changePin(Event event) {
+        System.out.println("event: " + event);
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "ChangePinExisting"));
+    } // td_checkAccBalance
+
+    //------------------------------------------------------------
     // td_checkAccBalance
     public void td_checkBalance(Event event) {
         System.out.println("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, "GetAccReq"));
+    } // td_checkAccBalance
+
+
+    //------------------------------------------------------------
+    // td_TransferMoney
+    public void td_TransferMoney(Event event) {
+        System.out.println("event: " + "Going to Transfer Money");
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, "SelectAccReq"));
+    } // td_TransferMoney
+
+    //------------------------------------------------------------
+    // td_SelectNextAccount
+    public void td_SelectNextAccount(Event event) {
+        String source = event.getSource().toString(); //yields complete string
+        String msgDetail;
+        System.out.println("event: " +"Selecting Next Acc");
+
+        if (source.contains("StackPane[id=account1StackPane]")) {
+
+            msgDetail = "SelectNextAccReq,1";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_NextAcc, msgDetail));
+        } else if (source.contains("StackPane[id=account2StackPane]")) {
+
+            msgDetail = "SelectNextAccReq,2";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_NextAcc, msgDetail));
+        } else if (source.contains("StackPane[id=account3StackPane]")) {
+
+            msgDetail = "SelectNextAccReq,3";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_NextAcc, msgDetail));
+        } else if (source.contains("StackPane[id=account4StackPane]")) {
+
+            msgDetail = "SelectNextAccReq,4";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_NextAcc, msgDetail));
+        }
+    } // td_SelectNextAccount
+
+    //------------------------------------------------------------
+    // td_InputAmount
+    public void td_InputTransAmount(Event event) {
+        String source = event.getSource().toString(); //yields complete string
+        String msgDetail;
+        System.out.println("event: " +event);
+
+        if (source.contains("StackPane[id=account1StackPane]")) {
+
+            msgDetail = "InputTransAmount,1";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_InputTransAmount, msgDetail));
+        } else if (source.contains("StackPane[id=account2StackPane]")) {
+
+            msgDetail = "InputTransAmount,2";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_InputTransAmount, msgDetail));
+        } else if (source.contains("StackPane[id=account3StackPane]")) {
+
+            msgDetail = "InputTransAmount,3";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_InputTransAmount, msgDetail));
+        } else if (source.contains("StackPane[id=account4StackPane]")) {
+
+            msgDetail = "InputTransAmount,4";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_InputTransAmount, msgDetail));
+        }
     } // td_checkAccBalance
 
     //------------------------------------------------------------
@@ -77,22 +146,22 @@ public class TouchDisplayEmulatorController {
     public void td_checkAccBalance(MouseEvent event) {
         String source = event.getSource().toString(); //yields complete string
         String msgDetail;
-
+        System.out.println("Going to Check Balance");
         if (source.contains("StackPane[id=account1StackPane]")) {
 //            System.out.println("Src1: "+ source);
-            msgDetail = "EnquiryReq1";
+            msgDetail = "EnquiryReq,1";
             touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, msgDetail));
         } else if (source.contains("StackPane[id=account2StackPane]")) {
 //            System.out.println("Src2: "+ source);
-            msgDetail = "EnquiryReq2";
+            msgDetail = "EnquiryReq,2";
             touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, msgDetail));
         } else if (source.contains("StackPane[id=account3StackPane]")) {
 //            System.out.println("Src3: "+ source);
-            msgDetail = "EnquiryReq3";
+            msgDetail = "EnquiryReq,3";
             touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, msgDetail));
         } else if (source.contains("StackPane[id=account4StackPane]")) {
 //            System.out.println("Src4: "+ source);
-            msgDetail = "EnquiryReq4";
+            msgDetail = "EnquiryReq,4";
             touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, msgDetail));
         }
 
@@ -107,6 +176,31 @@ public class TouchDisplayEmulatorController {
 	log.fine(id + ": mouse clicked: -- (" + x + ", " + y + ")");
 	touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_MouseClicked, x + " " + y));
     } // td_mouseClick
+
+    //------------------------------------------------------------
+    // modifyNotifyLabel
+    public void modifyNotifyLabel(String msgDetails) {
+        switch (msgDetails) {
+            case "ChangePinExisting":
+                notifyLabel.setText("Please input your existing pin (should be 6-digits long)");
+                break;
+            case "ChangePinNew":
+                notifyLabel.setText("Please input your new pin (should be 6-digits long)");
+                break;
+        }
+    } // modifyNotifyLabel
+
+    //------------------------------------------------------------
+    // setChangePinText
+    public void setChangePinText() {
+        accBalanceCardNo.setText("Change pin successful!");
+    } // setChangePinText
+
+    //------------------------------------------------------------
+    // setBalanceErrorText
+    public void setBalanceErrorText () {
+        balanceErrorText.setText("You have wrongly typed in your existing password / new password 3 times, please try again.");
+    } // setBalanceErrorText
 
     //------------------------------------------------------------
     // setAccBalanceText
@@ -149,7 +243,38 @@ public class TouchDisplayEmulatorController {
 //        cardReaderTextArea.appendText(status+"\n");
     } // setStackPaneVisibiliy
 
+    //------------------------------------------------------------
+    // setNextAccStackVisible
+    public void setNextAccStackVisible(String msgDetails) {
+        stackPanes.add(account1StackPane);
+        stackPanes.add(account2StackPane);
+        stackPanes.add(account3StackPane);
+        stackPanes.add(account4StackPane);
 
+        accountTexts.add(account1Text);
+        accountTexts.add(account2Text);
+        accountTexts.add(account3Text);
+        accountTexts.add(account4Text);
+
+        for(int i=0; i<=3; i++){
+            if(msgDetails.contains(""+i)){
+                stackPanes.get(i-1).setVisible(true);
+                accountTexts.get(i-1).setText(i+"");
+            }
+        }
+
+    } // setNextAccStackVisible
+    public void TransAmountInput() {
+        String currentPinLabel = pinLabel.getText();
+        currentPinLabel = currentPinLabel + "*";
+        pinLabel.setText(currentPinLabel);
+        System.out.println("currentPinLabel: " + currentPinLabel);
+    }
+
+    public void AmountInputted(String msg) {
+        pinLabel.setText(msg.split(",")[1]);
+
+    }
     public void pinInput() {
         String currentPinLabel = pinLabel.getText();
         currentPinLabel = currentPinLabel + "*";

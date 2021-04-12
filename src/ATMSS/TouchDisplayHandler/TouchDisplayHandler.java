@@ -27,6 +27,14 @@ public class TouchDisplayHandler extends HWHandler {
                 handleUpdateDisplay(msg);
                 break;
 
+            case TD_NextAcc:
+                atmss.send(new Msg(id, mbox, Msg.Type.TD_NextAcc, msg.getDetails()));
+                break;
+
+            case TD_InputTransAmount:
+                atmss.send(new Msg(id, mbox, Msg.Type.TD_InputTransAmount, msg.getDetails()));
+                break;
+
             case BAMS_Request:
                 atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Request, msg.getDetails()));
                 break;
@@ -35,10 +43,20 @@ public class TouchDisplayHandler extends HWHandler {
                 handleBAMSUpdateDisplay(msg);
                 break;
 
+            case BAMS_Error:
+                handleBAMSErrorDisplay(msg);
+                break;
+
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
         }
     } // processMsg
+
+    //------------------------------------------------------------
+    // handleBAMSErrorDisplay
+    protected void handleBAMSErrorDisplay(Msg msg) {
+        log.info(id + ": BAMS update error display -- " + msg.getDetails());
+    } // handleBAMSErrorDisplay
 
     //------------------------------------------------------------
     // handleBAMSUpdateDisplay
