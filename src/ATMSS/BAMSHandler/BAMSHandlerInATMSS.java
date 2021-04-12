@@ -81,7 +81,11 @@ public class BAMSHandlerInATMSS extends AppThread {
                 testWithdraw(bams, request);
             }else if (request.contains("Logout")){
                 Logout(bams, request);
-            } else {
+            }  else if (request.contains("TransferReq")) {
+                Transfer(bams,request);
+            } else if (request.contains("SelectAccReq")) {
+                getSelectNextAcc(bams, request);
+            }else {
                 switch (request) {
                     case "LogoutReq":
                         testLogout(bams);
@@ -350,7 +354,53 @@ public class BAMSHandlerInATMSS extends AppThread {
 //        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "amount: " + amount));
 //    } // testEnquiry
 
+    //------------------------------------------------------------
+    // testTransfer
+    protected void Transfer(BAMSHandler bams,String request) throws BAMSInvalidReplyException, IOException {
+        System.out.println("Transfer:" + request);
+        String[] details =  request.split(",");
+        String cardNo = details[1];
+        String cred = details[2];
+        String fromAcc = details[3];
+        String toAcc =details[4];
+        String amount = details[5];
 
+        System.out.println("Trans Acc:" + fromAcc);
+        try {
+            double transAmount = bams.transfer(cardNo, cred, fromAcc, toAcc, amount);
+            System.out.println("transAmount: " +  transAmount);
+            System.out.println(bams.toString());
+            atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response,
+                    "TransAmount," + transAmount+ "," + amount + "," + fromAcc + "," + cardNo));
+        } catch (java.io.IOException exception){
+            System.out.println("Trans Error");
+        }
+
+
+    } // testTransfer
+    protected void getSelectNextAcc(BAMSHandler bams, String request) throws BAMSInvalidReplyException, IOException {
+//        System.out.println("GetNextAcc:");
+        String[] details = request.split(",");
+
+
+        String cardNo = details[1];
+        String cred = details[2];
+
+        log.info("cardNo: "+cardNo);
+        log.info("cred: "+cred);
+
+        String accounts = bams.getAccounts(cardNo, cred);
+
+//        System.out.println("accounts: " + accounts);
+        if (!accounts.contains("Error")) {
+//            System.out.println("accounts: " + accounts);
+            System.out.println();
+            atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "SelectTransAC: " + accounts));
+        } else {
+            // Handle error
+            atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Error, "Error"));
+        }
+    }
     //------------------------------------------------------------
     // testTransfer
     protected void testTransfer(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {

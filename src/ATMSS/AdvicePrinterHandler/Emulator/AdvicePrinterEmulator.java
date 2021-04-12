@@ -95,6 +95,22 @@ public class AdvicePrinterEmulator extends AdvicePrinterHandler {
 					"Amount of money withdrawn: $"+amount+"\n" +
 					"Current balance: $"+outAmount+"\n"+
 					"--------------------\n";
+		}else if (content.contains("TransAmount")) {
+			String[] details = content.split(",");
+			String outAmount = details[1];
+			String amount = details[2];
+			String aid = details[3];
+			String cardNo = details[4];
+
+			Date currentDate = new Date();
+
+			content = "--------------------\n" +
+					"Ref No.: "+"#"+(new Timestamp(currentDate.getTime()).getTime()) +"\n" +
+					"Date: "+currentDate+"\n" +
+					"Usage: "+"Transfer money"+"\n" +
+					"Card No. "+cardNo + "(Account id: "+aid+")"+"\n"+
+					"Amount of money transfer: $"+amount+"\n" +
+					"--------------------\n";
 		}
 
 		advicePrinterEmulatorController.printAdvice(content);

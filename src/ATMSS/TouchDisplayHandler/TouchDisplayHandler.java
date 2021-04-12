@@ -26,6 +26,13 @@ public class TouchDisplayHandler extends HWHandler {
             case TD_UpdateDisplay:
                 handleUpdateDisplay(msg);
                 break;
+            case TD_NextAcc:
+                atmss.send(new Msg(id, mbox, Msg.Type.TD_NextAcc, msg.getDetails()));
+                break;
+
+            case TD_InputTransAmount:
+                atmss.send(new Msg(id, mbox, Msg.Type.TD_InputTransAmount, msg.getDetails()));
+                break;
 
             case BAMS_Request:
                 atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Request, msg.getDetails()));

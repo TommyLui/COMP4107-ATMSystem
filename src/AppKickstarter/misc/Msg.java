@@ -117,5 +117,7 @@ public class Msg {
     /** TD withdrawal selected account */   TD_selectedAccWithdrawal,
     /** CR ejected user card */ CR_CardEjected,
     /** CR lock because containing card*/ CR_Lock,
+    /** TD Select next account*/ TD_NextAcc,
+    /** TD input trans amount*/ TD_InputTransAmount,
     } // Type
 } // Msg

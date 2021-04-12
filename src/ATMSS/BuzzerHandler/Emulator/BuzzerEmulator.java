@@ -94,7 +94,6 @@ public class BuzzerEmulator extends BuzzerHandler {
 			}
 			reloadStage("BuzzerEmulator.fxml");
 		break;
-
 	    default:
 		log.severe(id + ": update display with unknown display type -- " + msg.getDetails());
 		break;

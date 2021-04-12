@@ -130,6 +130,9 @@ public class TouchDisplayEmulatorController {
             touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_selectedAcc, msgDetail));
         }
     }
+
+
+
     // td_AccDeposit
     //------------------------------------------------------------
     // td_changePin
@@ -182,6 +185,99 @@ public class TouchDisplayEmulatorController {
         }
 
     } // td_checkAccBalance
+
+    //------------------------------------------------------------
+    // td_TransferMoney
+    public void td_TransferMoney(Event event) {
+//        System.out.println("event: " + "Going to Transfer Money");
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, "SelectAccReq"));
+    } // td_TransferMoney
+
+    //------------------------------------------------------------
+    // td_SelectNextAccount
+    public void td_SelectNextAccount(Event event) {
+        String source = event.getSource().toString(); //yields complete string
+        String msgDetail;
+        System.out.println("event: " +"Selecting Next Acc");
+
+        if (source.contains("StackPane[id=account1StackPane]")) {
+
+            msgDetail = "SelectNextAccReq,1";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_NextAcc, msgDetail));
+        } else if (source.contains("StackPane[id=account2StackPane]")) {
+
+            msgDetail = "SelectNextAccReq,2";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_NextAcc, msgDetail));
+        } else if (source.contains("StackPane[id=account3StackPane]")) {
+
+            msgDetail = "SelectNextAccReq,3";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_NextAcc, msgDetail));
+        } else if (source.contains("StackPane[id=account4StackPane]")) {
+
+            msgDetail = "SelectNextAccReq,4";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_NextAcc, msgDetail));
+        }
+    } // td_SelectNextAccount
+
+    //------------------------------------------------------------
+    // td_InputAmount
+    public void td_InputTransAmount(Event event) {
+        String source = event.getSource().toString(); //yields complete string
+        String msgDetail;
+        System.out.println("event: " +event);
+
+        if (source.contains("StackPane[id=account1StackPane]")) {
+
+            msgDetail = "InputTransAmount,1";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_InputTransAmount, msgDetail));
+        } else if (source.contains("StackPane[id=account2StackPane]")) {
+
+            msgDetail = "InputTransAmount,2";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_InputTransAmount, msgDetail));
+        } else if (source.contains("StackPane[id=account3StackPane]")) {
+
+            msgDetail = "InputTransAmount,3";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_InputTransAmount, msgDetail));
+        } else if (source.contains("StackPane[id=account4StackPane]")) {
+
+            msgDetail = "InputTransAmount,4";
+            touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_InputTransAmount, msgDetail));
+        }
+    }
+
+    //------------------------------------------------------------
+    // setNextAccStackVisible
+    public void setNextAccStackVisible(String msgDetails) {
+        stackPanes.add(account1StackPane);
+        stackPanes.add(account2StackPane);
+        stackPanes.add(account3StackPane);
+        stackPanes.add(account4StackPane);
+
+        accountTexts.add(account1Text);
+        accountTexts.add(account2Text);
+        accountTexts.add(account3Text);
+        accountTexts.add(account4Text);
+
+        for(int i=0; i<=3; i++){
+            if(msgDetails.contains(""+i)){
+                stackPanes.get(i-1).setVisible(true);
+                accountTexts.get(i-1).setText(i+"");
+            }
+        }
+
+    } // setNextAccStackVisible
+
+    public void TransAmountInput() {
+        String currentPinLabel = pinLabel.getText();
+        currentPinLabel = currentPinLabel + "*";
+        pinLabel.setText(currentPinLabel);
+        System.out.println("currentPinLabel: " + currentPinLabel);
+    }
+
+    public void AmountInputted(String msg) {
+        pinLabel.setText(msg.split(",")[1]);
+
+    }
 
     //------------------------------------------------------------
     // td_mouseClick

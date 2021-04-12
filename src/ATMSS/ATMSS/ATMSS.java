@@ -32,6 +32,12 @@ public class ATMSS extends AppThread {
     private String depositAc;
     private String aid = "";
     private String withdrawalAc;
+    private int accountNum = 0;
+    private int containdot = 0;
+    private String accNo = "";
+    private String TransAcc = "";
+    private String NextAcc = "";
+    private String TransAmount = "";
 
     String[] pins = {existingPin, newPin}; // 0: existing pin, 1: new pin
 
@@ -67,6 +73,20 @@ public class ATMSS extends AppThread {
                 case TD_MouseClicked:
                     log.info("MouseCLicked: " + msg.getDetails());
                     processMouseClicked(msg);
+                    break;
+
+                case TD_NextAcc:
+                    log.info("Select Next Ac: " + msg.getDetails());
+                    String[] Account = msg.getDetails().split(",");
+                    TransAcc = Account[1];
+                    accNo = accNo.replace(TransAcc+"/","") + ",SelectNextAcc";
+                    touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, accNo));
+                    break;
+
+                case TD_InputTransAmount:
+                    log.info("Select Next Ac: " + msg.getDetails());
+                    NextAcc = msg.getDetails().split(",")[1];
+                    touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "InputTransAmount"));
                     break;
 
                 case KP_KeyPressed:
@@ -340,7 +360,7 @@ public class ATMSS extends AppThread {
             new Thread(() -> {
                 try {
                     Thread.sleep(100);
-                    buzzerMBox.send(new Msg(id, mbox, Msg.Type.BZ_Buzz, "Buzz,withdrawMoney"));
+                    buzzerMBox.send(new Msg(id, mbox, Msg.Type.BZ_Buzz, "Buzz"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -356,14 +376,28 @@ public class ATMSS extends AppThread {
                 }
             }).start();
 
+        }else if (msgDetails.contains("TransAmount")) {
+            advicePrinterMBox.send(new Msg(id, mbox, Msg.Type.AP_PrintReceipt, msgDetails));
+
         } else if (msgDetails.contains("depAmount")) {
 
         } else if (msgDetails.contains("amount")) {
             log.info("I am amount");
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
         } else if (msgDetails.contains("transAmount")) {
+            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
+        } else if (msgDetails.contains("SelectTransAC")) {
+            System.out.println("Select Transfer account: ");
+            accNo = msgDetails;
+            accountNum = msgDetails.split("/").length;
+            if(accountNum <2){
+                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "NotEnoughACError"));
+            } else{
+                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
+            }
+            //msgDetails = msgDetails.replace("message","NextAcc");
 
-        } else if (msgDetails.contains("accStmtReq")) {
+        }else if (msgDetails.contains("accStmtReq")) {
             log.info("I am accStmtReq");
         } else if (msgDetails.contains("chqBookReq")) {
 
@@ -514,143 +548,325 @@ public class ATMSS extends AppThread {
             log.info("pin: " + pin);
 
         } else if (loginState.equals("login")) {
+            if(accountNum > 1){
+                switch (msg.getDetails()) {
+                    case "Cancel":
+                        System.out.println("Cancel pressed");
+                        break;
+                    case "1":
+                        System.out.println("1 pressed");
+                        if (TransAmount.length() < 10) {
+                            if(TransAmount.contains(".") && containdot == 2){
+                                break;
+                            } else {
+                                if (TransAmount.contains("."))
+                                    containdot++;
+                                TransAmount = TransAmount + "1";
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "AmountInputted," + TransAmount));
+                            }
+                        }
+                        break;
+                    case "2":
+                        System.out.println("2 pressed");
+                        if (TransAmount.length() < 10) {
+                            if(TransAmount.contains(".") && containdot == 2){
+                                break;
+                            } else {
+                                if (TransAmount.contains("."))
+                                    containdot++;
+                                TransAmount = TransAmount + "2";
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "AmountInputted," + TransAmount));
+                            }
+                        }
+                        break;
+                    case "3":
+                        System.out.println("3 pressed");
+                        if (TransAmount.length() < 10) {
+                            if(TransAmount.contains(".") && containdot == 2){
+                                break;
+                            } else {
+                                if (TransAmount.contains("."))
+                                    containdot++;
+                                TransAmount = TransAmount + "3";
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "AmountInputted," + TransAmount));
+                            }
+                        }
+                        break;
+                    case "4":
+                        System.out.println("4 pressed");
+                        if (TransAmount.length() < 10) {
+                            if(TransAmount.contains(".") && containdot == 2){
+                                break;
+                            } else {
+                                if (TransAmount.contains("."))
+                                    containdot++;
+                                TransAmount = TransAmount + "4";
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "AmountInputted," + TransAmount));
+                            }
+                        }
+                        break;
+                    case "5":
+                        System.out.println("5 pressed");
+                        if (TransAmount.length() < 10) {
+                            if(TransAmount.contains(".") && containdot == 2){
+                                break;
+                            } else {
+                                if (TransAmount.contains("."))
+                                    containdot++;
+                                TransAmount = TransAmount + "5";
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "AmountInputted," + TransAmount));
+                            }
+                        }
+                        break;
+                    case "6":
+                        System.out.println("6 pressed");
+                        if (TransAmount.length() < 10) {
+                            if(TransAmount.contains(".") && containdot == 2){
+                                break;
+                            } else {
+                                if (TransAmount.contains("."))
+                                    containdot++;
+                                TransAmount = TransAmount + "6";
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "AmountInputted," + TransAmount));
+                            }
+                        }
+                        break;
+                    case "7":
+                        System.out.println("7 pressed");
+                        if (TransAmount.length() < 10) {
+                            if(TransAmount.contains(".") && containdot == 2){
+                                break;
+                            } else {
+                                if (TransAmount.contains("."))
+                                    containdot++;
+                                TransAmount = TransAmount + "7";
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "AmountInputted," + TransAmount));
+                            }
+                        }
+                        break;
+                    case "8":
+                        System.out.println("8 pressed");
+                        if (TransAmount.length() < 10) {
+                            if(TransAmount.contains(".") && containdot == 2){
+                                break;
+                            } else {
+                                if (TransAmount.contains("."))
+                                    containdot++;
+                                TransAmount = TransAmount + "8";
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "AmountInputted," + TransAmount));
+                            }
+                        }
+                        break;
+                    case "9":
+                        System.out.println("9 pressed");
+                        if (TransAmount.length() < 10) {
+                            if(TransAmount.contains(".") && containdot == 2){
+                                break;
+                            } else {
+                                if (TransAmount.contains("."))
+                                    containdot++;
+                                TransAmount = TransAmount + "9";
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "AmountInputted," + TransAmount));
+                            }
+                        }
+                        break;
+                    case "0":
+                        System.out.println("0 pressed");
+                        if (TransAmount.length() < 10) {
+                            if(TransAmount.contains(".") && containdot == 2){
+                                break;
+                            } else {
+                                if (TransAmount.contains("."))
+                                    containdot++;
+                                TransAmount = TransAmount + "0";
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "AmountInputted," + TransAmount));
+                            }
+                        }
+                        break;
+                    case "00":
+                        System.out.println("00 pressed");
+                        if (TransAmount.length() < 9) {
+                            if(TransAmount.contains(".") && containdot >= 1){
+                                break;
+                            } else {
+                                if (TransAmount.contains("."))
+                                    containdot++;
+                                TransAmount = TransAmount + "00";
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay,"AmountInputted," + TransAmount));
+                            }
 
-            int i = 0;
+                        }
+                        break;
+                    case ".":
+                        System.out.println(". pressed");
+                        if (TransAmount.length() < 10 && TransAmount.length() != 0) {
+                            if(TransAmount.contains(".")){
+                                System.out.println("Containing .");
+                                break;
+                            } else{
+                                TransAmount = TransAmount + ".";
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay,"AmountInputted," + TransAmount));
+                            }
+                        }
+                        break;
+                    case "Erase":
+                        System.out.println("Erase pressed");
+                        if (TransAmount.length() > 0) {
+                            TransAmount = TransAmount.substring(0, TransAmount.length() - 1);
+                            if(TransAmount.contains("."))
+                                containdot--;
+                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinErase"));
+                        }
+                        break;
+                    case "Enter":
 
-            if (changePinState.equals("existing")) {
-                i = 0;
+                        if (!cardNum.equals("") && !TransAmount.equals("")) {
+                            System.out.println("Now going to BAMS HANDLER");
+                            String transferDetails = "TransferReq," + cardNum + "," + cred + "," + TransAcc + "," + NextAcc + "," + TransAmount;
+                            bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, transferDetails));
+                        } else {
+                            System.out.println("No pin inputted");
+                        }
+                        break;
+                }
             } else {
-                i = 1;
-            }
+                int i = 0;
 
-            switch (msg.getDetails()) {
-                case "Cancel":
-                    log.info("Cancel pressed");
-                    break;
-                case "1":
-                    log.info("1 pressed");
-                    if (pins[i].length() < 6) {
-                        pins[i] = pins[i] + "1";
-                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
-                    }
-                    break;
-                case "2":
-                    log.info("2 pressed");
-                    if (pins[i].length() < 6) {
-                        pins[i] = pins[i] + "2";
-                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
-                    }
-                    break;
-                case "3":
-                    log.info("3 pressed");
-                    if (pins[i].length() < 6) {
-                        pins[i] = pins[i] + "3";
-                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
-                    }
-                    break;
-                case "4":
-                    log.info("4 pressed");
-                    if (pins[i].length() < 6) {
-                        pins[i] = pins[i] + "4";
-                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
-                    }
-                    break;
-                case "5":
-                    log.info("5 pressed");
-                    if (pins[i].length() < 6) {
-                        pins[i] = pins[i] + "5";
-                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
-                    }
-                    break;
-                case "6":
-                    log.info("6 pressed");
-                    if (pins[i].length() < 6) {
-                        pins[i] = pins[i] + "6";
-                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
-                    }
-                    break;
-                case "7":
-                    log.info("7 pressed");
-                    if (pins[i].length() < 6) {
-                        pins[i] = pins[i] + "7";
-                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
-                    }
-                    break;
-                case "8":
-                    log.info("8 pressed");
-                    if (pins[i].length() < 6) {
-                        pins[i] = pins[i] + "8";
-                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
-                    }
-                    break;
-                case "9":
-                    log.info("9 pressed");
-                    if (pins[i].length() < 6) {
-                        pins[i] = pins[i] + "9";
-                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
-                    }
-                    break;
-                case "0":
-                    log.info("0 pressed");
-                    if (pins[i].length() < 6) {
-                        pins[i] = pins[i] + "0";
-                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
-                    }
-                    break;
-                case "Erase":
-                    log.info("Erase pressed");
-                    if (pins[i].length() > 0) {
-                        pins[i] = pins[i].substring(0, pins[i].length() - 1);
-                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinErase"));
-                    }
-                    break;
-                case "Enter":
-                    log.info("Enter pressed");
+                if (changePinState.equals("existing")) {
+                    i = 0;
+                } else {
+                    i = 1;
+                }
+
+                switch (msg.getDetails()) {
+                    case "Cancel":
+                        log.info("Cancel pressed");
+                        break;
+                    case "1":
+                        log.info("1 pressed");
+                        if (pins[i].length() < 6) {
+                            pins[i] = pins[i] + "1";
+                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                        }
+                        break;
+                    case "2":
+                        log.info("2 pressed");
+                        if (pins[i].length() < 6) {
+                            pins[i] = pins[i] + "2";
+                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                        }
+                        break;
+                    case "3":
+                        log.info("3 pressed");
+                        if (pins[i].length() < 6) {
+                            pins[i] = pins[i] + "3";
+                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                        }
+                        break;
+                    case "4":
+                        log.info("4 pressed");
+                        if (pins[i].length() < 6) {
+                            pins[i] = pins[i] + "4";
+                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                        }
+                        break;
+                    case "5":
+                        log.info("5 pressed");
+                        if (pins[i].length() < 6) {
+                            pins[i] = pins[i] + "5";
+                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                        }
+                        break;
+                    case "6":
+                        log.info("6 pressed");
+                        if (pins[i].length() < 6) {
+                            pins[i] = pins[i] + "6";
+                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                        }
+                        break;
+                    case "7":
+                        log.info("7 pressed");
+                        if (pins[i].length() < 6) {
+                            pins[i] = pins[i] + "7";
+                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                        }
+                        break;
+                    case "8":
+                        log.info("8 pressed");
+                        if (pins[i].length() < 6) {
+                            pins[i] = pins[i] + "8";
+                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                        }
+                        break;
+                    case "9":
+                        log.info("9 pressed");
+                        if (pins[i].length() < 6) {
+                            pins[i] = pins[i] + "9";
+                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                        }
+                        break;
+                    case "0":
+                        log.info("0 pressed");
+                        if (pins[i].length() < 6) {
+                            pins[i] = pins[i] + "0";
+                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinInputted"));
+                        }
+                        break;
+                    case "Erase":
+                        log.info("Erase pressed");
+                        if (pins[i].length() > 0) {
+                            pins[i] = pins[i].substring(0, pins[i].length() - 1);
+                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "PinErase"));
+                        }
+                        break;
+                    case "Enter":
+                        log.info("Enter pressed");
 //                    if (!cardNum.equals("") && !pins[i].equals("")) {
 
-                    if (i == 0 && pins[i].equals(pin)) {
-                        // proceed to next page
-                        changePinState = "new";
-                        log.info("Existing pin");
-                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "ChangePinNew"));
-                        wrongExistingPinCounter = 0;
-
-                    } else if (i == 1 && !pins[1].equals(pin) && pins[1].length() == 6) {
-                        String chgPinDetails = "ChgPinReq," + cardNum + "," + pins[0] + "," + pins[1] + "," + cred;
-                        log.info("New pin");
-                        bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, chgPinDetails));
-                        pins[0] = "";
-                        pins[1] = "";
-                        changePinState = "existing";
-
-                    } else if (i == 0) {
-                        wrongExistingPinCounter++;
-
-                        if (wrongExistingPinCounter < 3) {
-                            pins[0] = "";
-                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "ChangePinInputtedWrong"));
-                        } else if (wrongExistingPinCounter == 3) {
-                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "ChangePinInputtedWrong3Times"));
+                        if (i == 0 && pins[i].equals(pin)) {
+                            // proceed to next page
+                            changePinState = "new";
+                            log.info("Existing pin");
+                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "ChangePinNew"));
                             wrongExistingPinCounter = 0;
-                            pins[0] = "";
-                        }
-                    } else if (i == 1) {
-                        wrongNewPinCounter++;
 
-                        if (wrongNewPinCounter < 3) {
-                            pins[1] = "";
-                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "ChangePinInputtedWrong"));
-                        } else if (wrongNewPinCounter == 3) {
-                            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "ChangePinInputtedWrong3Times"));
-                            wrongNewPinCounter = 0;
+                        } else if (i == 1 && !pins[1].equals(pin) && pins[1].length() == 6) {
+                            String chgPinDetails = "ChgPinReq," + cardNum + "," + pins[0] + "," + pins[1] + "," + cred;
+                            log.info("New pin");
+                            bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, chgPinDetails));
                             pins[0] = "";
                             pins[1] = "";
                             changePinState = "existing";
+
+                        } else if (i == 0) {
+                            wrongExistingPinCounter++;
+
+                            if (wrongExistingPinCounter < 3) {
+                                pins[0] = "";
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "ChangePinInputtedWrong"));
+                            } else if (wrongExistingPinCounter == 3) {
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "ChangePinInputtedWrong3Times"));
+                                wrongExistingPinCounter = 0;
+                                pins[0] = "";
+                            }
+                        } else if (i == 1) {
+                            wrongNewPinCounter++;
+
+                            if (wrongNewPinCounter < 3) {
+                                pins[1] = "";
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "ChangePinInputtedWrong"));
+                            } else if (wrongNewPinCounter == 3) {
+                                touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "ChangePinInputtedWrong3Times"));
+                                wrongNewPinCounter = 0;
+                                pins[0] = "";
+                                pins[1] = "";
+                                changePinState = "existing";
+                            }
                         }
-                    }
-                    break;
+                        break;
+                }
+                log.info("pin typed in: " + pins[i]);
             }
-            log.info("pin typed in: " + pins[i]);
         }
 
 
