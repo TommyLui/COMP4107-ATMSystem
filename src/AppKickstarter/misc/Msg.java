@@ -90,6 +90,8 @@ public class Msg {
 	/** Health poll acknowledgement */	PollAck,
 	/** Update Display */			TD_UpdateDisplay,
 	/** Mouse Clicked */			TD_MouseClicked,
+    /** Transfer For Select Next Acc */  TD_NextAcc,
+    /** Update Display to input trans amount */  TD_InputTransAmount,
 	/** Card inserted */			CR_CardInserted,
 	/** Card removed */			CR_CardRemoved,
 	/** Eject card */			CR_EjectCard,

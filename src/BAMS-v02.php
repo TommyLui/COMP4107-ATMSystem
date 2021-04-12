@@ -90,17 +90,55 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
 
         } else {
           $reply->amount = "Error";
-          $reply->outAmount = "Error";           
+          $reply->outAmount = "Error";
         }
       } else {
         $reply->amount = "Error";
-        $reply->outAmount = "Error";          
+        $reply->outAmount = "Error";
       }
 
     } else {
       $reply->amount = "Error";
-      $reply->outAmount = "Error";      
-    }   
+      $reply->outAmount = "Error";
+    }
+
+  } else {
+    $reply->amount = "Error";
+    $reply->outAmount = "Error";
+  }
+
+
+  $sql = "SELECT cardNo FROM Cards WHERE cardNo = " . "'" . $req->cardNo . "'" . " and cred = " . "'" . $req->cred . "'";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    $sql = "SELECT balance FROM Accounts WHERE cardNo = " . "'" . $req->cardNo . "'" . " and aid = " . "'" . $req->accNo . "'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+        $req->outAmount = $row["balance"];
+      }
+
+      if ($req->outAmount > $req->amount) {
+        $reply->outAmount = strval($req->outAmount - floatval($req->amount));
+        $sql = "UPDATE Accounts SET balance = " . "'" . $reply->outAmount . "'" . " WHERE cardNo = " . "'" . $req->cardNo . "'" . " and aid = " . "'" . $req->accNo . "'";
+
+        if ($conn->query($sql) === TRUE) {
+
+        } else {
+          $reply->amount = "Error";
+          $reply->outAmount = "Error";
+        }
+      } else {
+        $reply->amount = "Error";
+        $reply->outAmount = "Error";
+      }
+
+    } else {
+      $reply->amount = "Error";
+      $reply->outAmount = "Error";
+    }
 
   } else {
     $reply->amount = "Error";
@@ -181,6 +219,56 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
   $reply->cred = $req->cred;
 
 } else if (strcmp($req->msgType, "TransferReq") === 0) {
+
+   $sql = "SELECT cardNo FROM Cards WHERE cardNo = " . "'" . $req->cardNo . "'" . " and cred = " . "'" . $req->cred . "'";
+   $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+
+    $sql = "SELECT balance FROM Accounts WHERE cardNo = " . "'" . $req->cardNo . "'" . " and aid = " . "'" . $req->fromAcc . "'";
+    $result = $conn->query($sql);
+    if($result->num_rows > 0){
+       while($row = $result->fetch_assoc()) {
+        $reply->CurrAmount = $row["balance"];
+       }
+
+       $reply->TransAmount = floatval($req->amount);
+
+       if($reply->CurrAmount >= $reply->TransAmount){
+         $reply->upFromAccAmount =  $reply->CurrAmount - $reply->TransAmount;
+         $sql = "SELECT balance FROM Accounts WHERE cardNo = "."'" . $req->cardNo . "'" . "and aid = " . "'" . $req->toAcc . "'";
+         $result = $conn->query($sql);
+         if($result->num_rows > 0){
+           while($row = $result->fetch_assoc()) {
+             $reply->ToAccCurrAmount = $row["balance"];
+            }
+          }
+          $reply->upToAccAmount = $reply->ToAccCurrAmount + $reply->TransAmount;
+
+         $sql = "UPDATE Accounts SET balance =" . $reply->upFromAccAmount . " WHERE cardNo = " . "'" . $req->cardNo . "'" . " and aid = " . "'" . $req->fromAcc . "'";
+
+
+         if($conn->query($sql) ===True){
+           $sql = "UPDATE Accounts SET balance =" . $reply->upToAccAmount . " WHERE cardNo = " . "'" . $req->cardNo . "'" . " and aid = " . "'" . $req->toAcc . "'";
+            if($conn->query($sql) ===True){
+                $reply->TransAmount = (string)$TransAmount;
+                $reply->upFromAccAmount = (string)$upFromAccAmount;
+                $reply->upToAccAmount = (string)$upToAccAmount;
+            }
+
+         } else{
+            $reply->TransAmount = "Error";
+            $reply->upFromAccAmount = "Error";
+            $reply->upToAccAmount = "Error";
+         }
+       } else{
+          $reply->TransAmount = "Error";
+          $reply->upFromAccAmount = "Error";
+          $reply->upToAccAmount = "Error";
+        }
+
+     }
+   }
   $reply->msgType = "TransferReply";
   $reply->cardNo = $req->cardNo;
   $reply->cred = $req->cred;
@@ -222,7 +310,7 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
   $reply->oldPin = $req->oldPin;
   $reply->newPin = $req->newPin;
   $reply->cred = $req->cred;
-  
+
 } else if (strcmp($req->msgType, "ChgLangReq") === 0) {
   $reply->msgType = "ChgLangReply";
   $reply->cardNo = $req->cardNo;

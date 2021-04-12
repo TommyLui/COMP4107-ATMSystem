@@ -26,6 +26,11 @@
                                strokeType="OUTSIDE"
                                width="300.0"/>
                     <Text>Change pin</Text>
+            </StackPane>
+                <StackPane AnchorPane.bottomAnchor="140" AnchorPane.leftAnchor="0" onMouseClicked="#td_TransferMoney">
+                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" stroke="BLACK" strokeType="OUTSIDE"
+                               width="300.0" AnchorPane.bottomAnchor="140" AnchorPane.rightAnchor="0"/>
+                    <Text>Money Transfer</Text>
                 </StackPane>
 
                 <StackPane AnchorPane.bottomAnchor="70" AnchorPane.leftAnchor="0" onMouseClicked="#td_deposit">

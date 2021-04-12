@@ -18,20 +18,13 @@
 
         <AnchorPane prefHeight="50.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="210.0">
             <children>
-                <Label fx:id="getCashLabel"  text= "Get Cash!!!">
+                <Label fx:id="getCashLabel"  text= "Loading......">
                     <font>
-                        <Font name="System Bold" size="32.0" />
+                        <Font name="System Bold" size="24.0" />
                     </font>
                 </Label>
             </children>
         </AnchorPane>
-
-        <StackPane fx:id="checkAccBalanceStackPane" onMouseClicked="#td_printReceipt"
-                   AnchorPane.bottomAnchor="50" AnchorPane.leftAnchor="250">
-            <Rectangle arcHeight="5.0" arcWidth="5.0"
-                       fill="white" height="40.0" stroke="BLACK" strokeType="OUTSIDE" width="160.0"/>
-            <Text text="Print Receipt"/>
-        </StackPane>
 
 
     </children>

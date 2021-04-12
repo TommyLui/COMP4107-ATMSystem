@@ -1,140 +1,143 @@
-210413-01:40:12 [INFO] -- 
-210413-01:40:12 [INFO] -- 
-210413-01:40:12 [INFO] -- ============================================================
-210413-01:40:12 [INFO] -- ATMSSStarter: Application Starting...
-210413-01:40:15 [INFO] -- timer: starting...
-210413-01:40:15 [INFO] -- AdvicePrinterHandler: starting...
-210413-01:40:15 [INFO] -- CardReaderHandler: starting...
-210413-01:40:15 [INFO] -- BuzzerHandler: starting...
-210413-01:40:15 [INFO] -- TouchDisplayHandler: starting...
-210413-01:40:15 [INFO] -- DepositCollectorHandler: starting...
-210413-01:40:15 [INFO] -- BAMSHandler: starting...
-210413-01:40:15 [INFO] -- KeypadHandler: starting...
-210413-01:40:15 [INFO] -- CashDispenserHandler: starting...
-210413-01:40:15 [INFO] -- ATMSS: starting...
-210413-01:40:22 [INFO] -- CardInserted: 1005-5001
-210413-01:40:22 [INFO] -- cardNum: 1005-5001
-210413-01:40:22 [INFO] -- TouchDisplayHandler: update display -- PinInputPage
-210413-01:40:22 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
-210413-01:40:24 [INFO] -- KeyPressed: 6
-210413-01:40:24 [INFO] -- login state: cardInserted
-210413-01:40:24 [INFO] -- 6 pressed
-210413-01:40:24 [INFO] -- pin: 6
-210413-01:40:24 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-01:40:24 [INFO] -- currentPinLabel: *
-210413-01:40:24 [INFO] -- KeyPressed: 5
-210413-01:40:24 [INFO] -- login state: cardInserted
-210413-01:40:24 [INFO] -- 5 pressed
-210413-01:40:24 [INFO] -- pin: 65
-210413-01:40:24 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-01:40:24 [INFO] -- currentPinLabel: **
-210413-01:40:25 [INFO] -- KeyPressed: 4
-210413-01:40:25 [INFO] -- login state: cardInserted
-210413-01:40:25 [INFO] -- 4 pressed
-210413-01:40:25 [INFO] -- pin: 654
-210413-01:40:25 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-01:40:25 [INFO] -- currentPinLabel: ***
-210413-01:40:25 [INFO] -- KeyPressed: 3
-210413-01:40:25 [INFO] -- login state: cardInserted
-210413-01:40:25 [INFO] -- 3 pressed
-210413-01:40:25 [INFO] -- pin: 6543
-210413-01:40:25 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-01:40:25 [INFO] -- currentPinLabel: ****
-210413-01:40:25 [INFO] -- KeyPressed: 2
-210413-01:40:25 [INFO] -- login state: cardInserted
-210413-01:40:25 [INFO] -- 2 pressed
-210413-01:40:25 [INFO] -- pin: 65432
-210413-01:40:25 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-01:40:25 [INFO] -- currentPinLabel: *****
-210413-01:40:25 [INFO] -- KeyPressed: 1
-210413-01:40:25 [INFO] -- login state: cardInserted
-210413-01:40:25 [INFO] -- 1 pressed
-210413-01:40:25 [INFO] -- pin: 654321
-210413-01:40:25 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-01:40:25 [INFO] -- currentPinLabel: ******
-210413-01:40:26 [INFO] -- KeyPressed: Enter
-210413-01:40:26 [INFO] -- login state: cardInserted
-210413-01:40:26 [INFO] -- Enter pressed
-210413-01:40:26 [INFO] -- pin: 654321
-210413-01:40:26 [INFO] -- LoginReq
-210413-01:40:26 [INFO] -- 1005-5001
-210413-01:40:26 [INFO] -- 654321
-210413-01:40:26 [INFO] -- Login:
-210413-01:40:27 [INFO] -- cred: 95c3fa198bffebd56734924e7ce9f2310527dc8e
-210413-01:40:27 [INFO] -- BAMS response: cred:95c3fa198bffebd56734924e7ce9f2310527dc8e
-210413-01:40:27 [INFO] -- Login successful with cred: 95c3fa198bffebd56734924e7ce9f2310527dc8e
-210413-01:40:27 [INFO] -- TouchDisplayHandler: update display -- MainMenu
-210413-01:40:27 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
-210413-01:40:28 [INFO] -- event: MouseEvent [source = StackPane@67be8d03, target = Rectangle[x=0.0, y=0.0, width=300.0, height=70.0, fill=0xffffffff, stroke=0x000000ff, strokeWidth=1.0], eventType = MOUSE_CLICKED, consumed = false, x = 137.0, y = 47.0, z = 0.0, button = PRIMARY, pickResult = PickResult [node = Rectangle[x=0.0, y=0.0, width=300.0, height=70.0, fill=0xffffffff, stroke=0x000000ff, strokeWidth=1.0], point = Point3D [x = 136.0, y = 46.0, z = 0.0], distance = 970.3332099679081]
-210413-01:40:28 [INFO] -- BAMS request: GetAccWithdrawal
-210413-01:40:28 [INFO] -- GetAcc: 
-210413-01:40:28 [INFO] -- cardNo: 1005-5001
-210413-01:40:28 [INFO] -- cred: 95c3fa198bffebd56734924e7ce9f2310527dc8e
-210413-01:40:28 [INFO] -- accounts: 1/2/
-210413-01:40:28 [INFO] -- BAMS response: accountWithdrawal: 1/2/
-210413-01:40:28 [INFO] -- I am accounts for Deposit
-210413-01:40:28 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayWithdrawal.fxml
-210413-01:40:30 [INFO] -- 2
-210413-01:40:30 [INFO] -- TouchDisplayHandler: update display -- Waiting
-210413-01:40:30 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayWaitPushCash.fxml
-210413-01:40:36 [INFO] -- ProvideCash: 5000
-210413-01:40:36 [INFO] -- 5000
-210413-01:40:36 [INFO] -- Withdraw: 
-210413-01:40:36 [INFO] -- outAmount: 43450
-210413-01:40:36 [INFO] -- BAMS response: outAmount,43450,5000,2,1005-5001
-210413-01:40:36 [INFO] -- TouchDisplayHandler: update display -- GetCash
-210413-01:40:36 [INFO] -- AdvicePrinterHandler: receipt printed
-210413-01:40:36 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayGetCash.fxml
-210413-01:40:36 [INFO] -- Print advice successful: print advice okay
-210413-01:40:36 [INFO] -- BuzzerHandler: update display -- Buzz,withdrawMoney
-210413-01:40:36 [INFO] -- BuzzerHandler: loading fxml: BuzzerBuzzing.fxml
-210413-01:40:46 [INFO] -- TouchDisplayHandler: update display -- MainMenu
-210413-01:40:46 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
-210413-01:40:46 [WARNING] -- CashDispenserHandler: unknown message type: [ATMSS (CD_RetainMoney) -- ]
-210413-01:40:46 [SEVERE] -- BuzzerHandler: update display with unknown display type -- Buzz,withdrawMoney
-210413-01:40:46 [INFO] -- BuzzerHandler: loading fxml: BuzzerEmulator.fxml
-210413-01:40:49 [INFO] -- event: MouseEvent [source = StackPane@6efb8ca7, target = Rectangle[x=0.0, y=0.0, width=300.0, height=70.0, fill=0xffffffff, stroke=0x000000ff, strokeWidth=1.0], eventType = MOUSE_CLICKED, consumed = false, x = 118.0, y = 59.0, z = 0.0, button = PRIMARY, pickResult = PickResult [node = Rectangle[x=0.0, y=0.0, width=300.0, height=70.0, fill=0xffffffff, stroke=0x000000ff, strokeWidth=1.0], point = Point3D [x = 117.0, y = 58.0, z = 0.0], distance = 970.3332099679081]
-210413-01:40:49 [INFO] -- BAMS request: GetAccWithdrawal
-210413-01:40:49 [INFO] -- GetAcc: 
-210413-01:40:49 [INFO] -- cardNo: 1005-5001
-210413-01:40:49 [INFO] -- cred: 95c3fa198bffebd56734924e7ce9f2310527dc8e
-210413-01:40:49 [INFO] -- accounts: 1/2/
-210413-01:40:49 [INFO] -- BAMS response: accountWithdrawal: 1/2/
-210413-01:40:49 [INFO] -- I am accounts for Deposit
-210413-01:40:49 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayWithdrawal.fxml
-210413-01:41:15 [INFO] -- Poll: TimesUp 47920 0
-210413-01:41:15 [INFO] -- PollAck: BuzzerHandler is up!
-210413-01:41:15 [INFO] -- PollAck: AdvicePrinterHandler is up!
-210413-01:41:15 [INFO] -- PollAck: CashDispenserHandler is up!
-210413-01:41:15 [INFO] -- PollAck: DepositCollectorHandler is up!
-210413-01:41:15 [INFO] -- PollAck: BAMSHandler is up!
-210413-01:41:15 [INFO] -- PollAck: KeypadHandler is up!
-210413-01:41:15 [INFO] -- PollAck: TouchDisplayHandler is up!
-210413-01:41:15 [INFO] -- PollAck: CardReaderHandler is up!
-210413-01:42:15 [INFO] -- Poll: TimesUp 58634 0
-210413-01:42:15 [INFO] -- PollAck: KeypadHandler is up!
-210413-01:42:15 [INFO] -- PollAck: TouchDisplayHandler is up!
-210413-01:42:15 [INFO] -- PollAck: CardReaderHandler is up!
-210413-01:42:15 [INFO] -- PollAck: BAMSHandler is up!
-210413-01:42:15 [INFO] -- PollAck: BuzzerHandler is up!
-210413-01:42:15 [INFO] -- PollAck: CashDispenserHandler is up!
-210413-01:42:15 [INFO] -- PollAck: DepositCollectorHandler is up!
-210413-01:42:15 [INFO] -- PollAck: AdvicePrinterHandler is up!
-210413-01:43:15 [INFO] -- Poll: TimesUp 33471 0
-210413-01:43:15 [INFO] -- PollAck: TouchDisplayHandler is up!
-210413-01:43:15 [INFO] -- PollAck: CardReaderHandler is up!
-210413-01:43:15 [INFO] -- PollAck: BuzzerHandler is up!
-210413-01:43:15 [INFO] -- PollAck: BAMSHandler is up!
-210413-01:43:15 [INFO] -- PollAck: AdvicePrinterHandler is up!
-210413-01:43:15 [INFO] -- PollAck: KeypadHandler is up!
-210413-01:43:15 [INFO] -- PollAck: DepositCollectorHandler is up!
-210413-01:43:15 [INFO] -- PollAck: CashDispenserHandler is up!
-210413-01:44:15 [INFO] -- Poll: TimesUp 36502 0
-210413-01:44:15 [INFO] -- PollAck: CardReaderHandler is up!
-210413-01:44:15 [INFO] -- PollAck: KeypadHandler is up!
-210413-01:44:15 [INFO] -- PollAck: AdvicePrinterHandler is up!
-210413-01:44:15 [INFO] -- PollAck: BAMSHandler is up!
-210413-01:44:15 [INFO] -- PollAck: BuzzerHandler is up!
-210413-01:44:15 [INFO] -- PollAck: DepositCollectorHandler is up!
-210413-01:44:15 [INFO] -- PollAck: TouchDisplayHandler is up!
-210413-01:44:15 [INFO] -- PollAck: CashDispenserHandler is up!
+210411-15:29:09 [INFO] -- 
+210411-15:29:09 [INFO] -- 
+210411-15:29:09 [INFO] -- ============================================================
+210411-15:29:09 [INFO] -- ATMSSStarter: Application Starting...
+210411-15:29:10 [INFO] -- timer: starting...
+210411-15:29:10 [INFO] -- BAMSHandler: starting...
+210411-15:29:10 [INFO] -- KeypadHandler: starting...
+210411-15:29:10 [INFO] -- CardReaderHandler: starting...
+210411-15:29:10 [INFO] -- DepositCollectorHandler: starting...
+210411-15:29:10 [INFO] -- TouchDisplayHandler: starting...
+210411-15:29:10 [INFO] -- AdvicePrinterHandler: starting...
+210411-15:29:10 [INFO] -- BuzzerHandler: starting...
+210411-15:29:10 [INFO] -- CashDispenserHandler: starting...
+210411-15:29:10 [INFO] -- ATMSS: starting...
+210411-15:29:30 [INFO] -- CardInserted: 1005-5001
+210411-15:29:30 [INFO] -- TouchDisplayHandler: update display -- PinInputPage
+210411-15:29:30 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
+210411-15:29:32 [INFO] -- KeyPressed: 6
+210411-15:29:32 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:29:33 [INFO] -- KeyPressed: 5
+210411-15:29:33 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:29:33 [INFO] -- KeyPressed: 4
+210411-15:29:33 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:29:34 [INFO] -- KeyPressed: 7
+210411-15:29:34 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:29:35 [INFO] -- KeyPressed: Erase
+210411-15:29:35 [INFO] -- TouchDisplayHandler: update display -- PinErase
+210411-15:29:36 [INFO] -- KeyPressed: 3
+210411-15:29:36 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:29:36 [INFO] -- KeyPressed: 2
+210411-15:29:36 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:29:37 [INFO] -- KeyPressed: 1
+210411-15:29:37 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:29:37 [INFO] -- KeyPressed: Enter
+210411-15:29:37 [INFO] -- BAMS response: cred:6013170824d2e035c71c48b12477c04e5dd7beee
+210411-15:29:37 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210411-15:29:37 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210411-15:30:01 [INFO] -- TouchDisplayHandler: update display -- ChangePinExisting
+210411-15:30:01 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
+210411-15:30:03 [INFO] -- KeyPressed: 6
+210411-15:30:03 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:04 [INFO] -- KeyPressed: 5
+210411-15:30:04 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:04 [INFO] -- KeyPressed: 4
+210411-15:30:04 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:04 [INFO] -- KeyPressed: 3
+210411-15:30:04 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:04 [INFO] -- KeyPressed: 2
+210411-15:30:04 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:04 [INFO] -- KeyPressed: 1
+210411-15:30:04 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:05 [INFO] -- KeyPressed: Enter
+210411-15:30:05 [INFO] -- TouchDisplayHandler: update display -- ChangePinNew
+210411-15:30:05 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
+210411-15:30:07 [INFO] -- KeyPressed: 1
+210411-15:30:07 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:07 [INFO] -- KeyPressed: 2
+210411-15:30:07 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:07 [INFO] -- KeyPressed: 3
+210411-15:30:07 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:07 [INFO] -- KeyPressed: 4
+210411-15:30:07 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:07 [INFO] -- KeyPressed: 5
+210411-15:30:07 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:07 [INFO] -- KeyPressed: 6
+210411-15:30:07 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:08 [INFO] -- KeyPressed: Enter
+210411-15:30:08 [INFO] -- cardNo: 1005-5001
+210411-15:30:08 [INFO] -- oldPin: 654321
+210411-15:30:08 [INFO] -- newPin: 123456
+210411-15:30:08 [INFO] -- cred: 6013170824d2e035c71c48b12477c04e5dd7beee
+210411-15:30:08 [INFO] -- BAMS response: chgPinReq result: succ,123456
+210411-15:30:08 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayCheckAccBalance.fxml
+210411-15:30:09 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210411-15:30:09 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210411-15:30:10 [INFO] -- TouchDisplayHandler: update display -- ChangePinExisting
+210411-15:30:10 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
+210411-15:30:10 [INFO] -- Poll: TimesUp 57237 0
+210411-15:30:10 [INFO] -- PollAck: KeypadHandler is up!
+210411-15:30:10 [INFO] -- PollAck: TouchDisplayHandler is up!
+210411-15:30:10 [INFO] -- PollAck: CardReaderHandler is up!
+210411-15:30:10 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210411-15:30:10 [INFO] -- PollAck: BAMSHandler is up!
+210411-15:30:12 [INFO] -- KeyPressed: 5
+210411-15:30:12 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:13 [INFO] -- KeyPressed: 4
+210411-15:30:13 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:13 [INFO] -- KeyPressed: Enter
+210411-15:30:13 [INFO] -- TouchDisplayHandler: update display -- ChangePinInputtedWrong
+210411-15:30:14 [INFO] -- KeyPressed: 1
+210411-15:30:14 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:14 [INFO] -- KeyPressed: 3
+210411-15:30:14 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:14 [INFO] -- KeyPressed: 1
+210411-15:30:14 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:19 [INFO] -- KeyPressed: Enter
+210411-15:30:19 [INFO] -- TouchDisplayHandler: update display -- ChangePinInputtedWrong
+210411-15:30:19 [INFO] -- KeyPressed: Enter
+210411-15:30:19 [INFO] -- TouchDisplayHandler: update display -- ChangePinInputtedWrong3Times
+210411-15:30:19 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayCheckBalanceError.fxml
+210411-15:30:20 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210411-15:30:20 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210411-15:30:21 [INFO] -- TouchDisplayHandler: update display -- ChangePinExisting
+210411-15:30:21 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
+210411-15:30:23 [INFO] -- KeyPressed: 1
+210411-15:30:23 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:23 [INFO] -- KeyPressed: 2
+210411-15:30:23 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:23 [INFO] -- KeyPressed: 3
+210411-15:30:23 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:24 [INFO] -- KeyPressed: 4
+210411-15:30:24 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:24 [INFO] -- KeyPressed: 5
+210411-15:30:24 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:24 [INFO] -- KeyPressed: 6
+210411-15:30:24 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:25 [INFO] -- KeyPressed: Enter
+210411-15:30:25 [INFO] -- TouchDisplayHandler: update display -- ChangePinNew
+210411-15:30:25 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
+210411-15:30:27 [INFO] -- KeyPressed: Enter
+210411-15:30:27 [INFO] -- TouchDisplayHandler: update display -- ChangePinInputtedWrong
+210411-15:30:29 [INFO] -- MouseCLicked: 589 412
+210411-15:30:30 [INFO] -- KeyPressed: 6
+210411-15:30:30 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:31 [INFO] -- KeyPressed: 5
+210411-15:30:31 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:31 [INFO] -- KeyPressed: 4
+210411-15:30:31 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:32 [INFO] -- KeyPressed: 3
+210411-15:30:32 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:32 [INFO] -- KeyPressed: 2
+210411-15:30:32 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:32 [INFO] -- KeyPressed: 1
+210411-15:30:32 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210411-15:30:32 [INFO] -- KeyPressed: Enter
+210411-15:30:32 [INFO] -- cardNo: 1005-5001
+210411-15:30:32 [INFO] -- oldPin: 123456
+210411-15:30:32 [INFO] -- newPin: 654321
+210411-15:30:32 [INFO] -- cred: 6013170824d2e035c71c48b12477c04e5dd7beee
+210411-15:30:32 [INFO] -- BAMS response: chgPinReq result: succ,654321
+210411-15:30:32 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayCheckAccBalance.fxml
+210411-15:30:34 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210411-15:30:34 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
