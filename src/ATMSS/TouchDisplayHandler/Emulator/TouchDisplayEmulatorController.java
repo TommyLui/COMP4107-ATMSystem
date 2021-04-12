@@ -16,7 +16,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-
 //======================================================================
 // TouchDisplayEmulatorController
 public class TouchDisplayEmulatorController {
@@ -62,21 +61,21 @@ public class TouchDisplayEmulatorController {
     //------------------------------------------------------------
     // td_deposit
     public void td_withdrawal(Event event) {
-        System.out.println("event: " + event);
+        log.info("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, "GetAccWithdrawal"));
     }
     // td_deposit
     //------------------------------------------------------------
     // td_deposit
     public void td_deposit(Event event) {
-        System.out.println("event: " + event);
+        log.info("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, "GetAccDeposit"));
     }
     // td_deposit
     //------------------------------------------------------------
     // td_refresh
     public void td_refresh(Event event) {
-        System.out.println("event: " + event);
+        log.info("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "RefreshDeposit"));
     }
     // td_refresh
@@ -135,26 +134,26 @@ public class TouchDisplayEmulatorController {
     //------------------------------------------------------------
     // td_changePin
     public void td_changePin(Event event) {
-        System.out.println("event: " + event);
+        log.info("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "ChangePinExisting"));
     }
     // td_changePin
     //------------------------------------------------------------
     // td_checkAccBalance
     public void td_checkBalance(Event event) {
-        System.out.println("event: " + event);
+        log.info("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.BAMS_Request, "GetAccReq"));
     } // td_checkAccBalance
 
     //------------------------------------------------------------
     // td_returnMainMenu
     public void td_returnMainMenu(Event event) {
-        System.out.println("event: " + event);
+        log.info("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
     } // td_returnMainMenu
 
     public void td_ejectCard(Event event) {
-        System.out.println("event: " + event);
+        log.info("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "EjectCard"));
     }
 
@@ -265,14 +264,14 @@ public class TouchDisplayEmulatorController {
         String currentPinLabel = pinLabel.getText();
         currentPinLabel = currentPinLabel + "*";
         pinLabel.setText(currentPinLabel);
-        System.out.println("currentPinLabel: " + currentPinLabel);
+        log.info("currentPinLabel: " + currentPinLabel);
     }
 
     public void pinErase() {
         String currentPinLabel = pinLabel.getText();
         currentPinLabel = currentPinLabel.substring(0, currentPinLabel.length() - 1);
         pinLabel.setText(currentPinLabel);
-        System.out.println("currentPinLabel: " + currentPinLabel);
+        log.info("currentPinLabel: " + currentPinLabel);
     }
 
     public void pinWrong() {

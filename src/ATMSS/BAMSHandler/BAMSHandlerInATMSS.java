@@ -80,7 +80,6 @@ public class BAMSHandlerInATMSS extends AppThread {
             }else if (request.contains("WithdrawReq")) {
                 testWithdraw(bams, request);
             }else if (request.contains("Logout")){
-//                System.out.println("handle logout");
                 Logout(bams, request);
             } else {
                 switch (request) {
@@ -150,26 +149,24 @@ public class BAMSHandlerInATMSS extends AppThread {
     // Login
     protected void Login(BAMSHandler bams, String request) throws BAMSInvalidReplyException, IOException {
         String[] details = request.split(",");
-        System.out.println(details[0]);
-        System.out.println(details[1]);
-        System.out.println(details[2]);
-        System.out.println("Login:");
+        log.info(details[0]);
+        log.info(details[1]);
+        log.info(details[2]);
+        log.info("Login:");
         String cred = bams.login(details[1], details[2]);
-        System.out.println("cred: " + cred);
-        System.out.println();
+        log.info("cred: " + cred);
         atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "cred:" + cred));
     } // Login
 
     // Logout
     protected void Logout(BAMSHandler bams, String request) throws BAMSInvalidReplyException, IOException {
-        System.out.println("Logout:");
+        log.info("Logout:");
         String[] details = request.split(",");
-        System.out.println(details[0]);
-        System.out.println(details[1]);
-        System.out.println(details[2]);
+        log.info(details[0]);
+        log.info(details[1]);
+        log.info(details[2]);
         String result = bams.logout(details[1], details[2]);
-        System.out.println("result: " + result);
-        System.out.println();
+        log.info("result: " + result);
         atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "logout result: " + result));
     } // Logout
 
@@ -177,10 +174,9 @@ public class BAMSHandlerInATMSS extends AppThread {
     //------------------------------------------------------------
     // testLogin
     protected void testLogin(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
-        System.out.println("Login:");
+        log.info("Login:");
         String cred = bams.login("4107-7014", "123456");
-        System.out.println("cred: " + cred);
-        System.out.println();
+        log.info("cred: " + cred);
         atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "cred: " + cred));
     } // testLogin
 
@@ -188,10 +184,9 @@ public class BAMSHandlerInATMSS extends AppThread {
     //------------------------------------------------------------
     // testLogout
     protected void testLogout(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
-        System.out.println("Logout:");
+        log.info("Logout:");
         String result = bams.logout("12345678-0", "cred-0");
-        System.out.println("result: " + result);
-        System.out.println();
+        log.info("result: " + result);
         atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "logout result: " + result));
     } // testLogout
 
@@ -213,8 +208,6 @@ public class BAMSHandlerInATMSS extends AppThread {
             log.info("accounts: " + accounts );
 
             if (!accounts.contains("Error")) {
-//            System.out.println("accounts: " + accounts);
-                System.out.println();
                 atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "accountDeposit: " + accounts));
             } else {
                 // Handle error
@@ -235,8 +228,6 @@ public class BAMSHandlerInATMSS extends AppThread {
             log.info("accounts: " + accounts );
 
             if (!accounts.contains("Error")) {
-//            System.out.println("accounts: " + accounts);
-                System.out.println();
                 atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "accounts: " + accounts));
             } else {
                 // Handle error
@@ -329,18 +320,18 @@ public class BAMSHandlerInATMSS extends AppThread {
     protected void enquiry(BAMSHandler bams, String request) throws BAMSInvalidReplyException, IOException {
 
         try {
-            System.out.println("Enquiry:");
+            log.info("Enquiry:");
 
             String[] details = request.split(",");
             String aid = details[1];
             String cardNo = details[2];
             String cred = details[3];
 
-            System.out.println("Card no: " + cardNo);
-            System.out.println("aid: " + aid);
+            log.info("Card no: " + cardNo);
+            log.info("aid: " + aid);
 
             double amount = bams.enquiry(cardNo, aid, cred);
-            System.out.println("amount: " + amount);
+            log.info("amount: " + amount);
             atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response,
                     "card no: " + cardNo + "@account id: " + aid + "@amount: " + amount));
         } catch (NumberFormatException exception) {
@@ -363,10 +354,9 @@ public class BAMSHandlerInATMSS extends AppThread {
     //------------------------------------------------------------
     // testTransfer
     protected void testTransfer(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
-        System.out.println("Transfer:");
+        log.info("Transfer:");
         double transAmount = bams.transfer("12345678-5", "cred-5", "111-222-335", "11-222-336", "109705");
-        System.out.println("transAmount: " + transAmount);
-        System.out.println();
+        log.info("transAmount: " + transAmount);
         atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "transAmount: " + transAmount));
     } // testTransfer
 
@@ -374,10 +364,9 @@ public class BAMSHandlerInATMSS extends AppThread {
     //------------------------------------------------------------
     // testAccStmtReq
     protected void testAccStmtReq(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
-        System.out.println("AccStmtReq:");
+        log.info("AccStmtReq:");
         String result = bams.accStmtReq("12345678-4", "111-222-334", "cred-6");
-        System.out.println("result: " + result);
-        System.out.println();
+        log.info("result: " + result);
         atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "accStmtReq result: " + result));
     } // testAccStmtReq
 
@@ -385,10 +374,9 @@ public class BAMSHandlerInATMSS extends AppThread {
     //------------------------------------------------------------
     // testChqBookReq
     protected void testChqBookReq(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
-        System.out.println("ChqBookReq:");
+        log.info("ChqBookReq:");
         String result = bams.chqBookReq("12345678-4", "111-222-334", "cred-7");
-        System.out.println("result: " + result);
-        System.out.println();
+        log.info("result: " + result);
         atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "chqBookReq result: " + result));
     } // testChqBookReq
 
@@ -397,13 +385,13 @@ public class BAMSHandlerInATMSS extends AppThread {
     // chgPinReq
     protected void chgPinReq(BAMSHandler bams, String request) throws BAMSInvalidReplyException, IOException {
 
-        System.out.println("chgPinReq:");
+        log.info("chgPinReq:");
         String[] details = request.split(",");
-        System.out.println(details[0]);
-        System.out.println(details[1]);
-        System.out.println(details[2]);
-        System.out.println(details[3]);
-        System.out.println(details[4]);
+        log.info(details[0]);
+        log.info(details[1]);
+        log.info(details[2]);
+        log.info(details[3]);
+        log.info(details[4]);
 
         String cardNo = details[1];
         String oldPin = details[2];
@@ -415,12 +403,11 @@ public class BAMSHandlerInATMSS extends AppThread {
         log.info("newPin: "+newPin);
         log.info("cred: "+cred);
 
-        System.out.println("ChgPinReq:");
+        log.info("ChgPinReq:");
 
         String result = bams.chgPinReq(cardNo, oldPin, newPin, cred);
 
-        System.out.println("result: " + result);
-        System.out.println();
+        log.info("result: " + result);
 
         if (result.equals("succ")) {
             atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "chgPinReq result: " + result + ","+ newPin));

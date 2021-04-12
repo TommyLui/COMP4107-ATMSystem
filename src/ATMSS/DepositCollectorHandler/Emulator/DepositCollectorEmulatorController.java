@@ -50,7 +50,7 @@ public class DepositCollectorEmulatorController {
     public void buttonPressed(ActionEvent actionEvent) {
         Button btn = (Button) actionEvent.getSource();
         String btnTxt = btn.getText();
-        System.out.println("The btn pressed:" + btnTxt);
+        log.info("The btn pressed:" + btnTxt);
 
 
 
@@ -60,24 +60,24 @@ public class DepositCollectorEmulatorController {
                 if(num100NoteLabel.getText() != "" && num100NoteLabel.getLength() != 0){
                     num100Note = Integer.parseInt(num100NoteLabel.getText());
                 }else{
-                    System.out.println("Enter Number on 100");
+                    log.info("Enter Number on 100");
                 }
                 if(num500NoteLabel.getText() != "" && num500NoteLabel.getLength()!=0){
                     num500Note = Integer.parseInt(num500NoteLabel.getText());
                 }else{
-                    System.out.println("Enter Number on 500");
+                    log.info("Enter Number on 500");
                 }
                 if(num1000NoteLabel.getText() != "" && num1000NoteLabel.getLength()!=0){
                     num1000Note = Integer.parseInt(num1000NoteLabel.getText());
                 }else{
-                    System.out.println("Enter Number on 1000");
+                    log.info("Enter Number on 1000");
                 }
 
                 totalNote = num100Note + num500Note + num1000Note;
                 totalCash = (num100Note * 100) + (num500Note * 500) + (num1000Note * 1000);
                 amount = (num100Note * 100) + (num500Note * 500) + (num1000Note * 1000);
                 if(totalNote > 100){
-                    System.out.println("Over Enter Cash");
+                    log.info("Over Enter Cash");
                 }
                 depositCollectorMBox.send(new Msg(id, depositCollectorMBox, Msg.Type.DC_Collect_Cash,
                         totalNote + "," + amount));

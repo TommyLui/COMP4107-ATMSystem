@@ -61,7 +61,6 @@ public class ATMSSStarter extends AppKickstarter {
     protected void startHandlers() {
 	// create handlers
 	try {
-//		System.out.println("I am ATMSSStarter");
 		timer = new Timer("timer", this);
 	    atmss = new ATMSS("ATMSS", this);
 	    bamsHandler = new BAMSHandlerInATMSS("BAMSHandler", this);
@@ -73,7 +72,7 @@ public class ATMSSStarter extends AppKickstarter {
 		depositCollectorHandler = new DepositCollectorHandler("DepositCollectorHandler", this);
 		cashDispenserHandler = new CashDispenserHandler("CashDispenserHandler", this);
 	} catch (Exception e) {
-	    System.out.println("AppKickstarter: startApp failed");
+		log.info("AppKickstarter: startApp failed");
 	    e.printStackTrace();
 	    Platform.exit();
 	}
