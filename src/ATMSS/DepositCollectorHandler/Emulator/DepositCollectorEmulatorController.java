@@ -38,7 +38,7 @@ public class DepositCollectorEmulatorController {
      * @param id name of the application
      * @param appKickstarter The app kickstarter using.
      * @param log some message to print
-     * @param depositCollectorEmulator store message of Deposit Collector
+     * @param depositCollectorEmulator a reference to the Deposit Collector
      */
 
     //------------------------------------------------------------
