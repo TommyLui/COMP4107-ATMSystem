@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.StackPane?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0"
+            prefWidth="680.0" xmlns="http://javafx.com/javafx/8.0" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ATMSS.TouchDisplayHandler.Emulator.TouchDisplayEmulatorController">
+    <children>
+        <AnchorPane prefHeight="480.0" prefWidth="640.0" AnchorPane.leftAnchor="20" AnchorPane.topAnchor="20">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="480.0"
+                           onMouseClicked="#td_mouseClick" stroke="BLACK" strokeType="OUTSIDE" width="640"
+                           AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0"/>
+
+                <StackPane fx:id="checkAccBalanceStackPane" onMouseClicked="#td_returnMainMenu"
+                           AnchorPane.bottomAnchor="50" AnchorPane.leftAnchor="250">
+                    <Rectangle arcHeight="5.0" arcWidth="5.0"
+                               fill="white" height="40.0" stroke="BLACK" strokeType="OUTSIDE" width="160.0"/>
+                    <Text text="Return to Main Menu"/>
+                </StackPane>
+
+                <!--                <Rectangle arcHeight="5.0" arcWidth="5.0" AnchorPane.bottomAnchor="50" AnchorPane.rightAnchor="100"-->
+                <!--                           fill="white" height="40.0" stroke="BLACK" strokeType="OUTSIDE" width="160.0"/>-->
+                <Text fx:id="balanceErrorText" text="You only have one account in your Card" AnchorPane.bottomAnchor="410" AnchorPane.leftAnchor="100"/>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
+
