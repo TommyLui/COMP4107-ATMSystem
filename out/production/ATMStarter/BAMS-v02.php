@@ -35,6 +35,9 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
   $reply->pin = $req->pin;
 //   $reply->cred = "Credible_Credential!!!";
 } else if (strcmp($req->msgType, "LogoutReq") === 0) {
+    $sql = "UPDATE Cards SET cred=null WHERE cardNo = " . "'" . $req->cardNo . "'";
+    $result = $conn->query($sql);
+
   $reply->msgType = "LogoutReply";
   $reply->cardNo = $req->cardNo;
   $reply->cred = $req->cred;

@@ -76,6 +76,7 @@ public class BAMSHandlerInATMSS extends AppThread {
             }else if (request.contains("GetAccDeposit")) {
                 getAcc(bams, request);
             }else if (request.contains("Logout")){
+//                System.out.println("handle logout");
                 Logout(bams, request);
             } else {
                 switch (request) {

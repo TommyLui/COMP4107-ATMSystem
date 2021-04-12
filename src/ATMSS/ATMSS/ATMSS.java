@@ -73,7 +73,7 @@ public class ATMSS extends AppThread {
 
                 case CR_CardInserted:
                     log.info("CardInserted: " + msg.getDetails());
-                    if (!loginState.equalsIgnoreCase("cardInserted")) {
+                    if (!loginState.equalsIgnoreCase("cardInserted")&&!cardState.equalsIgnoreCase("cardRetained")) {
                         loginState = "cardInserted";
                         cardNum = msg.getDetails();
                         cardState = "cardInserted";
@@ -180,16 +180,35 @@ public class ATMSS extends AppThread {
 
                 case CR_EjectCard:
                     loginState = "ejectingCard";
-                    cardReaderMBox.send(new Msg(id, cardReaderMBox, Msg.Type.CR_EjectCard, ""));
+                    cardReaderMBox.send(new Msg(id, mbox, Msg.Type.CR_EjectCard, ""));
+                    break;
+
+                case CR_CardEjected:
                     String logoutDetails = "Logout," + cardNum +"," + cred;
+
+                    new Thread(() -> {
+                        try {
+                            Thread.sleep(100);
+                            buzzerMBox.send(new Msg(id, mbox, Msg.Type.BZ_Buzz, "Buzz"));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }).start();
+
                     bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, logoutDetails));
                     break;
 
                 case CR_CardRemoved:
                     System.out.println("CR_CardRemoved received");
-                    if (loginState.equalsIgnoreCase("ejectingCard")){
-                        cardState = "removed";
+                    System.out.println("loginState: " + loginState);
+                    if (cardState.equalsIgnoreCase("cardInserted") && cardNum.equalsIgnoreCase("")){
+                        cardState = "";
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "Initialization"));
                     }
+                    break;
+
+                case CR_Lock:
+                        cardReaderMBox.send(new Msg(id, mbox, Msg.Type.CR_Lock, ""));
                     break;
 
                 case TimesUp:
@@ -235,6 +254,16 @@ public class ATMSS extends AppThread {
             } else {
                 System.out.println("Login fail with cred: " + cred);
                 wrongPinCounter++;
+
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(100);
+                        buzzerMBox.send(new Msg(id, mbox, Msg.Type.BZ_Buzz, "Buzz"));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }).start();
+
                 System.out.println("wrongPinCounter: " + wrongPinCounter);
                 pin = "";
                 if (wrongPinCounter < 3) {
@@ -245,10 +274,33 @@ public class ATMSS extends AppThread {
                 }
             }
         } else if (msgDetails.contains("logout")) {
+            System.out.println("logout respond msgDetails: " + msgDetails);
             loginState = "logout";
-            System.out.println("loginState: " + loginState);
-            System.out.println("cardState: " + cardState);
-//            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "Initialization"));
+            cardNum = "";
+            pin = "";
+            existingPin = "";
+            newPin = "";
+            changePinState = "existing";
+            cred = "";
+            wrongPinCounter = 0;
+            wrongExistingPinCounter = 0;
+            wrongNewPinCounter = 0;
+            depositAc = null;
+            aid = "";
+
+            new Thread(() -> {
+                System.out.println("new thread");
+                try {
+                    Thread.sleep(10000);
+                    if (cardState.equalsIgnoreCase("cardInserted") && cardNum.equalsIgnoreCase("")){
+                        System.out.println("RemoveCardTimeOut");
+                        cardState = "cardRetained";
+                        touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "RemoveCardTimeOut"));
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
 
         } else if (msgDetails.contains("accounts")) {
             System.out.println("I am accounts");
@@ -379,6 +431,16 @@ public class ATMSS extends AppThread {
                         bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request, loginDetails));
                     } else {
                         wrongPinCounter++;
+
+                        new Thread(() -> {
+                            try {
+                                Thread.sleep(100);
+                                buzzerMBox.send(new Msg(id, mbox, Msg.Type.BZ_Buzz, "Buzz"));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }).start();
+
                         System.out.println("No pin inputted");
                         System.out.println("wrongPinCounter: " + wrongPinCounter);
                         pin = "";

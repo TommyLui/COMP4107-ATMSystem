@@ -38,7 +38,6 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 	myStage = new Stage();
 	FXMLLoader loader = new FXMLLoader();
 	String fxmlName = "TouchDisplayInitial.fxml";
-//	String fxmlName = "TouchDisplayEjectCard.fxml";
 	loader.setLocation(TouchDisplayEmulator.class.getResource(fxmlName));
 	root = loader.load();
 	touchDisplayEmulatorController = (TouchDisplayEmulatorController) loader.getController();
@@ -177,6 +176,16 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			break;
+
+		case "RemoveCardTimeOut":
+			reloadStage("TouchDisplayCardRetaining.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			atmss.send(new Msg(id, mbox, Msg.Type.CR_Lock, ""));
 			break;
 
 //		case "CheckBalance":

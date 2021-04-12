@@ -26,10 +26,13 @@ public class CardReaderHandler extends HWHandler {
             case CR_EjectCard:
                 handleCardEject();
                 break;
-                
+
             case CR_CardRemoved:
                 handleCardRemove();
-                atmss.send(new Msg(id, mbox, Msg.Type.CR_CardRemoved, msg.getDetails()));
+                break;
+
+            case CR_Lock:
+                handleCardLock();
                 break;
 
             default:
@@ -51,10 +54,13 @@ public class CardReaderHandler extends HWHandler {
 	log.info(id + ": card ejected");
     } // handleCardEject
 
-
     //------------------------------------------------------------
     // handleCardRemove
     protected void handleCardRemove() {
 	log.info(id + ": card removed");
     } // handleCardRemove
+
+    //------------------------------------------------------------
+    // handleCardLock
+    protected void handleCardLock() { log.info(id + ": card locked"); } // handleCardRemove
 } // CardReaderHandler
