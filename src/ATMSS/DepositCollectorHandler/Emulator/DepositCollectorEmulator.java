@@ -11,6 +11,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
+/**
+ * @id
+ * @mystage
+ */
+
 public class DepositCollectorEmulator extends DepositCollectorHandler {
     private final int WIDTH = 500;
     private final int HEIGHT = 500;

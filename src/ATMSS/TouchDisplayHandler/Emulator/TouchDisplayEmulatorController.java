@@ -153,6 +153,11 @@ public class TouchDisplayEmulatorController {
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
     } // td_returnMainMenu
 
+    public void td_printReceipt(Event event) {
+        System.out.println("event: " + event);
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "PrintReceipt"));
+    } // td_returnMainMenu
+
     public void td_ejectCard(Event event) {
         System.out.println("event: " + event);
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "EjectCard"));

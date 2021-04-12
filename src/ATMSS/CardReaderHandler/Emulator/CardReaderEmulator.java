@@ -36,6 +36,7 @@ public class CardReaderEmulator extends CardReaderHandler {
 	Parent root;
 	myStage = new Stage();
 	FXMLLoader loader = new FXMLLoader();
+
 	String fxmlName = "CardReaderEmulator.fxml";
 	loader.setLocation(CardReaderEmulator.class.getResource(fxmlName));
 	root = loader.load();
