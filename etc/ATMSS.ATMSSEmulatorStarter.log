@@ -1,85 +1,332 @@
-210413-02:25:08 [INFO] -- 
-210413-02:25:09 [INFO] -- 
-210413-02:25:09 [INFO] -- ============================================================
-210413-02:25:09 [INFO] -- ATMSSStarter: Application Starting...
-210413-02:25:09 [INFO] -- CardReaderHandler: starting...
-210413-02:25:09 [INFO] -- BAMSHandler: starting...
-210413-02:25:09 [INFO] -- CashDispenserHandler: starting...
-210413-02:25:09 [INFO] -- BuzzerHandler: starting...
-210413-02:25:09 [INFO] -- KeypadHandler: starting...
-210413-02:25:09 [INFO] -- TouchDisplayHandler: starting...
-210413-02:25:09 [INFO] -- DepositCollectorHandler: starting...
-210413-02:25:09 [INFO] -- AdvicePrinterHandler: starting...
-210413-02:25:09 [INFO] -- timer: starting...
-210413-02:25:09 [INFO] -- ATMSS: starting...
-210413-02:25:21 [INFO] -- CardInserted: 4107-7014
-210413-02:25:21 [INFO] -- cardNum: 4107-7014
-210413-02:25:21 [INFO] -- TouchDisplayHandler: update display -- PinInputPage
-210413-02:25:21 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
-210413-02:25:25 [INFO] -- MouseCLicked: 622 108
-210413-02:25:26 [INFO] -- KeyPressed: 1
-210413-02:25:26 [INFO] -- login state: cardInserted
-210413-02:25:26 [INFO] -- 1 pressed
-210413-02:25:26 [INFO] -- pin: 1
-210413-02:25:26 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-02:25:26 [INFO] -- currentPinLabel: *
-210413-02:25:26 [INFO] -- KeyPressed: 2
-210413-02:25:26 [INFO] -- login state: cardInserted
-210413-02:25:26 [INFO] -- 2 pressed
-210413-02:25:26 [INFO] -- pin: 12
-210413-02:25:26 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-02:25:26 [INFO] -- currentPinLabel: **
-210413-02:25:27 [INFO] -- KeyPressed: 3
-210413-02:25:27 [INFO] -- login state: cardInserted
-210413-02:25:27 [INFO] -- 3 pressed
-210413-02:25:27 [INFO] -- pin: 123
-210413-02:25:27 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-02:25:27 [INFO] -- currentPinLabel: ***
-210413-02:25:27 [INFO] -- KeyPressed: 4
-210413-02:25:27 [INFO] -- login state: cardInserted
-210413-02:25:27 [INFO] -- 4 pressed
-210413-02:25:27 [INFO] -- pin: 1234
-210413-02:25:27 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-02:25:27 [INFO] -- currentPinLabel: ****
-210413-02:25:28 [INFO] -- KeyPressed: 5
-210413-02:25:28 [INFO] -- login state: cardInserted
-210413-02:25:28 [INFO] -- 5 pressed
-210413-02:25:28 [INFO] -- pin: 12345
-210413-02:25:28 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-02:25:28 [INFO] -- currentPinLabel: *****
-210413-02:25:28 [INFO] -- KeyPressed: 6
-210413-02:25:28 [INFO] -- login state: cardInserted
-210413-02:25:28 [INFO] -- 6 pressed
-210413-02:25:28 [INFO] -- pin: 123456
-210413-02:25:28 [INFO] -- TouchDisplayHandler: update display -- PinInputted
-210413-02:25:28 [INFO] -- currentPinLabel: ******
-210413-02:25:30 [INFO] -- KeyPressed: Enter
-210413-02:25:30 [INFO] -- login state: cardInserted
-210413-02:25:30 [INFO] -- Enter pressed
-210413-02:25:30 [INFO] -- pin: 123456
-210413-02:25:30 [INFO] -- LoginReq
-210413-02:25:30 [INFO] -- 4107-7014
-210413-02:25:30 [INFO] -- 123456
-210413-02:25:30 [INFO] -- Login:
-210413-02:25:30 [INFO] -- cred: 1fc4c5294406c01eb41da59b9e0e8379549be196
-210413-02:25:30 [INFO] -- BAMS response: cred:1fc4c5294406c01eb41da59b9e0e8379549be196
-210413-02:25:30 [INFO] -- Login successful with cred: 1fc4c5294406c01eb41da59b9e0e8379549be196
-210413-02:25:30 [INFO] -- TouchDisplayHandler: update display -- MainMenu
-210413-02:25:30 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
-210413-02:25:32 [INFO] -- CardInserted: 4107-7014
-210413-02:25:32 [INFO] -- Card Insert button clicked but card already inserted
-210413-02:25:36 [INFO] -- 
-210413-02:25:36 [INFO] -- 
-210413-02:25:36 [INFO] -- ============================================================
-210413-02:25:36 [INFO] -- ATMSSStarter: Application Stopping...
-210413-02:25:36 [INFO] -- timer: received terminate!
-210413-02:25:36 [INFO] -- CardReaderHandler: terminating...
-210413-02:25:36 [INFO] -- CashDispenserHandler: terminating...
-210413-02:25:36 [INFO] -- BuzzerHandler: terminating...
-210413-02:25:36 [INFO] -- DepositCollectorHandler: terminating...
-210413-02:25:36 [INFO] -- AdvicePrinterHandler: terminating...
-210413-02:25:36 [INFO] -- timer: terminating...
-210413-02:25:36 [INFO] -- ATMSS: terminating...
-210413-02:25:36 [INFO] -- BAMSHandler: terminating...
-210413-02:25:36 [INFO] -- KeypadHandler: terminating...
-210413-02:25:36 [INFO] -- TouchDisplayHandler: terminating...
+210413-02:33:01 [INFO] -- 
+210413-02:33:01 [INFO] -- 
+210413-02:33:01 [INFO] -- ============================================================
+210413-02:33:01 [INFO] -- ATMSSStarter: Application Starting...
+210413-02:33:02 [INFO] -- CashDispenserHandler: starting...
+210413-02:33:02 [INFO] -- DepositCollectorHandler: starting...
+210413-02:33:02 [INFO] -- TouchDisplayHandler: starting...
+210413-02:33:02 [INFO] -- AdvicePrinterHandler: starting...
+210413-02:33:02 [INFO] -- BuzzerHandler: starting...
+210413-02:33:02 [INFO] -- CardReaderHandler: starting...
+210413-02:33:02 [INFO] -- KeypadHandler: starting...
+210413-02:33:02 [INFO] -- timer: starting...
+210413-02:33:02 [INFO] -- BAMSHandler: starting...
+210413-02:33:02 [INFO] -- ATMSS: starting...
+210413-02:33:17 [INFO] -- CardInserted: 4107-7014
+210413-02:33:17 [INFO] -- cardNum: 4107-7014
+210413-02:33:17 [INFO] -- TouchDisplayHandler: update display -- PinInputPage
+210413-02:33:17 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayPinInput.fxml
+210413-02:33:18 [INFO] -- KeyPressed: 1
+210413-02:33:18 [INFO] -- login state: cardInserted
+210413-02:33:18 [INFO] -- 1 pressed
+210413-02:33:18 [INFO] -- pin: 1
+210413-02:33:18 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-02:33:18 [INFO] -- currentPinLabel: *
+210413-02:33:19 [INFO] -- KeyPressed: 2
+210413-02:33:19 [INFO] -- login state: cardInserted
+210413-02:33:19 [INFO] -- 2 pressed
+210413-02:33:19 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-02:33:19 [INFO] -- pin: 12
+210413-02:33:19 [INFO] -- currentPinLabel: **
+210413-02:33:19 [INFO] -- KeyPressed: 3
+210413-02:33:19 [INFO] -- login state: cardInserted
+210413-02:33:19 [INFO] -- 3 pressed
+210413-02:33:19 [INFO] -- pin: 123
+210413-02:33:19 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-02:33:19 [INFO] -- currentPinLabel: ***
+210413-02:33:19 [INFO] -- KeyPressed: 4
+210413-02:33:19 [INFO] -- login state: cardInserted
+210413-02:33:19 [INFO] -- 4 pressed
+210413-02:33:19 [INFO] -- pin: 1234
+210413-02:33:19 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-02:33:19 [INFO] -- currentPinLabel: ****
+210413-02:33:20 [INFO] -- KeyPressed: 5
+210413-02:33:20 [INFO] -- login state: cardInserted
+210413-02:33:20 [INFO] -- 5 pressed
+210413-02:33:20 [INFO] -- pin: 12345
+210413-02:33:20 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-02:33:20 [INFO] -- currentPinLabel: *****
+210413-02:33:20 [INFO] -- KeyPressed: 6
+210413-02:33:20 [INFO] -- login state: cardInserted
+210413-02:33:20 [INFO] -- 6 pressed
+210413-02:33:20 [INFO] -- TouchDisplayHandler: update display -- PinInputted
+210413-02:33:20 [INFO] -- pin: 123456
+210413-02:33:20 [INFO] -- currentPinLabel: ******
+210413-02:33:20 [INFO] -- KeyPressed: Enter
+210413-02:33:20 [INFO] -- login state: cardInserted
+210413-02:33:20 [INFO] -- Enter pressed
+210413-02:33:20 [INFO] -- pin: 123456
+210413-02:33:20 [INFO] -- LoginReq
+210413-02:33:20 [INFO] -- 4107-7014
+210413-02:33:20 [INFO] -- 123456
+210413-02:33:20 [INFO] -- Login:
+210413-02:33:21 [INFO] -- cred: 730b2cd21aa5f343843a20eabf1ccbb7ee479983
+210413-02:33:21 [INFO] -- BAMS response: cred:730b2cd21aa5f343843a20eabf1ccbb7ee479983
+210413-02:33:21 [INFO] -- Login successful with cred: 730b2cd21aa5f343843a20eabf1ccbb7ee479983
+210413-02:33:21 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210413-02:33:21 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210413-02:33:21 [INFO] -- event: MouseEvent [source = StackPane@717603f8, target = Text[text="Withdrawal", x=0.0, y=0.0, alignment=LEFT, origin=BASELINE, boundsType=LOGICAL, font=Font[name=System Regular, family=System, style=Regular, size=12.0], fontSmoothingType=GRAY, fill=0x000000ff], eventType = MOUSE_CLICKED, consumed = false, x = 147.0, y = 42.0, z = 0.0, button = PRIMARY, pickResult = PickResult [node = Text[text="Withdrawal", x=0.0, y=0.0, alignment=LEFT, origin=BASELINE, boundsType=LOGICAL, font=Font[name=System Regular, family=System, style=Regular, size=12.0], fontSmoothingType=GRAY, fill=0x000000ff], point = Point3D [x = 28.0, y = 1.8125, z = 0.0], distance = 970.3332099679081]
+210413-02:33:21 [INFO] -- BAMS request: GetAccWithdrawal
+210413-02:33:21 [INFO] -- GetAcc: 
+210413-02:33:21 [INFO] -- cardNo: 4107-7014
+210413-02:33:21 [INFO] -- cred: 730b2cd21aa5f343843a20eabf1ccbb7ee479983
+210413-02:33:21 [INFO] -- accounts: 1/2/3/
+210413-02:33:21 [INFO] -- BAMS response: accountWithdrawal: 1/2/3/
+210413-02:33:21 [INFO] -- I am accounts for Deposit
+210413-02:33:21 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayWithdrawal.fxml
+210413-02:33:22 [INFO] -- 1
+210413-02:33:22 [INFO] -- TouchDisplayHandler: update display -- Waiting
+210413-02:33:22 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayWaitPushCash.fxml
+210413-02:33:27 [INFO] -- ProvideCash: 123
+210413-02:33:27 [INFO] -- 123
+210413-02:33:27 [INFO] -- Withdraw: 
+210413-02:33:27 [INFO] -- outAmount: 62767
+210413-02:33:27 [INFO] -- BAMS response: outAmount,62767,123,1,4107-7014
+210413-02:33:27 [INFO] -- TouchDisplayHandler: update display -- GetCash
+210413-02:33:27 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayGetCash.fxml
+210413-02:33:27 [INFO] -- AdvicePrinterHandler: receipt printed
+210413-02:33:27 [INFO] -- Print advice successful: print advice okay
+210413-02:33:27 [INFO] -- BuzzerHandler: update display -- Buzz,withdrawMoney
+210413-02:33:27 [INFO] -- BuzzerHandler: loading fxml: BuzzerBuzzing.fxml
+210413-02:33:33 [INFO] -- GetCash: Cash Dispenser Ready
+210413-02:33:33 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210413-02:33:33 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210413-02:33:37 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+210413-02:33:37 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+210413-02:33:37 [WARNING] -- CashDispenserHandler: unknown message type: [ATMSS (CD_RetainMoney) -- ]
+210413-02:33:37 [INFO] -- BuzzerHandler: loading fxml: BuzzerEmulator.fxml
+210413-02:33:37 [SEVERE] -- BuzzerHandler: update display with unknown display type -- Buzz,withdrawMoney
+210413-02:34:02 [INFO] -- Poll: TimesUp 57409 0
+210413-02:34:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:34:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:34:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:34:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:34:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:34:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:34:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:34:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:35:02 [INFO] -- Poll: TimesUp 71641 0
+210413-02:35:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:35:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:35:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:35:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:35:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:35:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:35:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:35:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:36:02 [INFO] -- Poll: TimesUp 68280 0
+210413-02:36:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:36:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:36:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:36:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:36:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:36:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:36:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:36:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:37:02 [INFO] -- Poll: TimesUp 21817 0
+210413-02:37:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:37:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:37:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:37:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:37:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:37:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:37:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:37:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:38:02 [INFO] -- Poll: TimesUp 12674 0
+210413-02:38:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:38:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:38:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:38:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:38:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:38:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:38:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:38:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:39:02 [INFO] -- Poll: TimesUp 30222 0
+210413-02:39:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:39:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:39:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:39:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:39:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:39:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:39:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:39:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:40:02 [INFO] -- Poll: TimesUp 58391 0
+210413-02:40:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:40:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:40:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:40:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:40:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:40:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:40:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:40:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:41:02 [INFO] -- Poll: TimesUp 74665 0
+210413-02:41:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:41:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:41:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:41:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:41:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:41:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:41:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:41:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:42:02 [INFO] -- Poll: TimesUp 99090 0
+210413-02:42:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:42:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:42:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:42:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:42:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:42:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:42:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:42:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:43:02 [INFO] -- Poll: TimesUp 82888 0
+210413-02:43:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:43:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:43:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:43:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:43:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:43:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:43:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:43:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:44:02 [INFO] -- Poll: TimesUp 86028 0
+210413-02:44:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:44:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:44:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:44:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:44:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:44:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:44:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:44:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:45:02 [INFO] -- Poll: TimesUp 77605 0
+210413-02:45:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:45:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:45:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:45:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:45:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:45:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:45:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:45:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:46:02 [INFO] -- Poll: TimesUp 37776 0
+210413-02:46:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:46:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:46:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:46:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:46:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:46:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:46:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:46:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:47:02 [INFO] -- Poll: TimesUp 39090 0
+210413-02:47:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:47:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:47:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:47:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:47:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:47:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:47:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:47:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:48:02 [INFO] -- Poll: TimesUp 57478 0
+210413-02:48:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:48:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:48:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:48:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:48:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:48:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:48:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:48:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:49:02 [INFO] -- Poll: TimesUp 87326 0
+210413-02:49:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:49:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:49:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:49:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:49:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:49:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:49:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:49:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:50:02 [INFO] -- Poll: TimesUp 14988 0
+210413-02:50:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:50:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:50:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:50:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:50:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:50:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:50:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:50:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:51:02 [INFO] -- Poll: TimesUp 93052 0
+210413-02:51:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:51:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:51:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:51:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:51:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:51:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:51:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:51:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:52:02 [INFO] -- Poll: TimesUp 38236 0
+210413-02:52:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:52:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:52:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:52:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:52:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:52:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:52:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:52:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:53:02 [INFO] -- Poll: TimesUp 26201 0
+210413-02:53:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:53:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:53:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:53:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:53:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:53:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:53:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:53:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:54:02 [INFO] -- Poll: TimesUp 73992 0
+210413-02:54:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:54:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:54:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:54:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:54:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:54:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:54:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:54:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:55:02 [INFO] -- Poll: TimesUp 40049 0
+210413-02:55:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:55:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:55:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:55:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:55:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:55:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:55:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:55:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:56:02 [INFO] -- Poll: TimesUp 96183 0
+210413-02:56:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:56:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:56:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:56:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:56:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:56:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:56:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:56:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:57:02 [INFO] -- Poll: TimesUp 44353 0
+210413-02:57:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:57:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:57:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:57:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:57:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:57:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:57:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:57:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:58:02 [INFO] -- Poll: TimesUp 19814 0
+210413-02:58:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:58:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:58:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:58:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:58:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:58:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:58:02 [INFO] -- PollAck: BAMSHandler is up!
+210413-02:58:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:59:02 [INFO] -- Poll: TimesUp 82524 0
+210413-02:59:02 [INFO] -- PollAck: CardReaderHandler is up!
+210413-02:59:02 [INFO] -- PollAck: CashDispenserHandler is up!
+210413-02:59:02 [INFO] -- PollAck: AdvicePrinterHandler is up!
+210413-02:59:02 [INFO] -- PollAck: TouchDisplayHandler is up!
+210413-02:59:02 [INFO] -- PollAck: DepositCollectorHandler is up!
+210413-02:59:02 [INFO] -- PollAck: KeypadHandler is up!
+210413-02:59:02 [INFO] -- PollAck: BuzzerHandler is up!
+210413-02:59:02 [INFO] -- PollAck: BAMSHandler is up!
