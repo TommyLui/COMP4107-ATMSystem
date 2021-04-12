@@ -31,7 +31,6 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 	this.id = id;
     } // TouchDisplayEmulator
 
-
     //------------------------------------------------------------
     // start
     public void start() throws Exception {
@@ -39,6 +38,7 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 	myStage = new Stage();
 	FXMLLoader loader = new FXMLLoader();
 	String fxmlName = "TouchDisplayInitial.fxml";
+//	String fxmlName = "TouchDisplayEjectCard.fxml";
 	loader.setLocation(TouchDisplayEmulator.class.getResource(fxmlName));
 	root = loader.load();
 	touchDisplayEmulatorController = (TouchDisplayEmulatorController) loader.getController();
@@ -53,7 +53,6 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 	});
 	myStage.show();
     } // TouchDisplayEmulator
-
 
     //------------------------------------------------------------
     // handleUpdateDisplay
@@ -161,6 +160,25 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 			reloadStage("TouchDisplayCardLocked.fxml");
 			break;
 
+		case "EjectCard":
+			reloadStage("TouchDisplayEjectCard.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			atmss.send(new Msg(id, mbox, Msg.Type.CR_EjectCard, "EjectCard"));
+			break;
+
+		case "Initialization":
+			reloadStage("TouchDisplayInitial.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			break;
+
 //		case "CheckBalance":
 //			reloadStage("TouchDisplayCheckBalance.fxml");
 //			break;
@@ -243,7 +261,6 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 				e.printStackTrace();
 			}
 		}
-
 	} // handleBAMSUpdateDisplay
 
     //------------------------------------------------------------

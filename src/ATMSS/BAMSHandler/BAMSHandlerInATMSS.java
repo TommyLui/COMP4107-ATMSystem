@@ -75,7 +75,9 @@ public class BAMSHandlerInATMSS extends AppThread {
                 testDeposit(bams, request);
             }else if (request.contains("GetAccDeposit")) {
                 getAcc(bams, request);
-            }else {
+            }else if (request.contains("Logout")){
+                Logout(bams, request);
+            } else {
                 switch (request) {
                     case "LogoutReq":
                         testLogout(bams);
@@ -152,6 +154,19 @@ public class BAMSHandlerInATMSS extends AppThread {
         System.out.println();
         atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "cred:" + cred));
     } // Login
+
+    // Logout
+    protected void Logout(BAMSHandler bams, String request) throws BAMSInvalidReplyException, IOException {
+        System.out.println("Logout:");
+        String[] details = request.split(",");
+        System.out.println(details[0]);
+        System.out.println(details[1]);
+        System.out.println(details[2]);
+        String result = bams.logout(details[1], details[2]);
+        System.out.println("result: " + result);
+        System.out.println();
+        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "logout result: " + result));
+    } // Logout
 
 
     //------------------------------------------------------------

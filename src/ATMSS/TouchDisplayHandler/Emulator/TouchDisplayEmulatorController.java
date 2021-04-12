@@ -121,6 +121,11 @@ public class TouchDisplayEmulatorController {
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
     } // td_returnMainMenu
 
+    public void td_ejectCard(Event event) {
+        System.out.println("event: " + event);
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "EjectCard"));
+    }
+
     //------------------------------------------------------------
     // td_checkAccBalance
     public void td_checkAccBalance(MouseEvent event) {

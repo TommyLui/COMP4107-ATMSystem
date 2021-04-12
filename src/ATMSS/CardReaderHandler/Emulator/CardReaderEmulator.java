@@ -51,7 +51,6 @@ public class CardReaderEmulator extends CardReaderHandler {
 	myStage.show();
     } // CardReaderEmulator
 
-
     //------------------------------------------------------------
     // handleCardInsert
     protected void handleCardInsert() {
