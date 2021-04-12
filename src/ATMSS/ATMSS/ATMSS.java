@@ -393,6 +393,7 @@ public class ATMSS extends AppThread {
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
         } else if (msgDetails.contains("SelectTransAC")) {
             System.out.println("Select Transfer account: ");
+
             accNo = msgDetails;
             accountNum = msgDetails.split("/").length;
             if(accountNum <2){

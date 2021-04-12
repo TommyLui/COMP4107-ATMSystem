@@ -324,7 +324,9 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 			}
 			touchDisplayEmulatorController.setChangePinText();
 		}else if (msg.getDetails().contains("accountDeposit")) {
-			reloadStage("TouchDisplayDeposit.fxml");
+			System.out.print("Loading next page:" + msg.getDetails());
+    		reloadStage("TouchDisplayDeposit.fxml");
+
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
@@ -359,7 +361,7 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 //			    		System.out.println("I made it!!! "+msg.getDetails());
 			reloadStage("TouchDisplayMoneyTransSelAcc.fxml");
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
