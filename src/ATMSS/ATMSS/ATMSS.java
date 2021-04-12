@@ -16,6 +16,7 @@ public class ATMSS extends AppThread {
     private MBox bamsMBox;
     private MBox buzzerMBox;
     private MBox depositCollectorMBox;
+    private MBox cashDispenserMBox;
 
     private String loginState = "logout";
     private String cardNum = "";
@@ -29,6 +30,7 @@ public class ATMSS extends AppThread {
     private int wrongNewPinCounter = 0;
     private String depositAc;
     private String aid = "";
+    private String withdrawalAc;
 
     String[] pins = {existingPin, newPin}; // 0: existing pin, 1: new pin
 
@@ -53,6 +55,7 @@ public class ATMSS extends AppThread {
         bamsMBox = appKickstarter.getThread("BAMSHandler").getMBox();
         buzzerMBox = appKickstarter.getThread("BuzzerHandler").getMBox();
         depositCollectorMBox = appKickstarter.getThread("DepositCollectorHandler").getMBox();
+        cashDispenserMBox = appKickstarter.getThread("CashDispenserHandler").getMBox();
 
         for (boolean quit = false; !quit; ) {
             Msg msg = mbox.receive();
@@ -112,6 +115,13 @@ public class ATMSS extends AppThread {
 
                 case CD_provideCash:
                     log.info("ProvideCash: " + msg.getDetails());
+                    String provideCash = msg.getDetails();
+                    System.out.println(provideCash);
+
+                    String detailsCD = cardNum + "," + aid + "," + cred + "," + provideCash;
+                    bamsMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Request,"WithdrawReq,"+ detailsCD ));
+
+
                     break;
 
                 case CD_GetCash:
@@ -176,6 +186,14 @@ public class ATMSS extends AppThread {
                     touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "OpenDeposit"));
                     break;
 
+                case TD_selectedAccWithdrawal:
+                    String[] tempDetail1 = msg.getDetails().split(",");
+                    withdrawalAc = tempDetail1[1];
+                    System.out.println(withdrawalAc);
+                    aid = tempDetail1[1];
+                    touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "Waiting"));
+                    break;
+
                 case TimesUp:
                     Timer.setTimer(id, mbox, pollingTime);
                     log.info("Poll: " + msg.getDetails());
@@ -186,6 +204,7 @@ public class ATMSS extends AppThread {
                     bamsMBox.send(new Msg(id, mbox, Msg.Type.Poll, ""));
                     buzzerMBox.send(new Msg(id, mbox, Msg.Type.Poll, ""));
                     depositCollectorMBox.send(new Msg(id, mbox, Msg.Type.Poll, ""));
+                    cashDispenserMBox.send(new Msg(id, mbox, Msg.Type.Poll, ""));
                     break;
 
                 case PollAck:
@@ -236,8 +255,11 @@ public class ATMSS extends AppThread {
         } else if (msgDetails.contains("accountDeposit")) {
             System.out.println("I am accounts for Deposit");
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
+        }else if (msgDetails.contains("accountWithdrawal")) {
+            System.out.println("I am accounts for Deposit");
+            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.BAMS_Response, msgDetails));
         }else if (msgDetails.contains("outAmount")) {
-
+            touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
         } else if (msgDetails.contains("depAmount")) {
 
         } else if (msgDetails.contains("amount")) {
@@ -256,6 +278,8 @@ public class ATMSS extends AppThread {
         }else if (msgDetails.contains("reDeposit")){
             touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
         }
+
+
     } // processBAMSResponse
 
     //------------------------------------------------------------

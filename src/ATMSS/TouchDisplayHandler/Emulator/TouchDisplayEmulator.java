@@ -81,6 +81,10 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 			reloadStage("TouchDisplayOpenDeposit.fxml");
 			break;
 
+		case "Waiting":
+			reloadStage("TouchDisplayWaitPushCash.fxml");
+			break;
+
 
 		case "ChangePinExisting":
 			handleChangePin(msg.getDetails());
@@ -237,6 +241,22 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 		}else if (msg.getDetails().contains("DepositReq")) {
 			reloadStage("TouchDisplayOpenDeposit.fxml");
 			atmss.send(new Msg(id, mbox, Msg.Type.TD_selectedAcc, msg.getDetails()));
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}else if (msg.getDetails().contains("accountWithdrawal")) {
+			reloadStage("TouchDisplayWithdrawal.fxml");
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			touchDisplayEmulatorController.setStackPaneVisibiliy(msg.getDetails());
+		}else if (msg.getDetails().contains("WithdrawalReq")) {
+			reloadStage("TouchDisplayWaitPushCash.fxml");
+			atmss.send(new Msg(id, mbox, Msg.Type.TD_selectedAccWithdrawal, msg.getDetails()));
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {

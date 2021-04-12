@@ -43,6 +43,10 @@ public class TouchDisplayHandler extends HWHandler {
                 atmss.send(new Msg(id, mbox, Msg.Type.TD_selectedAcc, msg.getDetails()));
                 break;
 
+            case TD_selectedAccWithdrawal:
+                atmss.send(new Msg(id, mbox, Msg.Type.TD_selectedAccWithdrawal, msg.getDetails()));
+                break;
+
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
         }

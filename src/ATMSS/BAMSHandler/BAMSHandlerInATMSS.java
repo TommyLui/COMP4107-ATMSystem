@@ -75,6 +75,10 @@ public class BAMSHandlerInATMSS extends AppThread {
                 testDeposit(bams, request);
             }else if (request.contains("GetAccDeposit")) {
                 getAcc(bams, request);
+            }else if (request.contains("GetAccWithdrawal")) {
+                getAcc(bams, request);
+            }else if (request.contains("WithdrawReq")) {
+                testWithdraw(bams, request);
             }else {
                 switch (request) {
                     case "LogoutReq":
@@ -87,7 +91,7 @@ public class BAMSHandlerInATMSS extends AppThread {
 //                        break;
 
                     case "WithdrawReq":
-                        testWithdraw(bams);
+                        //testWithdraw(bams);
                         break;
 
                     case "DepositReq":
@@ -228,6 +232,31 @@ public class BAMSHandlerInATMSS extends AppThread {
                 // Handle error
                 atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Error, "Error"));
             }
+        }else if (request.contains("GetAccWithdrawal")){
+            System.out.println("GetAcc:");
+            String[] details = request.split(",");
+            System.out.println(details[0]);
+            System.out.println(details[1]);
+            System.out.println(details[2]);
+
+            String cardNo = details[1];
+            String cred = details[2];
+
+            log.info("cardNo: " + cardNo);
+            log.info("cred: " + cred);
+
+            String accounts = bams.getAccounts(cardNo, cred);
+
+            System.out.println("accounts: " + accounts);
+
+            if (!accounts.contains("Error")) {
+//            System.out.println("accounts: " + accounts);
+                System.out.println();
+                atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "accountWithdrawal: " + accounts));
+            } else {
+                // Handle error
+                atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Error, "Error"));
+            }
         }
     } // getAcc
 
@@ -245,13 +274,31 @@ public class BAMSHandlerInATMSS extends AppThread {
 
     //------------------------------------------------------------
     // testWithdraw
-    protected void testWithdraw(BAMSHandler bams) throws BAMSInvalidReplyException, IOException {
-        System.out.println("Withdraw:");
-        int outAmount = bams.withdraw("12345678-2", "111-222-332", "cred-2", "109702");
-        System.out.println("outAmount: " + outAmount);
-        System.out.println();
-        atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response, "outAmount: " + outAmount));
-    } // testWithdraw
+    protected void testWithdraw(BAMSHandler bams, String request) throws BAMSInvalidReplyException, IOException {
+        try {
+            System.out.println("Withdraw:");
+            String[] details = request.split(",");
+            String cardNo = details[1];
+            String aid = details[2];
+            String cred = details[3];
+            String amount = details[4];
+
+            System.out.println("Card no: " + cardNo);
+            System.out.println("aid: " + aid);
+            System.out.println("cred: " + cred);
+            System.out.println("amount: " + amount);
+
+            int outAmount = bams.withdraw(cardNo, aid, cred, amount);
+            System.out.println("outAmount: " + outAmount);
+            System.out.println();
+
+            atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Response,
+                    "outAmount," + outAmount));
+        } catch (NumberFormatException exception) {
+            atmss.send(new Msg(id, mbox, Msg.Type.BAMS_Error, "Error"));
+        }
+        // testWithdraw
+    }
 
 
     //------------------------------------------------------------
