@@ -10,9 +10,9 @@ import AppKickstarter.misc.*;
 
 public class AdvicePrinterHandler extends HWHandler {
     /**
-     * The constructor for AdvicePrinterHandler
-     * @param id
-     * @param appKickstarter
+     * The constructor for the AdvicePrinterHandler
+     * @param id the name of the AdvicePrinterHandler
+     * @param appKickstarter a reference to the AppKickstarter
      */
     //------------------------------------------------------------
     // AdvicePrinterHandler
@@ -21,7 +21,7 @@ public class AdvicePrinterHandler extends HWHandler {
     } // AdvicePrinterHandler
 
     /**
-     * Process the message inside the mailbox of AdvicePrinter
+     * Process various types of messages inside the mailbox of AdvicePrinter
      * @param msg a message sent to the mailbox of AdvicePrinter
      */
     //------------------------------------------------------------
@@ -48,8 +48,8 @@ public class AdvicePrinterHandler extends HWHandler {
     } // processMsg
 
     /**
-     * Handle print advice request from processMsg()
-     * @param content
+     * Handle print advice request
+     * @param content the content of the receipt
      */
     //------------------------------------------------------------
     // handlePrintReceipt
