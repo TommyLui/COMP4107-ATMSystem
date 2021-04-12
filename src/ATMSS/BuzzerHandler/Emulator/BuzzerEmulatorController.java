@@ -10,9 +10,11 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.logging.Logger;
 
-
+/**
+ * Buzzer Emulator Controller class is using to interact with the buzzer emulator
+ */
 //======================================================================
-// TouchDisplayEmulatorController
+// BuzzerEmulatorController
 public class BuzzerEmulatorController {
     private String id;
     private AppKickstarter appKickstarter;
@@ -23,7 +25,13 @@ public class BuzzerEmulatorController {
     public TextField buzzStatusText;
     public Rectangle buzzStatus;
 
-
+    /**
+     * Initialize the reference
+     * @param id the name of buzzer
+     * @param appKickstarter a reference to the AppKickstarter
+     * @param log a reference to the logger
+     * @param buzzerEmulator a reference to the emulator
+     */
     //------------------------------------------------------------
     // initialize
     public void initialize(String id, AppKickstarter appKickstarter, Logger log, BuzzerEmulator buzzerEmulator) {
@@ -34,6 +42,10 @@ public class BuzzerEmulatorController {
 	this.buzzerMBox = appKickstarter.getThread("BuzzerHandler").getMBox();
     } // initialize
 
+    /**
+     * Handle the button press event
+     * @param actionEvent
+     */
     public void buttonPressed(ActionEvent actionEvent) {
         Button btn = (Button) actionEvent.getSource();
         String btnTxt = btn.getText();
@@ -41,6 +53,10 @@ public class BuzzerEmulatorController {
         updateBuzzerStatus(btnTxt);
     } // buttonPressed
 
+    /**
+     * Directly control the buzzer start and stop
+     * @param status start or stop the buzzer
+     */
     public void updateBuzzerStatus(String status) {
         switch (status){
             case "Buzz Start":
@@ -53,6 +69,6 @@ public class BuzzerEmulatorController {
                 buzzStatusText.setText("Buzzer is ready");
                 break;
         }
-    } // updateCardStatus
+    } // updateBuzzerStatus
 
-} // TouchDisplayEmulatorController
+} // BuzzerEmulatorController
