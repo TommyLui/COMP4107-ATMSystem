@@ -38,11 +38,11 @@ public class AdvicePrinterEmulatorController {
     private String apStatus;
 
     /**
-     * Initialise the Advice Printer emulator and its mailbox
-     * @param id
-     * @param appKickstarter
-     * @param log
-     * @param advicePrinterEmulator
+     * Store references to the id, the AppKickstarter, Log, and the AdvicePrinterEmulator
+     * @param id the name of the AdvicePrinterEmulator
+     * @param appKickstarter a reference to the AppKickstarter
+     * @param log a reference to the Log
+     * @param advicePrinterEmulator a reference to the AdvicePrinterEmulator
      */
     //------------------------------------------------------------
     // initialize
@@ -56,7 +56,7 @@ public class AdvicePrinterEmulatorController {
 
     /**
      * Handle the button actions in AdvicePrinterEmulator
-     * @param actionEvent
+     * @param actionEvent an event from the user
      */
     //------------------------------------------------------------
     // buttonPressed
@@ -116,8 +116,8 @@ public class AdvicePrinterEmulatorController {
     } // sendErrorMsg
 
     /**
-     * Handle the print advice function
-     * @param content
+     * Handle the print advice request
+     * @param content the content in the receipt
      */
     //------------------------------------------------------------
     // printAdvice

@@ -4,25 +4,28 @@ import ATMSS.HWHandler.HWHandler;
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.*;
 
-/*
-1.  Collect user’s cash deposit
-2.  Opening/closing of slot
-3.  Counts the money notes
-4.  Notify ATM-SS on error
-5.  Timeout
-
- */
-
 public class DepositCollectorHandler extends HWHandler {
 
     // DepositCollectorHandler
     public DepositCollectorHandler(String id, AppKickstarter appKickstarter) {
         super(id, appKickstarter);
+
+        /**
+         * The constructor for Deposit Collector
+         * @param id name of the application
+         * @param appKickstarter The app kickstarter using.
+         */
+
     // DepositCollectorHandler
     }
 
     //------------------------------------------------------------
     // processMsg
+
+    /**
+     * Process the message inside the mailbox of Deposit Collector
+     * @param msg a message sent to the mailbox of Deposit Collector,pass to ATM-SS
+     */
 
     protected void processMsg(Msg msg) {
         switch (msg.getType()) {
@@ -51,6 +54,12 @@ public class DepositCollectorHandler extends HWHandler {
 
     //------------------------------------------------------------
     // handlePrintReceipt
+
+    /**
+     * Handle print message request from processMsg()
+     * @param content
+     */
+
     protected void collectCashDeposit(String content) {
         log.info(id + ": Collect Cash Successful");
     } // handlePrintReceipt

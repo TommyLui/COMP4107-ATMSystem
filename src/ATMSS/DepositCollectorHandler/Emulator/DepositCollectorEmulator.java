@@ -11,6 +11,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
+/**
+ * Deposit Collector Emulator class is using to simulate a real Deposit Collector of the atm machine.
+ */
+
 public class DepositCollectorEmulator extends DepositCollectorHandler {
     private final int WIDTH = 500;
     private final int HEIGHT = 500;
@@ -19,6 +23,13 @@ public class DepositCollectorEmulator extends DepositCollectorHandler {
     private Stage myStage;
     private DepositCollectorEmulatorController depositCollectorEmulatorController;
 
+    /**
+     * The constructor of the Deposit Collector emulator class
+     * @param id The handler's thread id.
+     * @param atmssStarter The app kickstarter using.
+     * @throws Exception
+     */
+
     //------------------------------------------------------------
     // DepositCollectorEmulator
     public DepositCollectorEmulator(String id, ATMSSStarter atmssStarter) {
@@ -26,6 +37,7 @@ public class DepositCollectorEmulator extends DepositCollectorHandler {
         this.atmssStarter = atmssStarter;
         this.id = id;
     } // DepositCollectorEmulator
+
 
 
     //------------------------------------------------------------
