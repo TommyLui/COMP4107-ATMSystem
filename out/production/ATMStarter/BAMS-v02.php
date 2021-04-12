@@ -90,17 +90,17 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
 
         } else {
           $reply->amount = "Error";
-          $reply->outAmount = "Error";           
+          $reply->outAmount = "Error";
         }
       } else {
         $reply->amount = "Error";
-        $reply->outAmount = "Error";          
+        $reply->outAmount = "Error";
       }
 
     } else {
       $reply->amount = "Error";
-      $reply->outAmount = "Error";      
-    }   
+      $reply->outAmount = "Error";
+    }
 
   } else {
     $reply->amount = "Error";
@@ -175,11 +175,11 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
     $reply->amount = "Error";
   }
 
-  $reply->msgType = "EnquiryReply";
-  $reply->cardNo = $req->cardNo;
-  $reply->accNo = $req->accNo;
-  $reply->cred = $req->cred;
-
+    $reply->msgType = "EnquiryReply";
+    $reply->cardNo = $req->cardNo;
+    $reply->accNo = $req->accNo;
+    $reply->cred = $req->cred;
+  }
 } else if (strcmp($req->msgType, "TransferReq") === 0) {
   $reply->msgType = "TransferReply";
   $reply->cardNo = $req->cardNo;
@@ -222,7 +222,7 @@ if (strcmp($req->msgType, "LoginReq") === 0) {
   $reply->oldPin = $req->oldPin;
   $reply->newPin = $req->newPin;
   $reply->cred = $req->cred;
-  
+  $reply->result = "succ";
 } else if (strcmp($req->msgType, "ChgLangReq") === 0) {
   $reply->msgType = "ChgLangReply";
   $reply->cardNo = $req->cardNo;
