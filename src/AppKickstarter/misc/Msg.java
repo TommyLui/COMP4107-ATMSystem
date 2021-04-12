@@ -113,6 +113,7 @@ public class Msg {
     /** Get Not Enough Cash */  CD_NotEnoughCash,
     /** Get Not Enough Cash */  CD_Error,
     /** TD deposit selected account */ TD_selectedAcc,
+    /** TD withdrawal selected account */   TD_selectedAccWithdrawal,
     /** CR ejected user card */ CR_CardEjected,
     /** CR lock because containing card*/ CR_Lock,
     } // Type
